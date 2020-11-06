@@ -68,7 +68,7 @@ public class Tablero extends Observable{
 	private static int randInt(int max) {
 		int min = 0;
 	    Random rand = new Random();
-	    int randomNum = rand.nextInt((max - min) + min);
+	    int randomNum = rand.nextInt(max + 1);
 	    return randomNum;
 	}
 	

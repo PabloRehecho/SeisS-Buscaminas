@@ -56,15 +56,9 @@ public class Buscaminas extends Observable implements Observer{
 	
 	/**Iniciar el tablero**/
 	
-	private void iniciarTablero(int pNivel){
-		if(pNivel == 1){
-			tablero = TableroBuilderN1.getTableroBuilderN1().asignarTablero();
-		} else if (pNivel == 2){
-			tablero = TableroBuilderN2.getTableroBuilderN2().asignarTablero();
-			
-		} else if (pNivel == 3){
-			tablero = TableroBuilderN3.getTableroBuilderN3().asignarTablero();
-		}
+	private void iniciarTablero(int pNivel)
+	{
+		tablero = TableroBuilder.getTableroBuilder().asignarTablero(pNivel);
 	}
 
 	
