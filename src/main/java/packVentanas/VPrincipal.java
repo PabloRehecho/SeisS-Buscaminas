@@ -3,6 +3,8 @@ package packVentanas;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -12,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
-import packCodigo.Buscaminas;
+import packCodigo.Partida;
 import packCodigo.NoArchivoAudioException;
 import packCodigo.Ranking;
 
@@ -29,12 +31,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class VLogin extends JFrame {
+public class VPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private Choice choice;
+	private JButton btnRanking;
 	private JButton btnOk;
+	private JButton btnExit;
 	private JLabel lblNombre;
 	private JLabel lblNivel;
 	private Clip clip;
@@ -48,7 +52,7 @@ public class VLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VLogin frame = new VLogin();
+					VPrincipal frame = new VPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,7 +65,7 @@ public class VLogin extends JFrame {
 	 * Create the frame.
 	 * @throws NoArchivoAudioException 
 	 */
-	public VLogin() throws NoArchivoAudioException {
+	public VPrincipal() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
@@ -103,12 +107,14 @@ public class VLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60.00][61.00][50][50][50]"));
-		contentPane.add(getLblNombre(), "cell 0 0,alignx center");
-		contentPane.add(getLblNivel(), "cell 2 0,alignx center");
-		contentPane.add(getTextField(), "cell 0 1,alignx center");
+		contentPane.add(getLblNombre(), "flowx,cell 2 0,alignx center");
+		contentPane.add(getBtnRanking(), "cell 0 1,alignx center");
+		contentPane.add(getLblNivel(), "flowx,cell 2 1,alignx center");
+		contentPane.add(getBtnExit(), "flowx,cell 0 0,alignx center");
+		contentPane.add(getTextField(), "cell 2 0,alignx center");
 		contentPane.add(getChoice(), "cell 2 1,alignx center");
-		contentPane.add(getBtnOk(), "cell 1 3,alignx center");
-		setTitle("Login");
+		contentPane.add(getBtnOk(), "cell 2 2,alignx center");
+		setTitle("Menú Principal");
 	}
 
 	private JTextField getTextField() {
@@ -138,9 +144,9 @@ public class VLogin extends JFrame {
 					 if (e.getButton() == MouseEvent.BUTTON1) {
 						 Ranking.getRanking().cargarLista();
 						 if(getTextField().getText().toString().equals("")){
-							 Buscaminas.getBuscaminas().establecerNombreJugador("Desconocido");
+							 Partida.getBuscaminas().establecerNombreJugador("Desconocido");
 						 }else{
-							 Buscaminas.getBuscaminas().establecerNombreJugador(getTextField().getText());
+							 Partida.getBuscaminas().establecerNombreJugador(getTextField().getText());
 						 }
 						 VBuscaminas vB = new VBuscaminas(Integer.parseInt(getChoice().getSelectedItem()));
 						 vB.setVisible(true);
@@ -151,6 +157,36 @@ public class VLogin extends JFrame {
 			});
 		}
 		return btnOk;
+	}
+	private JButton getBtnExit() {
+		if (btnExit == null) {
+			btnExit = new JButton("Cerrar Sesión");
+			btnExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						IU_Login login = new IU_Login();
+						login.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnExit;
+	}
+	private JButton getBtnRanking() {
+		if (btnRanking == null) {
+			btnRanking = new JButton("Ver Ranking");
+			btnRanking.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_RankingUsuario ranking = new IU_RankingUsuario();
+					ranking.setVisible(true);
+					clip.stop();
+				}
+			});
+		}
+		return btnRanking;
 	}
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
