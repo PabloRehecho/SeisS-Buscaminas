@@ -17,7 +17,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -25,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+@SuppressWarnings("serial")
 public class IU_Login extends JFrame {
 
 	private JPanel contentPane;

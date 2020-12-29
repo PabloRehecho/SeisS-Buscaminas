@@ -14,9 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
-import packCodigo.Partida;
+import packCodigo.Buscaminas;
 import packCodigo.NoArchivoAudioException;
-import packCodigo.Ranking;
 
 import javax.swing.JTextField;
 import java.awt.Choice;
@@ -31,6 +30,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class VPrincipal extends JFrame {
 
 	private JPanel contentPane;
@@ -142,12 +142,8 @@ public class VPrincipal extends JFrame {
 			btnOk.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent e){
 					 if (e.getButton() == MouseEvent.BUTTON1) {
-						 Ranking.getRanking().cargarLista();
-						 if(getTextField().getText().toString().equals("")){
-							 Partida.getBuscaminas().establecerNombreJugador("Desconocido");
-						 }else{
-							 Partida.getBuscaminas().establecerNombreJugador(getTextField().getText());
-						 }
+						 Buscaminas.getBuscaminas().comenzarPartida();
+						 Buscaminas.getBuscaminas().establecerNombreJugador(getTextField().getText());
 						 VBuscaminas vB = new VBuscaminas(Integer.parseInt(getChoice().getSelectedItem()));
 						 vB.setVisible(true);
 						 setVisible(false);

@@ -7,9 +7,9 @@ import java.util.TimerTask;
 
 import packVentanas.VBuscaminas;
 
+@SuppressWarnings("deprecation")
 public class Partida extends Observable implements Observer{
 
-	private static Partida miBuscaminas = new Partida();
 	private Tablero tablero;
 	private int nivel;
 	private int contMinas;
@@ -19,21 +19,12 @@ public class Partida extends Observable implements Observer{
 	private int contBanderas=0;
 	private int puntuacion;
 	private boolean finalizado = false;
-	private Jugador j;
+	private String nombreJugador;
 	
 	/****************
 	 * CONSTRUCTORA	*
 	 ****************/
-	private Partida(){
-	}
-	
-	/************************
-	 * Singleton.			*
-	 * @return miBuscaminas	*
-	 ************************/
-	public static Partida getBuscaminas(){
-		return miBuscaminas;
-	}
+	public Partida(){}
 	
 
 	/************************
@@ -185,32 +176,16 @@ public class Partida extends Observable implements Observer{
 	}
 
 	public void establecerNombreJugador(String text) {
-		boolean esta = false;
-		if(text==""){
-			esta =  Ranking.getRanking().estaEnRanking("Desconocido");
-		}else{
-			esta =  Ranking.getRanking().estaEnRanking(text);
+		if(text.equals("")) {
+			nombreJugador = "Desconocido";
 		}
-		
-		if(!esta){
-			if(text.equals("")){
-				j = new Jugador("Desconocido");
-			} else {
-				j = new Jugador(text);
-			}
-			j.establecerPuntuacion(0);
-			Ranking.getRanking().anadirLista(j);
-		} else{
-			if(text.equals("")){
-				j = Ranking.getRanking().obtJugador("Desconocido");
-			} else {
-				j = Ranking.getRanking().obtJugador(text);
-			}
+		else {
+			nombreJugador = text;
 		}
 	}
 
 	public String obtenerNombreJugador(){
-		return j.obtenerNombre();
+		return nombreJugador;
 	}
 	
 	public int obtenerBanderas(){
@@ -220,6 +195,11 @@ public class Partida extends Observable implements Observer{
 	public int obtenerPuntuacion(){
 		return puntuacion;
 	}
+	
+	public int obtenerNivel(){
+		return nivel;
+	}
+	
 	public void comprobarJuego(){
 		if(tablero.getContadorCasillasDescubrir() == contMinas){
 			boolean fin = tablero.comprobarJuego();
@@ -242,13 +222,6 @@ public class Partida extends Observable implements Observer{
 			puntuacion = 0;
 		} else {
 			puntuacion =(int) ((((6000-tiempoTrans)*Math.sqrt(nivel))/10)-(int)tiempoTrans);			
-		}	
-		asignarPuntos();
-	}
-	
-	private void asignarPuntos(){
-		if(j.obtenerPunt()<puntuacion){
-			j.establecerPuntuacion(puntuacion);
 		}
 	}
 
