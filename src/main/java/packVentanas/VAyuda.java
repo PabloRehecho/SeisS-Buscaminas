@@ -1,6 +1,5 @@
 package packVentanas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 
 public class VAyuda extends JFrame {

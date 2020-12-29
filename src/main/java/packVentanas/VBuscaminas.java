@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -25,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import packCodigo.Buscaminas;
+import packCodigo.Partida;
 import packCodigo.NoArchivoAudioException;
 import packCodigo.Ranking;
 import packCodigo.Tablero;
@@ -44,7 +42,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 	private JPanel contentPane;
 	private JMenuBar menuBar;
 	private JMenu menu1, menu2;
-	private JMenuItem item1, item2, item3;
+	private JMenuItem item1, item2, item3, item4;
 	private JPanel panel_2;
 	private JLabel lblNewLabel;
 	private JLabel[] Banderas = new JLabel[3];
@@ -115,6 +113,10 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		item3.addActionListener(this);
 		menu1.add(item3);
 		
+		item4 = new JMenuItem("Salir");
+		item4.addActionListener(this);
+		menu1.add(item4);
+		
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
@@ -146,7 +148,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				Buscaminas.getBuscaminas().reset(vBusca);
+				Partida.getBuscaminas().reset(vBusca);
 				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset.png")));
 			}
 		});
@@ -164,10 +166,10 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		contentPane.add(panel, "cell 0 1,grow");
 		
 		iniciarCasillas(nivel);
-		Buscaminas.getBuscaminas().inicioJuego(nivel);
-		Buscaminas.getBuscaminas().anadirObservador(this);
-		fil=Buscaminas.getBuscaminas().obtenerNumFilas();
-		col=Buscaminas.getBuscaminas().obtenerNumColumnas();
+		Partida.getBuscaminas().inicioJuego(nivel);
+		Partida.getBuscaminas().anadirObservador(this);
+		fil=Partida.getBuscaminas().obtenerNumFilas();
+		col=Partida.getBuscaminas().obtenerNumColumnas();
 		mostrarTablero();
 		anadirCasillas();
 	}
@@ -221,24 +223,24 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 							 int b;
 							 a=getx(buscarPosCasilla((JLabel)e.getSource()));
 							 b=gety(buscarPosCasilla((JLabel)e.getSource()));
-		                     Buscaminas.getBuscaminas().ponerBandera(a,b);
-		                     Buscaminas.getBuscaminas().comprobarJuego();
+		                     Partida.getBuscaminas().ponerBandera(a,b);
+		                     Partida.getBuscaminas().comprobarJuego();
 		                  }
 						 else if(e.getButton() == MouseEvent.BUTTON1 && juego && !finalizado){
 							 int a;
 							 int b;
 							 a=getx(buscarPosCasilla((JLabel)e.getSource()));
 							 b=gety(buscarPosCasilla((JLabel)e.getSource()));
-							 Buscaminas.getBuscaminas().descubrirCasilla(a,b);
-		                     Buscaminas.getBuscaminas().comprobarJuego();
+							 Partida.getBuscaminas().descubrirCasilla(a,b);
+		                     Partida.getBuscaminas().comprobarJuego();
 					} else
 						if(e.getButton() == MouseEvent.BUTTON2 && juego && !finalizado){
 							int a;
 							int b;
 							a=getx(buscarPosCasilla((JLabel)e.getSource()));
 							b=gety(buscarPosCasilla((JLabel)e.getSource()));
-							Buscaminas.getBuscaminas().descubrirTodosLosVecinos(a,b);
-							Buscaminas.getBuscaminas().comprobarJuego();
+							Partida.getBuscaminas().descubrirTodosLosVecinos(a,b);
+							Partida.getBuscaminas().comprobarJuego();
 					}
 				}
 					});
@@ -271,7 +273,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 
 	public void update(Observable o, Object arg) {
 		String[]p = arg.toString().split(",");
-		if(o instanceof Buscaminas){ 
+		if(o instanceof Partida){ 
 			   if(p.length==2){
 				   if(p[1]!=null){
 					   int aux;
@@ -354,12 +356,21 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 
 	public void actionPerformed(ActionEvent e) {
         if (e.getSource()==item1) {
-        	Buscaminas.getBuscaminas().reset(vBusca);
+        	Partida.getBuscaminas().reset(vBusca);
         } else if (e.getSource() == item2){
         	VAyuda vA = new VAyuda();
 			vA.setVisible(true);
         }else if (e.getSource() == item3){
         	mostrarRanking();
+        }else if (e.getSource() == item4){
+			try {
+	        	VPrincipal principal = new VPrincipal();
+	        	principal.setVisible(true);
+	        	setVisible(false);
+	        	clip.stop();
+			} catch (NoArchivoAudioException e1) {
+				e1.printStackTrace();
+			}
         }
    }
 	
@@ -377,26 +388,11 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 	}
 	
 	private void mostrarRanking(){
-		Buscaminas.getBuscaminas().calcularPuntos();
+		Partida.getBuscaminas().calcularPuntos();
     	VRanking vR = new VRanking();
 		vR.setVisible(true);
 	}
 		
-	private void autoGuardadoRank(){
-		Timer timer;
-		TimerTask  timerTask = new TimerTask() {
-			@Override
-			public void run() {
-				try{
-		    		 Thread.sleep(10000); 
-		    	  }catch (Exception e) {}
-				
-			}
-		};
-		timer = new Timer();
-		timer.scheduleAtFixedRate(timerTask, 0, 50);
-	}
-	
 	private void play(boolean pB) throws NoArchivoAudioException{
 		if (pB==false){
 			if (new File("sources/lose.wav").getAbsoluteFile() != null){

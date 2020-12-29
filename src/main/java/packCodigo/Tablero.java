@@ -6,8 +6,6 @@ import java.util.Observable;
 import java.util.Random;
 import java.util.Stack;
 
-import packVentanas.VBuscaminas;
-
 public class Tablero extends Observable{
 	
 	private int nivel;
@@ -66,8 +64,7 @@ public class Tablero extends Observable{
 	}
 	
 	private static int randInt(int max) {
-		int min = 0;
-	    Random rand = new Random();
+		Random rand = new Random();
 	    int randomNum = rand.nextInt(max + 1);
 	    return randomNum;
 	}
@@ -420,11 +417,9 @@ public class Tablero extends Observable{
 		String mina = null;
 		int col;
 		int fila;
-		int conta=1;
 		Casilla casilla;
 		if (lMinas.size()>0){
 			while(itr.hasNext()){
-				conta++;
 				mina=itr.next(); 
 				col=this.separarCoordenadasCol(this.separarCoordenadasString(mina));
 				fila=this.separarCoordenadasFil(this.separarCoordenadasString(mina));
@@ -544,8 +539,8 @@ public class Tablero extends Observable{
 			casilla.descubrir();
 			setChanged();
 			notifyObservers(pFila+","+pCol+","+10);
-			if(Buscaminas.getBuscaminas().getJuego()){
-				Buscaminas.getBuscaminas().gameOver();
+			if(Partida.getBuscaminas().getJuego()){
+				Partida.getBuscaminas().gameOver();
 			}
 		}else if(casilla instanceof CasillaNumero&&!casilla.estaDesvelada()&&!casilla.tieneBandera()){
 			int num=((CasillaNumero)casilla).obtenerNumero();
@@ -727,10 +722,8 @@ public class Tablero extends Observable{
 			Iterator<String> it = lAux.iterator();
 			contador = cuantosTienenBandera(lAux);
 			boolean mina = false;
-			int vuelta = 1;
 			if(num == contador){
 				while(it.hasNext() && !mina){
-					vuelta++;
 					String aux = it.next();
 					String[] p = separarCoordenadas(aux);
 					int col = separarCoordenadasCol(p);
