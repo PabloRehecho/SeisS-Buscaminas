@@ -70,6 +70,7 @@ public class VRanking extends JFrame {
 		while(it.hasNext()){
 			nombreyPuntJ=it.next();
 			textArea.append(nombreyPuntJ+"\n");
+			System.out.println(nombreyPuntJ);
 		}
 
 	}

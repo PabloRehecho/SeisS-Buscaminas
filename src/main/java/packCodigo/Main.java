@@ -1,6 +1,6 @@
 package packCodigo;
 
-import packVentanas.VLogin;
+import packVentanas.IU_Login;
 
 public class Main {
 
@@ -8,7 +8,7 @@ public class Main {
 	// prueba 2
 	public static void main(String[] args) 
 			throws NoArchivoAudioException {
-		VLogin vL = new VLogin();
-		vL.setVisible(true);
+		IU_Login login = new IU_Login();
+		login.setVisible(true);
 	}
 }

@@ -6,8 +6,7 @@ import java.util.Observable;
 import java.util.Random;
 import java.util.Stack;
 
-import packVentanas.VBuscaminas;
-
+@SuppressWarnings("deprecation")
 public class Tablero extends Observable{
 	
 	private int nivel;
@@ -35,8 +34,8 @@ public class Tablero extends Observable{
 		int y = this.columnas;
 		int i,j = 0;
 		while(minasAColocar != 0){
-			i = this.randInt(x);
-			j = this.randInt(y);
+			i = randInt(x);
+			j = randInt(y);
 			if(!((matriz[i][j]) instanceof CasillaMina)){
 				matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina");
 				matriz[i][j].inicializar(i+","+j);
@@ -66,8 +65,7 @@ public class Tablero extends Observable{
 	}
 	
 	private static int randInt(int max) {
-		int min = 0;
-	    Random rand = new Random();
+		Random rand = new Random();
 	    int randomNum = rand.nextInt(max + 1);
 	    return randomNum;
 	}
@@ -420,11 +418,9 @@ public class Tablero extends Observable{
 		String mina = null;
 		int col;
 		int fila;
-		int conta=1;
 		Casilla casilla;
 		if (lMinas.size()>0){
 			while(itr.hasNext()){
-				conta++;
 				mina=itr.next(); 
 				col=this.separarCoordenadasCol(this.separarCoordenadasString(mina));
 				fila=this.separarCoordenadasFil(this.separarCoordenadasString(mina));
@@ -468,6 +464,7 @@ public class Tablero extends Observable{
 	 * @param pCol												*
 	 * @return Casilla o null									*
 	 ************************************************************/
+	@SuppressWarnings("unused")
 	private String buscarCasillaVacia(int pFila, int pCol){
 		Iterator<String> itr = getIteradorVacias();
 		String casilla = null;
@@ -515,6 +512,7 @@ public class Tablero extends Observable{
 	 * @param pCol
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private String buscarCasillaVisitada(int pFila, int pCol){
 		Iterator<String> itr = getIteradorVisitadas();
 		String casilla = null;
@@ -544,8 +542,8 @@ public class Tablero extends Observable{
 			casilla.descubrir();
 			setChanged();
 			notifyObservers(pFila+","+pCol+","+10);
-			if(Buscaminas.getBuscaminas().getJuego()){
-				Buscaminas.getBuscaminas().gameOver();
+			if(GestorJuego.getGestorJuego().getPartida().getJuego()){
+				GestorJuego.getGestorJuego().getPartida().gameOver();
 			}
 		}else if(casilla instanceof CasillaNumero&&!casilla.estaDesvelada()&&!casilla.tieneBandera()){
 			int num=((CasillaNumero)casilla).obtenerNumero();
@@ -622,6 +620,7 @@ public class Tablero extends Observable{
 	/**
 	 * @param pCasilla
 	 */
+	@SuppressWarnings("unused")
 	private void anadirVisitadas(String pCasilla){
 		lCasillasVisitadas.add(pCasilla);
 	}
@@ -636,6 +635,7 @@ public class Tablero extends Observable{
 	/**
 	 * @param pCasilla
 	 */
+	@SuppressWarnings("unused")
 	private void anadirVacia(String pCasilla){
 		lCasillasVacias.add(pCasilla);
 	}
@@ -727,10 +727,8 @@ public class Tablero extends Observable{
 			Iterator<String> it = lAux.iterator();
 			contador = cuantosTienenBandera(lAux);
 			boolean mina = false;
-			int vuelta = 1;
 			if(num == contador){
 				while(it.hasNext() && !mina){
-					vuelta++;
 					String aux = it.next();
 					String[] p = separarCoordenadas(aux);
 					int col = separarCoordenadasCol(p);

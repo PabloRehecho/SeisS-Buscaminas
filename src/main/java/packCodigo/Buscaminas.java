@@ -1,268 +1,50 @@
 package packCodigo;
 
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.sql.ResultSet;
 
-import packVentanas.VBuscaminas;
-
-public class Buscaminas extends Observable implements Observer{
-
-	private static Buscaminas miBuscaminas = new Buscaminas();
-	private Tablero tablero;
-	private int nivel;
-	private int contMinas;
-	private Timer timer=new Timer();//Aqui va el tiempo
-	private boolean juego;
-	private float tiempoTrans;
-	private int contBanderas=0;
-	private int puntuacion;
-	private boolean finalizado = false;
-	private Jugador j;
+public class Buscaminas {
 	
-	/****************
-	 * CONSTRUCTORA	*
-	 ****************/
-	private Buscaminas(){
-	}
+	private static Buscaminas miBuscaminas;
 	
-	/************************
-	 * Singleton.			*
-	 * @return miBuscaminas	*
-	 ************************/
-	public static Buscaminas getBuscaminas(){
+	private Buscaminas() {}
+	
+	public static Buscaminas getBuscaminas() {
+		if(miBuscaminas == null) {
+			miBuscaminas = new Buscaminas();
+		}
 		return miBuscaminas;
 	}
 	
-
-	/************************
-	 * 						*
-	 * @return 				*
-	 ************************/
-	private void setContMinas(){
-		contMinas = tablero.minas().size();
-	}
-
-	/**Iniciamos el juego**/
-	public void inicioJuego(int pNivel){
-		setNivel(pNivel);
-		setJuego(true);
-		iniciarTablero(pNivel);
-		setContMinas();
-		contBanderas = contMinas;
-		crono();
-	}
-	
-	/**Iniciar el tablero**/
-	
-	private void iniciarTablero(int pNivel)
-	{
-		tablero = TableroBuilder.getTableroBuilder().asignarTablero(pNivel);
-	}
-
-	
-	/************************************************************
-	 * Resetea el Buscaminas haciendo una nueva instancia de	*
-	 * tablero, casilla, casillasVacias, lCasillasVisitadas 	*
-	 * y lCasillasVacias volviendo a calcular el numero de 		*
-	 * minas. El tiempo se resetea.								*												*
-	 ************************************************************/
-	public void reset(VBuscaminas vBuscaminas){
-		iniciarTablero(nivel);
-		tablero.addObserver(vBuscaminas);
-		setContMinas();
-		contBanderas=contMinas;
-		tiempoTrans = -1;
-		timer.cancel();
-		crono();
-		tablero.addObserver(this);
-		setJuego(true);
-		setFinalizado(false);
-	}
-	
-	/**SetJuego**/
-	private void setJuego(boolean pJuego){
-		this.juego = pJuego;
-		setChanged();
-		notifyObservers(juego);
-	}
-	
-	/********************
-	 * @param pNivel	*
-	 ********************/
-	private void setNivel(int pNivel){
-		nivel = pNivel;
-	}
-
-	public void descubrirCasilla(int pFila, int pCol){
-		tablero.descubrirCasilla(pFila, pCol);
-	}
-	
-	/**
-	 * 
-	 */
-	public void gameOver(){
-		timer.cancel();
-		tablero.mostrarTablero();
-		setJuego(false);
-	}
-
-	public int obtenerNumFilas() {
-		
-		return tablero.obtenerNumFilas();
-	}
-	
-	public int obtenerNumColumnas() {
-		
-		return tablero.obtenerNumColumnas();
-	}
-
-	public boolean getJuego(){
-		return juego;
-	}
-	
-	public void ponerBandera(int fila, int col) {
-		int aux = contBanderas;
-		if(0<=contBanderas){
-			tablero.ponerBandera(fila,col);
-			if(contBanderas < aux){
-				setChanged();
-				notifyObservers(fila+","+col+","+"PonerBandera");
-			} else if (contBanderas > aux){
-				setChanged();
-				notifyObservers(fila+","+col+","+"QuitarBandera");
-			}
+	public ResultSet mostrarRanking(String pTipo, int pNivel) {
+		ResultSet rs = null;
+		if (pTipo.equals("Global")) {
+			rs = GestorRanking.getGestorRanking().mostrarRankingGlobal(pNivel);
 		}
-		
-		
-	}
-	
-	private void crono(){
-
-	  TimerTask  timerTask = new TimerTask() {
-	   @Override
-	   public void run() {
-	    String texto;
-	    tiempoTrans++;
-	    texto = ""+(int)tiempoTrans;
-	    if(tiempoTrans<10){
-	    	setChanged();
-	 	    notifyObservers("00"+texto+","+contBanderas);
-	    }else if(tiempoTrans<100){
-	    	 setChanged();
-	 	    notifyObservers("0"+texto+","+contBanderas);
-	    }else{
-	    	setChanged();
-	    	notifyObservers(texto+","+contBanderas);
-	    	}
-	   }
-	  };
-	  timer = new Timer();
-	  timer.scheduleAtFixedRate(timerTask, 0, 1000);
-	 }
-	
-	public void update(Observable pObservable, Object pObjeto) {
-		if(pObservable instanceof Tablero){
-			String[]p = pObjeto.toString().split(",");
-			if(p[1].equals("BANDERA") && p[0].equals("true")){
-				if(contBanderas>0){
-					contBanderas--;
-				}
-			}else if(p[1].equals("BANDERA") && p[0].equals("false")){
-				if(contBanderas<contMinas){
-					contBanderas++;
-				}
-			}
+		else if (pTipo.equals("Personal")) {
+			String email = GestorUsuario.getGestorUsuario().getUsuario();
+			rs = GestorRanking.getGestorRanking().mostrarRankingPersonal(email, pNivel);
 		}
-	}
-
-
-	public void anadirObservador(VBuscaminas vBuscaminas) {
-		addObserver(vBuscaminas);
-		tablero.addObserver(vBuscaminas);
-		tablero.addObserver(this);
-	}
-
-	public void establecerNombreJugador(String text) {
-		boolean esta = false;
-		if(text==""){
-			esta =  Ranking.getRanking().estaEnRanking("Desconocido");
-		}else{
-			esta =  Ranking.getRanking().estaEnRanking(text);
-		}
-		
-		if(!esta){
-			if(text.equals("")){
-				j = new Jugador("Desconocido");
-			} else {
-				j = new Jugador(text);
-			}
-			j.establecerPuntuacion(0);
-			Ranking.getRanking().anadirLista(j);
-		} else{
-			if(text.equals("")){
-				j = Ranking.getRanking().obtJugador("Desconocido");
-			} else {
-				j = Ranking.getRanking().obtJugador(text);
-			}
-		}
-	}
-
-	private void establecerNivel(String selectedItem) {
-		nivel = Integer.parseInt(selectedItem);
+		return rs;
 	}
 	
-	private void establecerPuntuacion(int pPunt){
-		puntuacion = pPunt;
+	public void actualizarRanking(String pPartida) {
+		String email = GestorUsuario.getGestorUsuario().getUsuario();
+		String nombreJugador = GestorJuego.getGestorJuego().getPartida().obtenerNombreJugador();
+		int puntuacion = GestorJuego.getGestorJuego().getPartida().obtenerPuntuacion();
+		int nivel = GestorJuego.getGestorJuego().getPartida().obtenerNivel();
+		GestorRanking.getGestorRanking().actualizarRanking(email, nombreJugador, puntuacion, nivel, pPartida);
 	}
 	
-	public String obtenerNombreJugador(){
-		return j.obtenerNombre();
+	public Partida obtenerPartida() {
+		return GestorJuego.getGestorJuego().getPartida();
 	}
 	
-	public int obtenerBanderas(){
-		return contBanderas;
+	public void establecerNombreJugador(String pNombre) {
+		GestorJuego.getGestorJuego().getPartida().establecerNombreJugador(pNombre);
 	}
 	
-	public int obtenerPuntuacion(){
-		return puntuacion;
+	public void comenzarPartida() {
+		GestorJuego.getGestorJuego().comenzarPartida();
 	}
-	public void comprobarJuego(){
-		if(tablero.getContadorCasillasDescubrir() == contMinas){
-			boolean fin = tablero.comprobarJuego();
-			setFinalizado(fin);
-		}
-		
-	}
-
-	private void setFinalizado(boolean fin) {
-		this.finalizado = fin;
-		if(finalizado){
-			timer.cancel();
-			setChanged();
-			notifyObservers("FINALIZADO");
-		}
-	}
-
-	public void calcularPuntos() {
-		if(!finalizado){
-			puntuacion = 0;
-		} else {
-			puntuacion =(int) ((((6000-tiempoTrans)*Math.sqrt(nivel))/10)-(int)tiempoTrans);			
-		}	
-		asignarPuntos();
-	}
-	
-	private void asignarPuntos(){
-		if(j.obtenerPunt()<puntuacion){
-			j.establecerPuntuacion(puntuacion);
-		}
-	}
-
-	public void descubrirTodosLosVecinos(int a, int b) {
-		tablero.descubrirTodosLosVecinos(a,b);
-	}
-	
 
 }
