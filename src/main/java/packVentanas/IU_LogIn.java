@@ -42,7 +42,8 @@ public class IU_LogIn extends JFrame {
 	private Image fondo;
 	private JTextField txtCorreo;
 	private JPasswordField pswContraseña;
-
+	private JButton btnCancelar;
+	private JButton btnAceptar;
 	/**
 	 * Launch the application.
 	 */
@@ -128,10 +129,46 @@ public class IU_LogIn extends JFrame {
 		pswContraseña = new JPasswordField();
 		contentPane.add(pswContraseña, "cell 1 4,growx");
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		contentPane.add(btnCancelar, "flowx,cell 1 6,alignx center");
-		
-		JButton btnAceptar = new JButton("Aceptar");
-		contentPane.add(btnAceptar, "cell 1 6,alignx center");
+		//aceptar-cancelar
+		contentPane.add(getBtnCancelar(), "flowx,cell 1 6,alignx center");
+		contentPane.add(getBtnAceptar(), "cell 1 6,alignx center");
+	}
+	
+	private JButton getBtnCancelar() {
+		if (btnCancelar == null) {
+			btnCancelar = new JButton("Cancelar");
+			btnCancelar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						IU_VentanaInicio login = new IU_VentanaInicio();
+						login.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnCancelar;
+	}
+	
+	private JButton getBtnAceptar() {
+		if (btnAceptar == null) {
+			btnAceptar = new JButton("Aceptar");
+			btnAceptar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						//TODO : COMPROBAR INICIO DE SESIÓN Y TODA ESA WEA 
+						GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
+						VPrincipal principal = new VPrincipal();
+						principal.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnAceptar;
 	}
 }

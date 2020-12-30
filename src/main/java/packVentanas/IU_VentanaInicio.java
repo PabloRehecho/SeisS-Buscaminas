@@ -137,9 +137,8 @@ public class IU_VentanaInicio extends JFrame {
 			btnInicio.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
-						VPrincipal principal = new VPrincipal();
-						principal.setVisible(true);
+						IU_LogIn login = new IU_LogIn();
+						login.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
