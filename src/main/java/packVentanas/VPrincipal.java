@@ -39,6 +39,7 @@ public class VPrincipal extends JFrame {
 	private JButton btnRanking;
 	private JButton btnOk;
 	private JButton btnExit;
+	private JButton btnPremio;
 	private JLabel lblNombre;
 	private JLabel lblNivel;
 	private Clip clip;
@@ -109,6 +110,7 @@ public class VPrincipal extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60.00][61.00][50][50][50]"));
 		contentPane.add(getLblNombre(), "flowx,cell 2 0,alignx center");
 		contentPane.add(getBtnRanking(), "cell 0 1,alignx center");
+		contentPane.add(getBtnPremio(), "cell 0 2,alignx center");
 		contentPane.add(getLblNivel(), "flowx,cell 2 1,alignx center");
 		contentPane.add(getBtnExit(), "flowx,cell 0 0,alignx center");
 		contentPane.add(getTextField(), "cell 2 0,alignx center");
@@ -187,6 +189,19 @@ public class VPrincipal extends JFrame {
 			});
 		}
 		return btnRanking;
+	}
+	private JButton getBtnPremio() {
+		if (btnPremio == null) {
+			btnPremio = new JButton("Ver Premios");
+			btnPremio.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_Premios premio = new IU_Premios();
+					premio.setVisible(true);
+					clip.stop();
+				}
+			});
+		}
+		return btnPremio;
 	}
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
