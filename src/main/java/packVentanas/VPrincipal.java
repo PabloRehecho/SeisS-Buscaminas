@@ -160,7 +160,7 @@ public class VPrincipal extends JFrame {
 			btnExit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_Login login = new IU_Login();
+						IU_VentanaInicio login = new IU_VentanaInicio();
 						login.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
