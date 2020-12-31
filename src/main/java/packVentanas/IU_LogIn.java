@@ -121,7 +121,7 @@ public class IU_LogIn extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
-						VPrincipal principal = new VPrincipal();
+						IU_MenuPrincipal principal = new IU_MenuPrincipal();
 						principal.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {

@@ -31,7 +31,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class VPrincipal extends JFrame {
+public class IU_MenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -52,7 +52,7 @@ public class VPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VPrincipal frame = new VPrincipal();
+					IU_MenuPrincipal frame = new IU_MenuPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +65,7 @@ public class VPrincipal extends JFrame {
 	 * Create the frame.
 	 * @throws NoArchivoAudioException 
 	 */
-	public VPrincipal() throws NoArchivoAudioException {
+	public IU_MenuPrincipal() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
