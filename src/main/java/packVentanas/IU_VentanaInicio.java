@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import packCodigo.GestorUsuario;
 import packCodigo.NoArchivoAudioException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -23,13 +22,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class IU_VentanaInicio extends JFrame {
