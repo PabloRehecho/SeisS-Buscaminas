@@ -6,6 +6,9 @@
 -- Tiempo de generación: 31-12-2020 a las 17:37:02
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
+-- Tiempo de generaciÃ³n: 29-12-2020 a las 18:24:22
+-- VersiÃ³n del servidor: 10.4.17-MariaDB
+-- VersiÃ³n de PHP: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +47,7 @@ CREATE TABLE `premio` (
   `nombre` varchar(20) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `imagen` int(11) DEFAULT 1,
-  `requisito` varchar(100) DEFAULT NULL
+  `requisito` int DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -104,7 +107,7 @@ CREATE TABLE `valores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- �?ndices para tablas volcadas
 --
 
 --

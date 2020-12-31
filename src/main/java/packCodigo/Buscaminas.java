@@ -1,6 +1,9 @@
 package packCodigo;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Buscaminas {
 	
@@ -47,8 +50,79 @@ public class Buscaminas {
 		GestorJuego.getGestorJuego().comenzarPartida();
 	}
 
+	public ResultSet obtenerPremios() {
+		String email=GestorUsuario.getGestorUsuario().getUsuario();
+		return GestorPremios.getGestorPremios().getPremios(email);
+	}
+
 	public boolean iniciarSesion(String pText, char[] pPassword) {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
-
+	
+	public boolean comprobarPremiosGanados(int[] hitos) {
+		Set<String> nMios=new HashSet<String>();
+		int i=0;
+		int cond[];
+		String nom[];
+		String descr[];
+		boolean nuevo=false;
+		
+		String email=GestorUsuario.getGestorUsuario().getUsuario();
+		ResultSet todos, actuales;
+		todos=GestorPremios.getGestorPremios().getTodosPremios();
+		actuales=GestorPremios.getGestorPremios().getNombrePremios(email);
+		cond=new int[20];
+		descr=new String[20];
+		nom=new String[20];
+		try {
+			while(todos.next()) {
+				cond[i]=todos.getInt("Requisito");
+				nom[i]=todos.getString("Nombre");
+				descr[i]=todos.getString("Decripcion");
+				i++;
+			}
+			todos.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			while(actuales.next()) {
+				nMios.add(todos.getString("Nombre"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		int in=0;
+		while(in<=i) {
+			if(!nMios.contains(nom[i])) {
+				if(descr[i]=="Ganar en el nivel 1") {
+					if(hitos[0]>=cond[i]){
+						nuevo=true;
+						GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
+					}
+				}
+				else if(descr[i]=="Ganar en el nivel 2") {
+					if(hitos[1]>=cond[i]){
+						nuevo=true;
+					}
+				}
+				else if(descr[i]=="Ganar en el nivel 3") {
+					if(hitos[2]>=cond[i]){
+						nuevo=true;
+					}
+				}
+				else {
+					if(hitos[3]>=cond[i]){
+						nuevo=true;
+					}
+				}
+				if(nuevo) {
+					GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
+				}
+			}
+			in++;
+		}
+		return nuevo;
+	}
 }
+
