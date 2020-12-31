@@ -47,4 +47,11 @@ public class Buscaminas {
 		GestorJuego.getGestorJuego().comenzarPartida();
 	}
 
+	public static boolean iniciarSesion(String pText, char[] pPassword) {
+		// TODO Auto-generated method stub
+		return false;
+		
+		
+	}
+
 }
