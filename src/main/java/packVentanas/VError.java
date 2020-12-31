@@ -11,11 +11,18 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VError extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
+	private JLabel lblError;
 
 	/**
 	 * Launch the application.
@@ -34,14 +41,15 @@ public class VError extends JDialog {
 	 * Create the dialog.
 	 */
 	public VError() {
+		setModal(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblError = new JLabel("New label");
-		lblError.setBounds(196, 74, 46, 14);
+		lblError = new JLabel("");
+		lblError.setBounds(0, 74, 434, 14);
 		lblError.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPanel.add(lblError);
 		{
@@ -49,6 +57,11 @@ public class VError extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				okButton.setActionCommand("OK");
 				getRootPane().setDefaultButton(okButton);
 			}
@@ -68,5 +81,9 @@ public class VError extends JDialog {
 			);
 			buttonPane.setLayout(gl_buttonPane);
 		}
+	}
+	
+	public void setError(String pError) {
+		lblError.setText(pError);
 	}
 }

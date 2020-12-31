@@ -161,10 +161,14 @@ public class IU_LogIn extends JFrame {
 					try {
 						//TODO : COMPROBAR INICIO DE SESIÓN Y TODA ESA WEA 
 						if(Buscaminas.iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
-							GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
+							GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
 							VPrincipal principal = new VPrincipal();
 							principal.setVisible(true);
 							setVisible(false);
+						}else {
+							VError error = new VError();
+							error.setError("Correo o contraseña incorrectas");
+							error.setVisible(true);
 						}
 						
 					} catch (NoArchivoAudioException e1) {
