@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class IU_VentanaValores extends JFrame {
 
 	private JPanel contentPane;
