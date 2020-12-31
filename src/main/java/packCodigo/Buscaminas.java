@@ -1,6 +1,5 @@
 package packCodigo;
 
-import java.lang.reflect.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
@@ -50,16 +49,16 @@ public class Buscaminas {
 	public void comenzarPartida() {
 		GestorJuego.getGestorJuego().comenzarPartida();
 	}
+
 	public ResultSet obtenerPremios() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
 		return GestorPremios.getGestorPremios().getPremios(email);
 	}
 	public boolean comprobarPremiosGanados(int[] hitos) {
-		Set<String> nMios=new HashSet();
+		Set<String> nMios=new HashSet<String>();
 		int i=0;
 		int cond[];
 		String nom[];
-		String gan[];
 		String descr[];
 		boolean nuevo=false;
 		
@@ -91,18 +90,18 @@ public class Buscaminas {
 		int in=0;
 		while(in<=i) {
 			if(!nMios.contains(nom[i])) {
-				if(descr[i]=="Ganar en nivel 1") {
+				if(descr[i]=="Ganar en el nivel 1") {
 					if(hitos[0]>=cond[i]){
 						nuevo=true;
 						GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
 					}
 				}
-				else if(descr[i]=="Ganar en nivel 2") {
+				else if(descr[i]=="Ganar en el nivel 2") {
 					if(hitos[1]>=cond[i]){
 						nuevo=true;
 					}
 				}
-				else if(descr[i]=="Ganar en nivel 3") {
+				else if(descr[i]=="Ganar en el nivel 3") {
 					if(hitos[2]>=cond[i]){
 						nuevo=true;
 					}

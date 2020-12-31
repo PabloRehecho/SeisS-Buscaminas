@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
+import packCodigo.Buscaminas;
 import packCodigo.GestorUsuario;
 import packCodigo.NoArchivoAudioException;
 
@@ -159,10 +160,13 @@ public class IU_LogIn extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						//TODO : COMPROBAR INICIO DE SESIÓN Y TODA ESA WEA 
-						GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
-						VPrincipal principal = new VPrincipal();
-						principal.setVisible(true);
-						setVisible(false);
+						if(Buscaminas.iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
+							GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
+							VPrincipal principal = new VPrincipal();
+							principal.setVisible(true);
+							setVisible(false);
+						}
+						
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
 					}
