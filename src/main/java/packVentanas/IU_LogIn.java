@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import packCodigo.GestorUsuario;
 import packCodigo.NoArchivoAudioException;
 
 import javax.sound.sampled.AudioInputStream;

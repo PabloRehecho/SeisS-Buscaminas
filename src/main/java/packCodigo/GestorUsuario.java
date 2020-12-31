@@ -35,9 +35,8 @@ public class GestorUsuario {
 		return res;
 	}
 	public void actualizarHitos(int[] hitos) {
-		ResultSet res=null;
 		String pEmail=getUsuario();
-		res=GestorBD.getGestorBD().execSQL("UPDATE Usuario SET PartidasGanadas1="+hitos[1]+", PartidasGanadas2="+hitos[2]+", PartidasGanadas3="+hitos[3]+"Racha="+hitos[4]+" WHERE email="+pEmail+"");
+		GestorBD.getGestorBD().execSQL("UPDATE Usuario SET PartidasGanadas1="+hitos[1]+", PartidasGanadas2="+hitos[2]+", PartidasGanadas3="+hitos[3]+"Racha="+hitos[4]+" WHERE email="+pEmail+"");
 	}
 
 
@@ -51,7 +50,6 @@ public class GestorUsuario {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;

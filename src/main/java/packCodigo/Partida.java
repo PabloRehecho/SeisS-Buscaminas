@@ -230,7 +230,9 @@ public class Partida extends Observable implements Observer{
 	public void descubrirTodosLosVecinos(int a, int b) {
 		tablero.descubrirTodosLosVecinos(a,b);
 	}
-	private void ActualizarHitos() {
+	
+	@SuppressWarnings("unused")
+	private void actualizarHitos() {
 		ResultSet rs=GestorUsuario.getGestorUsuario().getHitos();
 		int[] hitos=null;
 		hitos=new int[4];

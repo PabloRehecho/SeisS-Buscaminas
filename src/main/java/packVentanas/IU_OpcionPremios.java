@@ -2,18 +2,16 @@ package packVentanas;
 
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import packCodigo.Buscaminas;
 
+@SuppressWarnings("serial")
 public class IU_OpcionPremios extends JFrame{
 	private JPanel contentPane;
 	private JLabel lblTexto;
