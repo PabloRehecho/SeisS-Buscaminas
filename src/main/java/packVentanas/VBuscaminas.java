@@ -439,6 +439,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
 			}else {
 				throw new NoArchivoAudioException();
 			}
