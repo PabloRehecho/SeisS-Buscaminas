@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.IOException;
 
 @SuppressWarnings("serial")
-public class IU_Login extends JFrame {
+public class IU_LogIn extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnRanking;
@@ -41,7 +41,7 @@ public class IU_Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IU_Login frame = new IU_Login();
+					IU_LogIn frame = new IU_LogIn();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class IU_Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_Login() throws NoArchivoAudioException {
+	public IU_LogIn() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
