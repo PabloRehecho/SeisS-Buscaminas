@@ -1,6 +1,10 @@
 package packCodigo;
 
+
 import java.sql.ResultSet;
+
+import java.sql.SQLException;
+
 
 public class GestorUsuario {
 
@@ -23,6 +27,7 @@ public class GestorUsuario {
 	public void setUsuario(String pEmail) {
 		email = pEmail;
 	}
+
 	public ResultSet getHitos() {
 		ResultSet res=null;
 		String pEmail=getUsuario();
@@ -34,4 +39,23 @@ public class GestorUsuario {
 		String pEmail=getUsuario();
 		res=GestorBD.getGestorBD().execSQL("UPDATE Usuario SET PartidasGanadas1="+hitos[1]+", PartidasGanadas2="+hitos[2]+", PartidasGanadas3="+hitos[3]+"Racha="+hitos[4]+" WHERE email="+pEmail+"");
 	}
+
+
+	public boolean iniciarSesion(String pText, char[] pPassword) {
+		String contraseña = "";
+		for (int i=0;i<pPassword.length;i++){
+			contraseña += pPassword[i];
+		}
+		try {
+			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "' AND Contrasena='" + contraseña + "'").next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+
 }

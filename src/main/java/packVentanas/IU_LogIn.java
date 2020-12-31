@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import packCodigo.Buscaminas;
 import packCodigo.GestorUsuario;
 import packCodigo.NoArchivoAudioException;
 
@@ -24,27 +23,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.JTextPane;
-import java.awt.Font;
-import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Insets;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class IU_LogIn extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnRanking;
+	private JButton btnInicio;
 	private Clip clip;
 	private AudioInputStream ais;
 	private Image fondo;
-	private JTextField txtCorreo;
-	private JPasswordField pswContraseña;
-	private JButton btnCancelar;
-	private JButton btnAceptar;
+
 	/**
 	 * Launch the application.
 	 */
@@ -106,43 +95,34 @@ public class IU_LogIn extends JFrame {
 		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60][60][60.00]"));
-		
-		JLabel lblIniciarSesion = new JLabel("INICIAR SESI\u00D3N");
-		lblIniciarSesion.setForeground(new Color(255, 255, 255));
-		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 24));
-		contentPane.add(lblIniciarSesion, "cell 1 0,alignx center");
-		
-		JLabel lblCorreo = new JLabel("Correo electr\u00F3nico");
-		lblCorreo.setForeground(new Color(255, 255, 255));
-		contentPane.add(lblCorreo, "cell 1 1,aligny bottom");
-		
-		txtCorreo = new JTextField();
-		txtCorreo.setToolTipText("");
-		txtCorreo.setName("");
-		contentPane.add(txtCorreo, "cell 1 2,growx");
-		txtCorreo.setColumns(10);
-		
-		JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-		lblContraseña.setForeground(new Color(255, 255, 255));
-		contentPane.add(lblContraseña, "cell 1 3,aligny bottom");
-		
-		pswContraseña = new JPasswordField();
-		contentPane.add(pswContraseña, "cell 1 4,growx");
-		
-		//aceptar-cancelar
-		contentPane.add(getBtnCancelar(), "flowx,cell 1 6,alignx center");
-		contentPane.add(getBtnAceptar(), "cell 1 6,alignx center");
+		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60.00][61.00][50][50][50]"));
+		contentPane.add(getBtnInicio(), "cell 0 0,alignx center");
+		contentPane.add(getBtnRanking(), "cell 0 1,alignx center");
 	}
 	
-	private JButton getBtnCancelar() {
-		if (btnCancelar == null) {
-			btnCancelar = new JButton("Cancelar");
-			btnCancelar.addActionListener(new ActionListener() {
+	private JButton getBtnRanking() {
+		if (btnRanking == null) {
+			btnRanking = new JButton("Ver Ranking");
+			btnRanking.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_RankingCualquiera ranking = new IU_RankingCualquiera();
+					ranking.setVisible(true);
+					clip.stop();
+				}
+			});
+		}
+		return btnRanking;
+	}
+	
+	private JButton getBtnInicio() {
+		if (btnInicio == null) {
+			btnInicio = new JButton("Iniciar Sesión");
+			btnInicio.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_VentanaInicio login = new IU_VentanaInicio();
-						login.setVisible(true);
+						GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
+						IU_MenuPrincipal principal = new IU_MenuPrincipal();
+						principal.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
@@ -150,29 +130,7 @@ public class IU_LogIn extends JFrame {
 				}
 			});
 		}
-		return btnCancelar;
+		return btnInicio;
 	}
-	
-	private JButton getBtnAceptar() {
-		if (btnAceptar == null) {
-			btnAceptar = new JButton("Aceptar");
-			btnAceptar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					try {
-						//TODO : COMPROBAR INICIO DE SESIÓN Y TODA ESA WEA 
-						if(Buscaminas.iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
-							GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
-							VPrincipal principal = new VPrincipal();
-							principal.setVisible(true);
-							setVisible(false);
-						}
-						
-					} catch (NoArchivoAudioException e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-		}
-		return btnAceptar;
-	}
+
 }

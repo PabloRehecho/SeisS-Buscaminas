@@ -54,6 +54,11 @@ public class Buscaminas {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
 		return GestorPremios.getGestorPremios().getPremios(email);
 	}
+
+	public boolean iniciarSesion(String pText, char[] pPassword) {
+		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
+	}
+	
 	public boolean comprobarPremiosGanados(int[] hitos) {
 		Set<String> nMios=new HashSet<String>();
 		int i=0;

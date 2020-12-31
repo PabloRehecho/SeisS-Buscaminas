@@ -365,7 +365,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
         	mostrarRanking();
         }else if (e.getSource() == item4){
 			try {
-	        	VPrincipal principal = new VPrincipal();
+	        	IU_MenuPrincipal principal = new IU_MenuPrincipal();
 	        	principal.setVisible(true);
 	        	setVisible(false);
 	        	clip.stop();
