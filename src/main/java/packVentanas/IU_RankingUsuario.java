@@ -13,8 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 import packCodigo.Buscaminas;
-import packCodigo.NoArchivoAudioException;
-import packCodigo.Partida;
 
 import javax.swing.JTextArea;
 import java.awt.Image;
@@ -25,6 +23,7 @@ import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("serial")
 public class IU_RankingUsuario extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
@@ -80,12 +79,14 @@ public class IU_RankingUsuario extends JFrame implements ActionListener {
 		
 		lblNivel = new JLabel("Nivel:");
 		contentPane.add(lblNivel, "flowx,cell 2 0,alignx center,aligny center");
+		
 		contentPane.add(getChoice(), "cell 2 1,alignx center");
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		contentPane.add(textArea, "cell 1 2,grow");
-		mostrarRankingPersonal();
+		
+		mostrarRanking();
 	}
 	
 	private Choice getChoice() {
@@ -97,15 +98,14 @@ public class IU_RankingUsuario extends JFrame implements ActionListener {
 			}
 			choice.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent arg0) {
-					mostrarRankingPersonal();
+					mostrarRanking();
 				}
 			});
 		}
-		
 		return choice;
 	}
 	
-	private void mostrarRankingPersonal() {
+	private void mostrarRanking() {
 		String eleccion = choice.getSelectedItem();
 		int nivel = 0;
 		if (eleccion.equals("Absoluto")) {
@@ -123,40 +123,11 @@ public class IU_RankingUsuario extends JFrame implements ActionListener {
 		textArea.setText("");
 		ResultSet rs = null;
 		if(lblRanking.getText().equals("Ranking Personal")) {
-			rs = Buscaminas.getBuscaminas().mostrarRankingPersonal(nivel);
+			rs = Buscaminas.getBuscaminas().mostrarRanking("Personal", nivel);
 		}
 		else {
-			rs = Buscaminas.getBuscaminas().mostrarRankingGlobal(nivel);
+			rs = Buscaminas.getBuscaminas().mostrarRanking("Global", nivel);
 		}
-		try {
-			while(rs.next()) {
-				String nombre = rs.getString("nombre");
-				int puntuacion = rs.getInt("puntuacion");
-				textArea.append(nombre + "			" + puntuacion + "\n");
-			}
-			rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void mostrarRankingGlobal() {
-		String eleccion = choice.getSelectedItem();
-		int nivel = 0;
-		if (eleccion.equals("Absoluto")) {
-			nivel = 0;
-		}
-		else if (eleccion.equals("Nivel 1")) {
-			nivel = 1;
-		}
-		else if (eleccion.equals("Nivel 2")) {
-			nivel = 2;
-		}
-		else if (eleccion.equals("Nivel 3")) {
-			nivel = 3;
-		}
-		textArea.setText("");
-		ResultSet rs = Buscaminas.getBuscaminas().mostrarRankingGlobal(nivel);
 		try {
 			while(rs.next()) {
 				String nombre = rs.getString("nombre");
@@ -170,13 +141,13 @@ public class IU_RankingUsuario extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()==item1) {
+		if (e.getSource() == item1) {
 			lblRanking.setText("Ranking Personal");
-        	mostrarRankingPersonal();
+        	mostrarRanking();
         }
 		else if (e.getSource() == item2) {
 			lblRanking.setText("Ranking Global");
-        	mostrarRankingGlobal();
+        	mostrarRanking();
         }
 	}
 

@@ -31,5 +31,17 @@ public class GestorBD {
 			}
 			return rs;
 		}
+		
+		public void execSQL2(String sentencia) {
+			ConexionMySQL sql = new ConexionMySQL();
+			Connection conn = sql.conectarMySQL();
+			Statement s = null;
+			try {
+				s = conn.createStatement();
+				s.executeUpdate(sentencia);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	
 }

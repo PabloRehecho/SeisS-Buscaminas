@@ -37,4 +37,13 @@ public class GestorRanking {
 		return rs;
 	}
 	
+	public void actualizarRanking(String pEmail, String pNombre, int pPuntuacion, int pNivel, String pPartida) {
+		if(pPartida.equals("Perdida")) {
+			GestorBD.getGestorBD().execSQL2("INSERT INTO ranking (emailJugador, nombre, nivel) VALUES ('" + pEmail + "', '" + pNombre + "', " + pNivel + ")");
+		}
+		else if(pPartida.equals("Ganada")) {
+			GestorBD.getGestorBD().execSQL2("INSERT INTO ranking (emailJugador, nombre, puntuacion, nivel) VALUES ('" + pEmail + "', '" + pNombre + "', " + pPuntuacion + ", " + pNivel + ")");
+		}
+	}
+	
 }

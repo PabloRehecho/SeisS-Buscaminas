@@ -6,26 +6,20 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
 import packCodigo.Buscaminas;
-import packCodigo.NoArchivoAudioException;
 
 import javax.swing.JTextArea;
-import java.awt.FlowLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@SuppressWarnings("serial")
 public class IU_RankingCualquiera extends JFrame {
 
 	private JPanel contentPane;
@@ -73,7 +67,7 @@ public class IU_RankingCualquiera extends JFrame {
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		contentPane.add(textArea, "cell 1 2,grow");
-		mostrarRankingGlobal();
+		mostrarRanking();
 	}
 	
 	private Choice getChoice() {
@@ -85,7 +79,7 @@ public class IU_RankingCualquiera extends JFrame {
 			}
 			choice.addItemListener(new ItemListener() {
 				public void itemStateChanged(ItemEvent arg0) {
-					mostrarRankingGlobal();
+					mostrarRanking();
 				}
 			});
 		}
@@ -93,7 +87,7 @@ public class IU_RankingCualquiera extends JFrame {
 		return choice;
 	}
 	
-	private void mostrarRankingGlobal() {
+	private void mostrarRanking() {
 		String eleccion = choice.getSelectedItem();
 		int nivel = 0;
 		if (eleccion.equals("Absoluto")) {
@@ -109,7 +103,7 @@ public class IU_RankingCualquiera extends JFrame {
 			nivel = 3;
 		}
 		textArea.setText("");
-		ResultSet rs = Buscaminas.getBuscaminas().mostrarRankingGlobal(nivel);
+		ResultSet rs = Buscaminas.getBuscaminas().mostrarRanking("Global", nivel);
 		try {
 			while(rs.next()) {
 				String nombre = rs.getString("nombre");

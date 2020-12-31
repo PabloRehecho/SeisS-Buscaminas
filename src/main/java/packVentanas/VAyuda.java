@@ -13,6 +13,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+@SuppressWarnings("serial")
 public class VAyuda extends JFrame {
 
 	private JPanel contentPane;

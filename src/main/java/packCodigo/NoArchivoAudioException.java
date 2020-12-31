@@ -1,7 +1,8 @@
 package packCodigo;
 
+@SuppressWarnings("serial")
 public class NoArchivoAudioException extends Exception {
-    public NoArchivoAudioException() {
+	public NoArchivoAudioException() {
         super();
     }
 }

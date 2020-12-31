@@ -1,12 +1,12 @@
 package packCodigo;
 
-import packVentanas.IU_Login;
+import packVentanas.IU_VentanaInicio;
 
 public class Main {
-
+//prueba
 	public static void main(String[] args) 
 			throws NoArchivoAudioException {
-		IU_Login login = new IU_Login();
+		IU_VentanaInicio login = new IU_VentanaInicio();
 		login.setVisible(true);
 	}
 }
