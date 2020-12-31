@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2020 a las 18:24:22
+-- Tiempo de generación: 31-12-2020 a las 17:37:02
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
 
@@ -61,19 +61,6 @@ CREATE TABLE `ranking` (
   `nivel` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `ranking`
---
-
-INSERT INTO `ranking` (`fechaHora`, `emailJugador`, `nombre`, `puntuacion`, `nivel`) VALUES
-('2020-12-28 20:03:48', 'jonro@gmail.com', 'jonro', 0, 1),
-('2020-12-28 20:04:37', 'jonro@gmail.com', 'jonro', 1000, 1),
-('2020-12-29 13:06:45', 'jonro@gmail.com', 'jonro', 250, 2),
-('2020-12-29 13:06:55', 'jonro@gmail.com', 'jonro', 500, 3),
-('2020-12-29 14:01:38', 'yo@gmail.com', 'yo', 0, 1),
-('2020-12-29 14:01:42', 'yo@gmail.com', 'yo', 0, 2),
-('2020-12-29 14:01:45', 'yo@gmail.com', 'yo', 0, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -93,14 +80,6 @@ CREATE TABLE `usuario` (
   `imagenCara` int(11) NOT NULL DEFAULT 1,
   `sonido` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`email`, `contrasena`, `partidasGanadas1`, `partidasGanadas2`, `partidasGanadas3`, `partidasPerdidas`, `racha`, `nivelInicial`, `imagenMinas`, `imagenCara`, `sonido`) VALUES
-('jonro@gmail.com', '', 0, 0, 0, 0, 0, 1, 1, 1, 1),
-('yo@gmail.com', '', 0, 0, 0, 0, 0, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 

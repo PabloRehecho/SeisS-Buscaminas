@@ -120,7 +120,6 @@ public class IU_LogIn extends JFrame {
 			btnInicio.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						GestorUsuario.getGestorUsuario().setUsuario("jonro@gmail.com");
 						IU_MenuPrincipal principal = new IU_MenuPrincipal();
 						principal.setVisible(true);
 						setVisible(false);

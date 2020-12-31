@@ -160,7 +160,7 @@ public class IU_MenuPrincipal extends JFrame {
 			btnExit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_VentanaInicio login = new IU_VentanaInicio();
+						IU_LogIn login = new IU_LogIn();
 						login.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
