@@ -160,7 +160,7 @@ public class IU_LogIn extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						//TODO : COMPROBAR INICIO DE SESIÓN Y TODA ESA WEA 
-						if(Buscaminas.iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
+						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
 							GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
 							VPrincipal principal = new VPrincipal();
 							principal.setVisible(true);
