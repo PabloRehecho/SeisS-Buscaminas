@@ -64,7 +64,7 @@ public class PlanPruebasFuncionalidad5 {
 		/*	Establecimiento de un usuario
 		 */
 		
-		//GestorUsuario.getGestorUsuario().setUsuario("usuario1@gmail.com");
+		GestorUsuario.getGestorUsuario().setUsuario("usuario1@gmail.com");
 		
 		/*	Código de Prueba: 5.1.2.1
 		 *	Descripción: Menú Principal usuario - Ver Ránking
@@ -84,6 +84,7 @@ public class PlanPruebasFuncionalidad5 {
 		/*	Establecimiento de el administrador
 		 */
 		
+		//
 		GestorUsuario.getGestorUsuario().setUsuario("administrador@gmail.com");
 		
 		/*	Código de Prueba: 5.1.2.2

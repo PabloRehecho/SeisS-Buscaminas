@@ -5,9 +5,7 @@ public class GestorJuego {
 	private static GestorJuego miGestorJuego;
 	private Partida partida;
 	
-	private GestorJuego() {
-		partida = new Partida();
-	}
+	private GestorJuego() {}
 	
 	public static GestorJuego getGestorJuego() {
 		if (miGestorJuego == null) {
@@ -18,6 +16,10 @@ public class GestorJuego {
 	
 	public Partida getPartida() {
 		return partida;
+	}
+	
+	public void comenzarPartida() {
+		partida = new Partida();
 	}
 
 	public void modificarValores(int[] pValores, String[] pNombres) 
