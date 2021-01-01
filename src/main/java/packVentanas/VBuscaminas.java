@@ -297,7 +297,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 				   if(arg.toString().equals("false")){
 					   juego = false;
 					   try {
-						   play(juego);
+						   play(juego,o);
 					   } catch (NoArchivoAudioException e) {
 						   e.printStackTrace();
 					   }
@@ -322,7 +322,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 			   } else if(arg.equals("FINALIZADO")){
 				   finalizado = true;
 				   try {
-					   play(finalizado);
+					   play(finalizado, o);
 				   } catch (NoArchivoAudioException e) {
 					   e.printStackTrace();
 				   }
@@ -393,7 +393,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		ranking.setVisible(true);
 	}
 		
-	private void play(boolean pB) throws NoArchivoAudioException{
+	private void play(boolean pB, Observable part) throws NoArchivoAudioException{
 		if (pB==false){
 			if (new File("sources/lose.wav").getAbsoluteFile() != null){
 				try {
@@ -439,7 +439,8 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+				Partida partida=(Partida)part;
+				partida.actualizarHitos();
 			}else {
 				throw new NoArchivoAudioException();
 			}
