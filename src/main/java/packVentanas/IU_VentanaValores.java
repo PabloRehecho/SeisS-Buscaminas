@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import packCodigo.Buscaminas;
+import packCodigo.GestorJuego;
 import packCodigo.NoArchivoAudioException;
 
 import javax.swing.JLabel;
@@ -31,6 +33,8 @@ public class IU_VentanaValores extends JFrame {
 	private JTextField textFieldTamano3a;
 	private JTextField textFieldTamano3b;
 	private JTextField textFieldMensaje;
+	private int[] valores= new int[11];
+	private String[] nombreValores= new String [11];;
 	
 	/**
 	 * Launch the application.
@@ -175,6 +179,42 @@ public class IU_VentanaValores extends JFrame {
 		btnGuardarCambios.setBounds(232, 217, 113, 23);
 		panel.add(btnGuardarCambios);
 		
+		btnGuardarCambios.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				try 
+				{
+					valores[0]=Integer.parseInt(textFieldNivel.getText());
+					valores[1]=Integer.parseInt(textFieldMinas1.getText());
+					valores[2]=Integer.parseInt(textFieldMinas2.getText());
+					valores[3]=Integer.parseInt(textFieldMinas3.getText());
+					valores[4]=Integer.parseInt(textFieldTamano1a.getText());
+					valores[5]=Integer.parseInt(textFieldTamano1b.getText());
+					valores[6]=Integer.parseInt(textFieldTamano2a.getText());
+					valores[7]=Integer.parseInt(textFieldTamano2b.getText());
+					valores[8]=Integer.parseInt(textFieldTamano3a.getText());
+					valores[9]=Integer.parseInt(textFieldTamano3b.getText());
+					valores[10]=Integer.parseInt(textFieldMensaje.getText());
+					nombreValores[0]="nivel";
+					nombreValores[1]="minas1";
+					nombreValores[2]="minas2";
+					nombreValores[3]="minas3";
+					nombreValores[4]="filas1";
+					nombreValores[5]="columnas1";
+					nombreValores[6]="filas2";
+					nombreValores[7]="columnas2";
+					nombreValores[8]="filas3";
+					nombreValores[9]="columnas3";
+					nombreValores[10]="mensaje";
+					Buscaminas.getBuscaminas().modificarValores(valores, nombreValores);
+					IU_MenuPrincipal ventana = new IU_MenuPrincipal();
+					ventana.setVisible(true);
+					setVisible(false);
+				} 
+				catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
+			}
+		});
 		
 		
 	}

@@ -1,14 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generaciÃ³n: 31-12-2020 a las 17:37:02
--- VersiÃ³n del servidor: 10.4.17-MariaDB
--- VersiÃ³n de PHP: 8.0.0
--- Tiempo de generaciÃƒÂ³n: 29-12-2020 a las 18:24:22
--- VersiÃƒÂ³n del servidor: 10.4.17-MariaDB
--- VersiÃƒÂ³n de PHP: 8.0.0
+-- Tiempo de generación: 01-01-2021 a las 17:09:29
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,7 +44,7 @@ CREATE TABLE `premio` (
   `nombre` varchar(20) NOT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `imagen` int(11) DEFAULT 1,
-  `requisito` int DEFAULT 1
+  `requisito` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,7 +104,24 @@ CREATE TABLE `valores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Ã?ndices para tablas volcadas
+-- Volcado de datos para la tabla `valores`
+--
+
+INSERT INTO `valores` (`nombre`, `valor`) VALUES
+('columnas1', 10),
+('columnas2', 15),
+('columnas3', 25),
+('filas1', 7),
+('filas2', 10),
+('filas3', 12),
+('mensaje', 1),
+('minas1', 11),
+('minas2', 32),
+('minas3', 78),
+('nivel', 1);
+
+--
+-- Índices para tablas volcadas
 --
 
 --

@@ -18,6 +18,27 @@ public class Buscaminas {
 		return miBuscaminas;
 	}
 	
+	public boolean iniciarSesion(String pText, char[] pPassword) {
+		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
+	}
+	
+	public void modificarValores (int[] pValores, String[] pNombres)
+	{
+		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
+	}
+	
+	public Partida obtenerPartida() {
+		return GestorJuego.getGestorJuego().getPartida();
+	}
+	
+	public void establecerNombreJugador(String pNombre) {
+		GestorJuego.getGestorJuego().getPartida().establecerNombreJugador(pNombre);
+	}
+	
+	public void comenzarPartida() {
+		GestorJuego.getGestorJuego().comenzarPartida();
+	}
+	
 	public ResultSet mostrarRanking(String pTipo, int pNivel) {
 		ResultSet rs = null;
 		if (pTipo.equals("Global")) {
@@ -36,27 +57,12 @@ public class Buscaminas {
 		int puntuacion = GestorJuego.getGestorJuego().getPartida().obtenerPuntuacion();
 		int nivel = GestorJuego.getGestorJuego().getPartida().obtenerNivel();
 		GestorRanking.getGestorRanking().actualizarRanking(email, nombreJugador, puntuacion, nivel, pPartida);
-	}
+	}		
 	
-	public Partida obtenerPartida() {
-		return GestorJuego.getGestorJuego().getPartida();
-	}
-	
-	public void establecerNombreJugador(String pNombre) {
-		GestorJuego.getGestorJuego().getPartida().establecerNombreJugador(pNombre);
-	}
-	
-	public void comenzarPartida() {
-		GestorJuego.getGestorJuego().comenzarPartida();
-	}
 
 	public ResultSet obtenerPremios() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
 		return GestorPremios.getGestorPremios().getPremios(email);
-	}
-
-	public boolean iniciarSesion(String pText, char[] pPassword) {
-		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
 	
 	public boolean comprobarPremiosGanados(int[] hitos) {
@@ -124,5 +130,8 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+	
+	
+	
 }
 
