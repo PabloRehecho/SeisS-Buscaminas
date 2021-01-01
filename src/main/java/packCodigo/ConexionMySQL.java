@@ -1,5 +1,6 @@
 package packCodigo;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,9 +32,10 @@ public class ConexionMySQL {
         Connection conn = null;
 
         try {
+        	Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqld.exe");
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | IOException e) {
             e.printStackTrace();
         }
 

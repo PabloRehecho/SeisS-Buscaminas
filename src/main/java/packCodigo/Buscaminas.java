@@ -47,7 +47,7 @@ public class Buscaminas {
 	}
 	
 	public void comenzarPartida() {
-		GestorJuego.getGestorJuego().comenzarPartida();
+		GestorJuego.getGestorJuego();
 	}
 
 	public ResultSet obtenerPremios() {
