@@ -47,6 +47,7 @@ public class Buscaminas {
 		return rs;
 	}
 	
+	
 	public void actualizarRanking(String pPartida) {
 		String email = GestorUsuario.getGestorUsuario().getUsuario();
 		String nombreJugador = GestorJuego.getGestorJuego().getPartida().obtenerNombreJugador();
