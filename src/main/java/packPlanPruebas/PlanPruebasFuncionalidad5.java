@@ -19,8 +19,8 @@ public class PlanPruebasFuncionalidad5 {
 		/*	Volcado de datos en la base de datos para las comprobaciones
 		 */
 		
-		GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (email, contrasena) VALUES ('usuario1@gmail.com', 'contrasena1');");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (email, contrasena) VALUES ('administrador@gmail.com', 'contrasena0');");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (email, contrasena) VALUES ('usuario1@gmail.com', 'contrasena1')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (email, contrasena) VALUES ('administrador@gmail.com', 'contrasena0')");
 		try {
 			GestorRanking.getGestorRanking().actualizarRanking("usuario1@gmail.com", "usuario1", 100, 1, "Ganada");
 			Thread.sleep(1*1000);

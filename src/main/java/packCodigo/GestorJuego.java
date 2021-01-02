@@ -14,6 +14,7 @@ public class GestorJuego {
 		return miGestorJuego;
 	}
 	
+
 	public void crearValores() 
 	{		
 		GestorBD.getGestorBD().execSQL2("DELETE FROM valores");
@@ -28,7 +29,14 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas2', 32) ");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas3', 78) ");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
+	}
 		
+
+	public Partida getPartida() {
+		if (partida == null) {
+			partida = new Partida();
+		}
+		return partida;
 	}
 	
 	public void modificarValores(int[] pValores, String[] pNombres) 
@@ -41,10 +49,6 @@ public class GestorJuego {
 			GestorBD.getGestorBD().execSQL2(" UPDATE valores SET valor= " + pValores[i] + " WHERE nombre=' " + pNombres[i] + " ';");
 			i++;
 		}
-	}
-	
-	public Partida getPartida() {
-		return partida;
 	}
 	
 	public void comenzarPartida() {
