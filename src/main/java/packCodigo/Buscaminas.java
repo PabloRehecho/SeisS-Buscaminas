@@ -21,12 +21,10 @@ public class Buscaminas {
 	public boolean iniciarSesion(String pText, char[] pPassword) {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
-	
 
-
-	public void crearValores() {
-		GestorJuego.getGestorJuego().crearValores();
-		
+	public void crearValores() 
+	{
+		GestorJuego.getGestorJuego().crearValores();		
 	}	
 	
 	public void modificarValores (int[] pValores, String[] pNombres)

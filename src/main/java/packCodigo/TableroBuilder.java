@@ -21,6 +21,7 @@ public class TableroBuilder {
 	}
 	
 	public Tablero asignarTablero(int pNivel){
+		//hay que hacer selects
 		if (pNivel==1)
 		{
 			elTablero = new Tablero(1,7,10);
