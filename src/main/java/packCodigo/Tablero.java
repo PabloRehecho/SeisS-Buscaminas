@@ -60,6 +60,7 @@ public class Tablero extends Observable{
 	}
 	
 	private int calcularMinas(){
+		// hay que hacer select
 		int sol = nivel*(columnas+1);
 		return sol;
 	}

@@ -157,7 +157,7 @@ public class IU_LogIn extends JFrame {
 					try {
 						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
 							GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
-							VPrincipal principal = new VPrincipal();
+							IU_MenuPrincipal principal = new IU_MenuPrincipal();
 							principal.setVisible(true);
 							setVisible(false);
 						}else {

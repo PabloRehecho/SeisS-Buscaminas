@@ -17,6 +17,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @SuppressWarnings("serial")
 public class IU_VentanaValores extends JFrame {
 
@@ -64,38 +67,50 @@ public class IU_VentanaValores extends JFrame {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		panel.setLayout(null);	
 		
-		JLabel lblNivel = new JLabel("Nivel inicial de cada usuario");
+		ResultSet rs= Buscaminas.getBuscaminas().extraerValores();
+		try {
+			int i=0;
+			while(rs.next()) {
+				valores[i]=rs.getInt("valor");
+				i++;
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		JLabel lblNivel = new JLabel("Nivel inicial de cada usuario: " + valores[10]);
 		lblNivel.setBounds(10, 4, 203, 14);
 		panel.add(lblNivel);
 		
-		JLabel lblMinas1 = new JLabel("Minas nivel 1");
-		lblMinas1.setBounds(10, 29, 110, 14);
+		JLabel lblMinas1 = new JLabel("Minas nivel 1: " + valores[7]);
+		lblMinas1.setBounds(10, 29, 119, 14);
 		panel.add(lblMinas1);
 		
-		JLabel lblMinas2 = new JLabel("Minas nivel 2");
-		lblMinas2.setBounds(10, 54, 110, 14);
+		JLabel lblMinas2 = new JLabel("Minas nivel 2: " + valores[8]);
+		lblMinas2.setBounds(10, 54, 119, 14);
 		panel.add(lblMinas2);
 		
-		JLabel lblMinas3 = new JLabel("Minas nivel 3");
-		lblMinas3.setBounds(10, 79, 110, 14);
+		JLabel lblMinas3 = new JLabel("Minas nivel 3: " + valores[9]);
+		lblMinas3.setBounds(10, 79, 119, 14);
 		panel.add(lblMinas3);
 		
-		JLabel lblTamano1 = new JLabel("Tamano nivel 1");
-		lblTamano1.setBounds(10, 104, 110, 14);
+		JLabel lblTamano1 = new JLabel("Tamano nivel 1: " + valores[3] + " x " + valores[0]);
+		lblTamano1.setBounds(10, 104, 162, 14);
 		panel.add(lblTamano1);
 		
-		JLabel lblTamano2 = new JLabel("Tamano nivel 2");
-		lblTamano2.setBounds(10, 129, 110, 14);
+		JLabel lblTamano2 = new JLabel("Tamano nivel 2: " + valores[4] + " x " + valores[1]);
+		lblTamano2.setBounds(10, 129, 162, 14);
 		panel.add(lblTamano2);
 		
-		JLabel lblTamano3 = new JLabel("Tamano nivel 3");
-		lblTamano3.setBounds(10, 154, 110, 14);
+		JLabel lblTamano3 = new JLabel("Tamano nivel 3: " + valores[5] + " x " +  valores[2]);
+		lblTamano3.setBounds(10, 154, 162, 14);
 		panel.add(lblTamano3);
 		
-		JLabel lblMensajeDeAyuda = new JLabel("Mensaje de ayuda");
-		lblMensajeDeAyuda.setBounds(10, 179, 110, 14);
+		JLabel lblMensajeDeAyuda = new JLabel("Mensaje de ayuda: " + valores[6]);
+		lblMensajeDeAyuda.setBounds(10, 179, 162, 14);
 		panel.add(lblMensajeDeAyuda);
 		
 		textFieldNivel = new JTextField();
@@ -120,37 +135,37 @@ public class IU_VentanaValores extends JFrame {
 		
 		textFieldTamano1a = new JTextField();
 		textFieldTamano1a.setColumns(10);
-		textFieldTamano1a.setBounds(139, 101, 86, 20);
+		textFieldTamano1a.setBounds(182, 101, 86, 20);
 		panel.add(textFieldTamano1a);
 		
 		textFieldTamano1b = new JTextField();
 		textFieldTamano1b.setColumns(10);
-		textFieldTamano1b.setBounds(235, 101, 86, 20);
+		textFieldTamano1b.setBounds(278, 101, 86, 20);
 		panel.add(textFieldTamano1b);
 		
 		textFieldTamano2a = new JTextField();
 		textFieldTamano2a.setColumns(10);
-		textFieldTamano2a.setBounds(139, 126, 86, 20);
+		textFieldTamano2a.setBounds(182, 126, 86, 20);
 		panel.add(textFieldTamano2a);
 		
 		textFieldTamano2b = new JTextField();
 		textFieldTamano2b.setColumns(10);
-		textFieldTamano2b.setBounds(235, 126, 86, 20);
+		textFieldTamano2b.setBounds(278, 126, 86, 20);
 		panel.add(textFieldTamano2b);
 		
 		textFieldTamano3a = new JTextField();
 		textFieldTamano3a.setColumns(10);
-		textFieldTamano3a.setBounds(139, 151, 86, 20);
+		textFieldTamano3a.setBounds(182, 151, 86, 20);
 		panel.add(textFieldTamano3a);
 		
 		textFieldTamano3b = new JTextField();
 		textFieldTamano3b.setColumns(10);
-		textFieldTamano3b.setBounds(235, 151, 86, 20);
+		textFieldTamano3b.setBounds(278, 151, 86, 20);
 		panel.add(textFieldTamano3b);
 		
 		textFieldMensaje = new JTextField();
 		textFieldMensaje.setColumns(10);
-		textFieldMensaje.setBounds(139, 176, 86, 20);
+		textFieldMensaje.setBounds(182, 176, 86, 20);
 		panel.add(textFieldMensaje);
 		
 		JButton btnVolverAlMenu = new JButton("Volver al menu");
