@@ -24,9 +24,14 @@ public class Buscaminas {
 
 	public void crearValores() 
 	{
+		//no se si es apropiado
 		GestorJuego.getGestorJuego().crearValores();		
 	}	
 	
+	public ResultSet extraerValores() 
+	{
+		return GestorJuego.getGestorJuego().extraerValores();
+	}
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
@@ -136,4 +141,6 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+
+	
 }

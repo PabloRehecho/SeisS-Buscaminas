@@ -36,6 +36,7 @@ public class IU_MenuPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private Choice choice;
+	private JButton btnValores;
 	private JButton btnRanking;
 	private JButton btnOk;
 	private JButton btnExit;
@@ -108,11 +109,12 @@ public class IU_MenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60.00][61.00][50][50][50]"));
 		contentPane.add(getLblNombre(), "flowx,cell 2 0,alignx center");
-		contentPane.add(getBtnRanking(), "cell 0 1,alignx center");
+		contentPane.add(getBtnValores(), "cell 0 1,alignx center");
 		contentPane.add(getLblNivel(), "flowx,cell 2 1,alignx center");
 		contentPane.add(getBtnExit(), "flowx,cell 0 0,alignx center");
 		contentPane.add(getTextField(), "cell 2 0,alignx center");
 		contentPane.add(getChoice(), "cell 2 1,alignx center");
+		contentPane.add(getBtnRanking(), "cell 0 2,alignx center");
 		contentPane.add(getBtnOk(), "cell 2 2,alignx center");
 		setTitle("Menú Principal");
 	}
@@ -170,6 +172,20 @@ public class IU_MenuPrincipal extends JFrame {
 			});
 		}
 		return btnExit;
+	}
+	private JButton getBtnValores() {
+		if (btnValores == null) {
+			btnValores = new JButton("Ver valores");
+			btnValores.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_VentanaValores valores = new IU_VentanaValores();
+					valores.setVisible(true);
+					setVisible(false);
+					clip.stop();
+				}
+			});
+		}
+		return btnValores;
 	}
 	private JButton getBtnRanking() {
 		if (btnRanking == null) {

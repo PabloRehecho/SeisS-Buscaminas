@@ -1,5 +1,7 @@
 package packCodigo;
 
+import java.sql.ResultSet;
+
 public class GestorJuego {
 
 	private static GestorJuego miGestorJuego;
@@ -14,6 +16,12 @@ public class GestorJuego {
 		return miGestorJuego;
 	}
 	
+	public ResultSet extraerValores() 
+	{
+		ResultSet rs = null;
+		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores");
+		return rs;
+	}
 
 	public void crearValores() 
 	{		
@@ -54,4 +62,6 @@ public class GestorJuego {
 	public void comenzarPartida() {
 		partida = new Partida();
 	}
+
+	
 }
