@@ -35,7 +35,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
-public class IU_LogIn extends JFrame {
+public class IU_Register extends JFrame {
 
 	private JPanel contentPane;
 	private Clip clip;
@@ -45,6 +45,8 @@ public class IU_LogIn extends JFrame {
 	private JPasswordField pswContraseña;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
+	private JLabel lblContraseña2;
+	private JPasswordField pswRepiteContraseña;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +54,7 @@ public class IU_LogIn extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IU_LogIn frame = new IU_LogIn();
+					IU_Register frame = new IU_Register();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +66,7 @@ public class IU_LogIn extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_LogIn() throws NoArchivoAudioException {
+	public IU_Register() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
@@ -106,7 +108,7 @@ public class IU_LogIn extends JFrame {
 		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60][60][60.00]"));
+		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60][60][60][60][60.00]"));
 
 		JLabel lblIniciarSesion = new JLabel("INICIAR SESI\u00D3N");
 		lblIniciarSesion.setForeground(new Color(255, 255, 255));
@@ -122,17 +124,24 @@ public class IU_LogIn extends JFrame {
 		txtCorreo.setName("");
 		contentPane.add(txtCorreo, "cell 1 2,growx");
 		txtCorreo.setColumns(10);
-
+		
 		JLabel lblContraseña = new JLabel("Contrase\u00F1a");
 		lblContraseña.setForeground(new Color(255, 255, 255));
 		contentPane.add(lblContraseña, "cell 1 3,aligny bottom");
 
 		pswContraseña = new JPasswordField();
 		contentPane.add(pswContraseña, "cell 1 4,growx");
+		
+		lblContraseña2 = new JLabel("Repite la contrase\u00F1a");
+		lblContraseña2.setForeground(Color.WHITE);
+		contentPane.add(lblContraseña2, "cell 1 5");
+		
+		pswRepiteContraseña = new JPasswordField();
+		contentPane.add(pswRepiteContraseña, "cell 1 6,growx");
 
 		//aceptar-cancelar
-		contentPane.add(getBtnCancelar(), "flowx,cell 1 6,alignx center");
-		contentPane.add(getBtnAceptar(), "cell 1 6,alignx center");
+		contentPane.add(getBtnCancelar(), "flowx,cell 1 8,alignx center");
+		contentPane.add(getBtnAceptar(), "cell 1 8,alignx center");
 	}
 
 	private JButton getBtnCancelar() {
@@ -159,16 +168,24 @@ public class IU_LogIn extends JFrame {
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
-							GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
-							VPrincipal principal = new VPrincipal();
-							principal.setVisible(true);
-							setVisible(false);
-						}else {
+						//TODO : REGISTRO Y MOVIDAS VARIAS
+						if (String.valueOf(pswContraseña.getPassword()).equals(String.valueOf(pswRepiteContraseña.getPassword()))){
+							if(Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), pswContraseña.getPassword())) {
+								GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
+								VPrincipal principal = new VPrincipal();
+								principal.setVisible(true);
+								setVisible(false);
+							}else {
+								VError error = new VError();
+								error.setError("Correo no válido");
+								error.setVisible(true);
+							}
+						} else {
 							VError error = new VError();
-							error.setError("Correo o contraseña incorrectas");
+							error.setError("Las contraseñas no coinciden");
 							error.setVisible(true);
 						}
+						
 
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();

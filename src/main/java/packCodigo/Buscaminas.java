@@ -130,6 +130,10 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+
+	public boolean crearCuenta(String text, char[] password) {
+		return GestorUsuario.getGestorUsuario().crearCuenta(text, password);
+	}
 	
 	
 	
