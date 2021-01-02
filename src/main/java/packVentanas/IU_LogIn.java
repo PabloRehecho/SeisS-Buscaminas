@@ -24,13 +24,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.JTextPane;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Insets;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
