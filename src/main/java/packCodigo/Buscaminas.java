@@ -22,6 +22,13 @@ public class Buscaminas {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
 	
+
+
+	public void crearValores() {
+		GestorJuego.getGestorJuego().crearValores();
+		
+	}	
+	
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);

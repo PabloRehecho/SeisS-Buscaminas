@@ -6,6 +6,7 @@ import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import packVentanas.IU_OpcionPremios;
 import packVentanas.VBuscaminas;
 
 @SuppressWarnings("deprecation")
@@ -231,8 +232,7 @@ public class Partida extends Observable implements Observer{
 		tablero.descubrirTodosLosVecinos(a,b);
 	}
 	
-	@SuppressWarnings("unused")
-	private void actualizarHitos() {
+	public void actualizarHitos() {
 		ResultSet rs=GestorUsuario.getGestorUsuario().getHitos();
 		int[] hitos=null;
 		hitos=new int[4];
@@ -258,7 +258,8 @@ public class Partida extends Observable implements Observer{
 		hitos[4]++;
 		GestorUsuario.getGestorUsuario().actualizarHitos(hitos);
 		if(Buscaminas.getBuscaminas().comprobarPremiosGanados(hitos)) {
-			
+			IU_OpcionPremios Oprem= new IU_OpcionPremios();
+			Oprem.setVisible(true);
 		}
 		
 	}
