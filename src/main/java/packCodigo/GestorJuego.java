@@ -14,14 +14,11 @@ public class GestorJuego {
 		return miGestorJuego;
 	}
 	
-	public Partida getPartida() {
-		return partida;
+	public void crearValores() {
+		// TODO Auto-generated method stub
+		
 	}
 	
-	public void comenzarPartida() {
-		partida = new Partida();
-	}
-
 	public void modificarValores(int[] pValores, String[] pNombres) 
 	{
 		int i=0;
@@ -32,9 +29,13 @@ public class GestorJuego {
 			GestorBD.getGestorBD().execSQL2(" UPDATE valores SET valor= " + pValores[i] + " WHERE nombre=' " + pNombres[i] + " ';");
 			i++;
 		}
-			
-			
-		
 	}
 	
+	public Partida getPartida() {
+		return partida;
+	}
+	
+	public void comenzarPartida() {
+		partida = new Partida();
+	}
 }
