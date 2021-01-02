@@ -22,9 +22,20 @@ public class Buscaminas {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
 	
+
+
+	public void crearValores() {
+		GestorJuego.getGestorJuego().crearValores();
+		
+	}	
+	
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
+	}	
+
+	public void comenzarPartida() {
+		GestorJuego.getGestorJuego().comenzarPartida();
 	}
 	
 	public Partida obtenerPartida() {
@@ -56,9 +67,6 @@ public class Buscaminas {
 		GestorRanking.getGestorRanking().actualizarRanking(email, nombreJugador, puntuacion, nivel, pPartida);
 	}		
 	
-	public void comenzarPartida() {
-		GestorJuego.getGestorJuego().comenzarPartida();
-	}
 
 	public ResultSet obtenerPremios() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
@@ -130,8 +138,4 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
-	
-	
-	
 }
-

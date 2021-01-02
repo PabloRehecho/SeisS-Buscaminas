@@ -21,10 +21,9 @@ public class GestorJuego {
 		return partida;
 	}
 	
-	public void comenzarPartida() {
-		partida = new Partida();
+	public void crearValores() {
 	}
-
+	
 	public void modificarValores(int[] pValores, String[] pNombres) 
 	{
 		int i=0;
@@ -35,9 +34,9 @@ public class GestorJuego {
 			GestorBD.getGestorBD().execSQL2(" UPDATE valores SET valor= " + pValores[i] + " WHERE nombre=' " + pNombres[i] + " ';");
 			i++;
 		}
-			
-			
-		
 	}
 	
+	public void comenzarPartida() {
+		partida = new Partida();
+	}
 }

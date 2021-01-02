@@ -2,19 +2,26 @@ package packVentanas;
 
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
+import packCodigo.Buscaminas;
 
 @SuppressWarnings("serial")
 public class IU_OpcionPremios extends JFrame{
 	private JPanel contentPane;
 	private JLabel lblTexto;
+	private JButton btnMostrar;
+	private JButton btnCerrar;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,5 +47,31 @@ public class IU_OpcionPremios extends JFrame{
 		
 		lblTexto=new JLabel("Has ganado un premio, ¿Quieres ver los premios que tienes?");
 		contentPane.add(lblTexto, "flowx, cell 1 0, alignx center, alignycenter");
+		
+		contentPane.add(getBtnMostrar(), "cell 0 1,alignx center, alignycenter");
+		contentPane.add(getBtnCerrar(), "cell 0 1,alignx center, alignycenter");
+	}
+	private JButton getBtnMostrar() {
+		if (btnMostrar == null) {
+			btnMostrar = new JButton("Muéstramelos");
+			btnMostrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_Premios premio = new IU_Premios();
+					premio.setVisible(true);
+				}
+			});
+		}
+		return btnMostrar;
+	}
+	private JButton getBtnCerrar() {
+		if (btnCerrar == null) {
+			btnCerrar = new JButton("Cerrar");
+			btnCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+				}
+			});
+		}
+		return btnMostrar;
 	}
 }
