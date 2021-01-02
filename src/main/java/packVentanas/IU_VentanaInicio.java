@@ -128,7 +128,7 @@ public class IU_VentanaInicio extends JFrame {
 	
 	private JButton getBtnInicio() {
 		if (btnInicio == null) {
-			btnInicio = new JButton("Iniciar Sesión");
+			btnInicio = new JButton("IniciarSesion");
 			btnInicio.setMargin(new Insets(1, 2, 1, 2));
 			btnInicio.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -160,6 +160,17 @@ public class IU_VentanaInicio extends JFrame {
 		if (btnRegistrarse == null) {
 			btnRegistrarse = new JButton("Registrarse");
 			btnRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			btnRegistrarse.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						IU_Register register = new IU_Register();
+						register.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
 		}
 		return btnRegistrarse;
 	}

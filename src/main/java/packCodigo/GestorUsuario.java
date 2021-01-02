@@ -39,14 +39,24 @@ public class GestorUsuario {
 		GestorBD.getGestorBD().execSQL("UPDATE Usuario SET PartidasGanadas1="+hitos[1]+", PartidasGanadas2="+hitos[2]+", PartidasGanadas3="+hitos[3]+"Racha="+hitos[4]+" WHERE email="+pEmail+"");
 	}
 
-
+	
 	public boolean iniciarSesion(String pText, char[] pPassword) {
-		String contraseña = "";
-		for (int i=0;i<pPassword.length;i++){
-			contraseña += pPassword[i];
-		}
 		try {
-			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "' AND Contrasena='" + contraseña + "'").next()) {
+			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "' AND Contrasena='" + String.valueOf(pPassword) + "'").next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean crearCuenta(String pText, char[] pPassword) {
+		try {
+			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "'").next()){
+				return false;
+			}else {
+				GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (Email,Contrasena) VALUES ('" + pText + "','" + String.valueOf(pPassword) + "')");
 				return true;
 			}
 		} catch (SQLException e) {
