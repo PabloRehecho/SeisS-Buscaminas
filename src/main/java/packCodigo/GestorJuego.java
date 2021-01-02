@@ -52,9 +52,7 @@ public class GestorJuego {
 		int i=0;
 		while (i< pValores.length)
 		{
-			/*System.out.print(pValores[i]);
-			System.out.println(pNombres[i]);*/
-			GestorBD.getGestorBD().execSQL2(" UPDATE valores SET valor= " + pValores[i] + " WHERE nombre=' " + pNombres[i] + " ';");
+			GestorBD.getGestorBD().execSQL2(" UPDATE valores SET valor= " + pValores[i] + " WHERE nombre='" + pNombres[i] + "';");
 			i++;
 		}
 	}

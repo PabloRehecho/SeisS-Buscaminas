@@ -172,7 +172,7 @@ public class IU_Register extends JFrame {
 						if (String.valueOf(pswContraseña.getPassword()).equals(String.valueOf(pswRepiteContraseña.getPassword()))){
 							if(Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), pswContraseña.getPassword())) {
 								GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
-								VPrincipal principal = new VPrincipal();
+								IU_MenuPrincipal principal = new IU_MenuPrincipal();
 								principal.setVisible(true);
 								setVisible(false);
 							}else {

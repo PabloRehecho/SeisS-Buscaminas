@@ -67,8 +67,7 @@ public class IU_VentanaValores extends JFrame {
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-		
+		panel.setLayout(null);	
 		
 		ResultSet rs= Buscaminas.getBuscaminas().extraerValores();
 		try {
@@ -111,7 +110,7 @@ public class IU_VentanaValores extends JFrame {
 		panel.add(lblTamano3);
 		
 		JLabel lblMensajeDeAyuda = new JLabel("Mensaje de ayuda: " + valores[6]);
-		lblMensajeDeAyuda.setBounds(10, 179, 119, 14);
+		lblMensajeDeAyuda.setBounds(10, 179, 162, 14);
 		panel.add(lblMensajeDeAyuda);
 		
 		textFieldNivel = new JTextField();
@@ -166,7 +165,7 @@ public class IU_VentanaValores extends JFrame {
 		
 		textFieldMensaje = new JTextField();
 		textFieldMensaje.setColumns(10);
-		textFieldMensaje.setBounds(139, 176, 86, 20);
+		textFieldMensaje.setBounds(182, 176, 86, 20);
 		panel.add(textFieldMensaje);
 		
 		JButton btnVolverAlMenu = new JButton("Volver al menu");
