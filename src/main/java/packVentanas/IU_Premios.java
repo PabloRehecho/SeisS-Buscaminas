@@ -31,8 +31,6 @@ public class IU_Premios extends JFrame {
 		});	
 	}
 	public IU_Premios() {
-		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
-		setIconImage(icon);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

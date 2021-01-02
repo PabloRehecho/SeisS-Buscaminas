@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
@@ -36,8 +37,6 @@ public class IU_OpcionPremios extends JFrame{
 		});	
 	}
 	public IU_OpcionPremios() {
-		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
-		setIconImage(icon);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,22 +52,26 @@ public class IU_OpcionPremios extends JFrame{
 	}
 	private JButton getBtnMostrar() {
 		if (btnMostrar == null) {
-			btnMostrar = new JButton("Muéstramelos");
-			btnMostrar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					IU_Premios premio = new IU_Premios();
-					premio.setVisible(true);
-				}
-			});
+			if (btnMostrar == null) {
+				btnMostrar.addMouseListener(new MouseAdapter(){
+					public void mouseClicked(MouseEvent e){
+						 if (e.getButton() == MouseEvent.BUTTON1) {
+							 IU_Premios premio = new IU_Premios();
+							 premio.setVisible(true);
+						 }
+					}
+				});
+			}
 		}
 		return btnMostrar;
 	}
 	private JButton getBtnCerrar() {
 		if (btnCerrar == null) {
-			btnCerrar = new JButton("Cerrar");
-			btnCerrar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			btnCerrar.addMouseListener(new MouseAdapter(){
+				public void mouseClicked(MouseEvent e){
+					 if (e.getButton() == MouseEvent.BUTTON1) {
 					setVisible(false);
+					 }
 				}
 			});
 		}
