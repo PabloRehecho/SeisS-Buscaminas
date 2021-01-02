@@ -15,6 +15,9 @@ public class GestorJuego {
 	}
 	
 	public Partida getPartida() {
+		if (partida == null) {
+			partida = new Partida();
+		}
 		return partida;
 	}
 	
