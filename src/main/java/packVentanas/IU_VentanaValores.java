@@ -69,7 +69,7 @@ public class IU_VentanaValores extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		Buscaminas.getBuscaminas().crearValores();
+		
 		ResultSet rs= Buscaminas.getBuscaminas().extraerValores();
 		try {
 			int i=0;

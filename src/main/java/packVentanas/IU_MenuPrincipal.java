@@ -38,6 +38,7 @@ public class IU_MenuPrincipal extends JFrame {
 	private Choice choice;
 	private JButton btnValores;
 	private JButton btnRanking;
+	private JButton btnPremio;
 	private JButton btnOk;
 	private JButton btnExit;
 	private JLabel lblNombre;
@@ -116,6 +117,7 @@ public class IU_MenuPrincipal extends JFrame {
 		contentPane.add(getChoice(), "cell 2 1,alignx center");
 		contentPane.add(getBtnRanking(), "cell 0 2,alignx center");
 		contentPane.add(getBtnOk(), "cell 2 2,alignx center");
+		contentPane.add(getBtnPremio(), "cell 0 3,alignx center");
 		setTitle("Menú Principal");
 	}
 
@@ -199,6 +201,20 @@ public class IU_MenuPrincipal extends JFrame {
 			});
 		}
 		return btnRanking;
+	}
+	
+	private JButton getBtnPremio() {
+		if (btnPremio == null) {
+			btnPremio = new JButton("Ver Premios");
+			btnPremio.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_Premios premio = new IU_Premios();
+					premio.setVisible(true);
+					clip.stop();
+				}
+			});
+		}
+		return btnPremio;
 	}
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
