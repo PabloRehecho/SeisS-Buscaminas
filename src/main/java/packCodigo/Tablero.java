@@ -160,7 +160,6 @@ public class Tablero extends Observable{
 			else if((pFila==0 && pColumna==0) || (pFila == filas && pColumna == columnas)){
 				
 			}
-			//ES UN ENFERMO QUE LO DEJA SIN TERMINAR XD salu2
 			else if ((pFila==0 && pColumna==columnas)) {
 				if(matriz[pFila+1][pColumna-1] == null){
 					generarDDN(pFila, pColumna);
@@ -219,7 +218,6 @@ public class Tablero extends Observable{
 				
 				
 			}
-				//ES UN ENFERMO QUE LO DEJA SIN TERMINAR XD salu2
 				else if ((pFila==0 && pColumna==0)) {
 					if(matriz[pFila+1][pColumna+1] == null){
 						generarDIP(pFila, pColumna);
