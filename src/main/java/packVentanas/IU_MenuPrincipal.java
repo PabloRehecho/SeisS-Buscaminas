@@ -180,10 +180,16 @@ public class IU_MenuPrincipal extends JFrame {
 			btnValores = new JButton("Ver valores");
 			btnValores.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					IU_VentanaValores valores = new IU_VentanaValores();
-					valores.setVisible(true);
-					setVisible(false);
-					clip.stop();
+					IU_VentanaValores valores;
+					try {
+						valores = new IU_VentanaValores();
+						valores.setVisible(true);
+						setVisible(false);
+						clip.stop();
+					} catch (NoArchivoAudioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}					
 				}
 			});
 		}
