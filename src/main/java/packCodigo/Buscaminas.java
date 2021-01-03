@@ -143,4 +143,8 @@ public class Buscaminas {
 	public boolean crearCuenta(String text, char[] password) {
 		return GestorUsuario.getGestorUsuario().crearCuenta(text, password);
 	}
+
+	public void setUsuario(String text) {
+		GestorUsuario.getGestorUsuario().setUsuario(text);
+	}
 }

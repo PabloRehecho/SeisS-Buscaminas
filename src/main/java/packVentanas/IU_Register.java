@@ -164,28 +164,50 @@ public class IU_Register extends JFrame {
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						//TODO : REGISTRO Y MOVIDAS VARIAS
-						if (String.valueOf(pswContraseña.getPassword()).equals(String.valueOf(pswRepiteContraseña.getPassword()))){
-							if(Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), pswContraseña.getPassword())) {
-								GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
-								IU_MenuPrincipal principal = new IU_MenuPrincipal();
-								principal.setVisible(true);
-								setVisible(false);
-							}else {
-								VError error = new VError();
-								error.setError("Correo no válido");
-								error.setVisible(true);
-							}
-						} else {
+						if (!esCorreo(txtCorreo.getText())) {
+							VError error = new VError();
+							error.setError("Correo no válido");
+							error.setVisible(true);
+						}
+						else if(String.valueOf(pswContraseña.getPassword()).length()==0) {
+							VError error = new VError();
+							error.setError("Contraseña no válida");
+							error.setVisible(true);
+						}
+						else if (!String.valueOf(pswContraseña.getPassword()).equals(String.valueOf(pswRepiteContraseña.getPassword()))){
 							VError error = new VError();
 							error.setError("Las contraseñas no coinciden");
 							error.setVisible(true);
 						}
+						else if(!Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), pswContraseña.getPassword())) {
+							VError error = new VError();
+							error.setError("Ya existe una cuenta con este correo");
+							error.setVisible(true);
+						}
+						else {
+							Buscaminas.getBuscaminas().setUsuario(txtCorreo.getText());
+							IU_MenuPrincipal menu = new IU_MenuPrincipal();
+							menu.setVisible(true);
+							setVisible(false);
+						}
 						
-
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
 					}
+				}
+
+				private boolean esCorreo(String text) {
+					String[] correo = text.split("@");
+					if(correo.length==2 && !correo[0].contains(".") && correo[1].contains(".")) {
+						//Por razones que todavía desconozco no funcionaba el .split("."), por lo que haré algo a mano
+						int a = correo[1].length();
+						int b = correo[1].indexOf(".");
+						return (correo[1].indexOf(".")!=0 && correo[1].indexOf(".")!=correo[1].length()-1);
+							
+						
+					}
+					return false;
+					//return (correo.length==2 && (!correo[0].contains(".") && correo[1].split(".").length==2));
 				}
 			});
 		}
