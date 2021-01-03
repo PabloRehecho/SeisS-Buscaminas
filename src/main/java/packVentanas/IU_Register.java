@@ -200,8 +200,6 @@ public class IU_Register extends JFrame {
 					String[] correo = text.split("@");
 					if(correo.length==2 && !correo[0].contains(".") && correo[1].contains(".")) {
 						//Por razones que todavía desconozco no funcionaba el .split("."), por lo que haré algo a mano
-						int a = correo[1].length();
-						int b = correo[1].indexOf(".");
 						return (correo[1].indexOf(".")!=0 && correo[1].indexOf(".")!=correo[1].length()-1);
 							
 						
