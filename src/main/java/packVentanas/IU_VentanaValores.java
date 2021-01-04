@@ -270,37 +270,59 @@ public class IU_VentanaValores extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				try 
+				if(Integer.parseInt(choiceMinas1.getSelectedItem())>=Integer.parseInt(choiceTamano1a.getSelectedItem())*Integer.parseInt(choiceTamano1b.getSelectedItem())) 
 				{
-					valores[0]=Integer.parseInt(choiceNivel.getSelectedItem());
-					valores[1]=Integer.parseInt(choiceMinas1.getSelectedItem());
-					valores[2]=Integer.parseInt(choiceMinas2.getSelectedItem());
-					valores[3]=Integer.parseInt(choiceMinas3.getSelectedItem());
-					valores[4]=Integer.parseInt(choiceTamano1a.getSelectedItem());
-					valores[5]=Integer.parseInt(choiceTamano1b.getSelectedItem());
-					valores[6]=Integer.parseInt(choiceTamano2a.getSelectedItem());
-					valores[7]=Integer.parseInt(choiceTamano2b.getSelectedItem());
-					valores[8]=Integer.parseInt(choiceTamano3a.getSelectedItem());
-					valores[9]=Integer.parseInt(choiceTamano3b.getSelectedItem());
-					valores[10]=Integer.parseInt(choiceMensaje.getSelectedItem());
-					nombreValores[0]="nivel";
-					nombreValores[1]="minas1";
-					nombreValores[2]="minas2";
-					nombreValores[3]="minas3";
-					nombreValores[4]="filas1";
-					nombreValores[5]="columnas1";
-					nombreValores[6]="filas2";
-					nombreValores[7]="columnas2";
-					nombreValores[8]="filas3";
-					nombreValores[9]="columnas3";
-					nombreValores[10]="mensaje";
-					Buscaminas.getBuscaminas().modificarValores(valores, nombreValores);
-					IU_MenuPrincipal ventana = new IU_MenuPrincipal();
-					ventana.setVisible(true);
-					setVisible(false);
-					clip.stop();
-				} 
-				catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
+					VError error = new VError();
+					error.setError("Demasiadas minas para ese tamaño en el nivel 1");
+					error.setVisible(true);
+				}
+				else if(Integer.parseInt(choiceMinas2.getSelectedItem())>=Integer.parseInt(choiceTamano2a.getSelectedItem())*Integer.parseInt(choiceTamano2b.getSelectedItem())) 
+				{
+					VError error = new VError();
+					error.setError("Demasiadas minas para ese tamaño en el nivel 1");
+					error.setVisible(true);
+				}
+				else if(Integer.parseInt(choiceMinas3.getSelectedItem())>=Integer.parseInt(choiceTamano3a.getSelectedItem())*Integer.parseInt(choiceTamano3b.getSelectedItem())) 
+				{
+					VError error = new VError();
+					error.setError("Demasiadas minas para ese tamaño en el nivel 1");
+					error.setVisible(true);
+				}
+				else
+				{
+					try 
+					{
+						valores[0]=Integer.parseInt(choiceNivel.getSelectedItem());
+						valores[1]=Integer.parseInt(choiceMinas1.getSelectedItem());
+						valores[2]=Integer.parseInt(choiceMinas2.getSelectedItem());
+						valores[3]=Integer.parseInt(choiceMinas3.getSelectedItem());
+						valores[4]=Integer.parseInt(choiceTamano1a.getSelectedItem());
+						valores[5]=Integer.parseInt(choiceTamano1b.getSelectedItem());
+						valores[6]=Integer.parseInt(choiceTamano2a.getSelectedItem());
+						valores[7]=Integer.parseInt(choiceTamano2b.getSelectedItem());
+						valores[8]=Integer.parseInt(choiceTamano3a.getSelectedItem());
+						valores[9]=Integer.parseInt(choiceTamano3b.getSelectedItem());
+						valores[10]=Integer.parseInt(choiceMensaje.getSelectedItem());
+						nombreValores[0]="nivel";
+						nombreValores[1]="minas1";
+						nombreValores[2]="minas2";
+						nombreValores[3]="minas3";
+						nombreValores[4]="filas1";
+						nombreValores[5]="columnas1";
+						nombreValores[6]="filas2";
+						nombreValores[7]="columnas2";
+						nombreValores[8]="filas3";
+						nombreValores[9]="columnas3";
+						nombreValores[10]="mensaje";
+						Buscaminas.getBuscaminas().modificarValores(valores, nombreValores);
+						IU_MenuPrincipal ventana = new IU_MenuPrincipal();
+						ventana.setVisible(true);
+						setVisible(false);
+						clip.stop();
+					} 
+					catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
+				}
+				
 			}
 		});
 		
