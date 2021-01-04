@@ -153,4 +153,7 @@ public class Buscaminas {
 		GestorUsuario.getGestorUsuario().setUsuario(text);
 	}
 
+	public boolean resetContraseña(String text) {
+		return GestorUsuario.getGestorUsuario().resetContraseña(text);
+	}
 }

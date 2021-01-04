@@ -272,20 +272,20 @@ public class IU_VentanaValores extends JFrame {
 			{
 				if(Integer.parseInt(choiceMinas1.getSelectedItem())>=Integer.parseInt(choiceTamano1a.getSelectedItem())*Integer.parseInt(choiceTamano1b.getSelectedItem())) 
 				{
-					VError error = new VError();
-					error.setError("Demasiadas minas para ese tamaño en el nivel 1");
+					VMensaje error = new VMensaje();
+					error.setMensaje("Demasiadas minas para ese tamaño en el nivel 1");
 					error.setVisible(true);
 				}
 				else if(Integer.parseInt(choiceMinas2.getSelectedItem())>=Integer.parseInt(choiceTamano2a.getSelectedItem())*Integer.parseInt(choiceTamano2b.getSelectedItem())) 
 				{
-					VError error = new VError();
-					error.setError("Demasiadas minas para ese tamaño en el nivel 1");
+					VMensaje error = new VMensaje();
+					error.setMensaje("Demasiadas minas para ese tamaño en el nivel 1");
 					error.setVisible(true);
 				}
 				else if(Integer.parseInt(choiceMinas3.getSelectedItem())>=Integer.parseInt(choiceTamano3a.getSelectedItem())*Integer.parseInt(choiceTamano3b.getSelectedItem())) 
 				{
-					VError error = new VError();
-					error.setError("Demasiadas minas para ese tamaño en el nivel 1");
+					VMensaje error = new VMensaje();
+					error.setMensaje("Demasiadas minas para ese tamaño en el nivel 1");
 					error.setVisible(true);
 				}
 				else
