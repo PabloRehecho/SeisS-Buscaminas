@@ -28,6 +28,11 @@ public class Buscaminas {
 		GestorJuego.getGestorJuego().crearValores();		
 	}	
 	
+
+	public String[] extraerListaUsuarios() {
+		return GestorJuego.getGestorJuego().extraerListaUsuarios();
+	}
+	
 	public ResultSet extraerValores() 
 	{
 		return GestorJuego.getGestorJuego().extraerValores();
@@ -147,4 +152,5 @@ public class Buscaminas {
 	public void setUsuario(String text) {
 		GestorUsuario.getGestorUsuario().setUsuario(text);
 	}
+
 }
