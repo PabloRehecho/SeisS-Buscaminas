@@ -238,24 +238,24 @@ public class Partida extends Observable implements Observer{
 		hitos=new int[4];
 		try {
 			while(rs.next()) {
-				hitos[1]=rs.getInt("PartidasGanadas1");
-				hitos[2]=rs.getInt("PartidasGanadas2");
-				hitos[3]=rs.getInt("PartidasGanadas3");
-				hitos[4]=rs.getInt("Racha");
+				hitos[0]=rs.getInt("PartidasGanadas1");
+				hitos[1]=rs.getInt("PartidasGanadas2");
+				hitos[2]=rs.getInt("PartidasGanadas3");
+				hitos[3]=rs.getInt("Racha");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		if (nivel==1) {
-			hitos[1]++;
+			hitos[0]++;
 		}
 		else if (nivel==2) {
-			hitos[2]++;
+			hitos[1]++;
 		}
 		else if (nivel==3) {
-			hitos[3]++;
+			hitos[2]++;
 		}
-		hitos[4]++;
+		hitos[3]++;
 		GestorUsuario.getGestorUsuario().actualizarHitos(hitos);
 		if(Buscaminas.getBuscaminas().comprobarPremiosGanados(hitos)) {
 			IU_OpcionPremios Oprem= new IU_OpcionPremios();

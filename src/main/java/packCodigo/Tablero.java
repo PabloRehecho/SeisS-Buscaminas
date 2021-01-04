@@ -60,6 +60,7 @@ public class Tablero extends Observable{
 	}
 	
 	private int calcularMinas(){
+		// hay que hacer select
 		int sol = nivel*(columnas+1);
 		return sol;
 	}
@@ -150,17 +151,31 @@ public class Tablero extends Observable{
 				} else if(matriz[pFila-1][pColumna+1] instanceof CasillaNumero){
 					((CasillaNumero)(matriz[pFila-1][pColumna+1])).sumarNumero();
 				}
-			} else if(pColumna == columnas && pFila!=0){
+			} else if(pColumna == columnas && pFila!= filas){
 				if(matriz[pFila+1][pColumna-1] == null){
 					generarDDN(pFila, pColumna);
 				} else if(matriz[pFila+1][pColumna-1] instanceof CasillaNumero){
 					((CasillaNumero)(matriz[pFila+1][pColumna-1])).sumarNumero();
 					}
 			}
-			else if((pFila==0 && pColumna==0) || (pFila==filas && pColumna == 0) 
-					|| (pFila == 0 && pColumna == columnas) || (pFila == filas && pColumna == columnas)){
+			else if((pFila==0 && pColumna==0) || (pFila == filas && pColumna == columnas)){
 				
-			} else{
+			}
+			else if ((pFila==0 && pColumna==columnas)) {
+				if(matriz[pFila+1][pColumna-1] == null){
+					generarDDN(pFila, pColumna);
+				} else if(matriz[pFila+1][pColumna-1] instanceof CasillaNumero){
+					((CasillaNumero)(matriz[pFila+1][pColumna-1])).sumarNumero();
+				}
+			}
+			else if ((pFila==filas && pColumna==0)) {
+				if(matriz[pFila-1][pColumna+1] == null){
+					generarDDP(pFila, pColumna);
+				} else if(matriz[pFila-1][pColumna+1] instanceof CasillaNumero){
+					((CasillaNumero)(matriz[pFila-1][pColumna+1])).sumarNumero();
+				}
+			}
+			else{
 				if(matriz[pFila-1][pColumna+1] == null){
 					generarDDP(pFila, pColumna);
 				} else if(matriz[pFila-1][pColumna+1] instanceof CasillaNumero){
@@ -200,11 +215,25 @@ public class Tablero extends Observable{
 					} else if(matriz[pFila-1][pColumna-1] instanceof CasillaNumero){
 						((CasillaNumero)(matriz[pFila-1][pColumna-1])).sumarNumero();
 						}
-				}else if((pFila==0 && pColumna==0) || (pFila==filas && pColumna == 0) 
-						|| (pFila == 0 && pColumna == columnas) || (pFila == filas && pColumna == columnas)){
+				}else if((pFila==filas && pColumna == 0) || (pFila == 0 && pColumna == columnas)){
 				
 				
-			} else {
+			}
+				else if ((pFila==0 && pColumna==0)) {
+					if(matriz[pFila+1][pColumna+1] == null){
+						generarDIP(pFila, pColumna);
+					} else if(matriz[pFila+1][pColumna+1] instanceof CasillaNumero){
+						((CasillaNumero)(matriz[pFila+1][pColumna+1])).sumarNumero();
+					}
+				}
+				else if ((pFila==filas && pColumna==columnas)) {
+					if(matriz[pFila-1][pColumna-1] == null){
+						generarDIN(pFila, pColumna);
+					} else if(matriz[pFila-1][pColumna-1] instanceof CasillaNumero){
+						((CasillaNumero)(matriz[pFila-1][pColumna-1])).sumarNumero();
+						}
+				}
+				else {
 				if(matriz[pFila+1][pColumna+1] == null){
 					generarDIP(pFila, pColumna);
 				} else if(matriz[pFila+1][pColumna+1] instanceof CasillaNumero){

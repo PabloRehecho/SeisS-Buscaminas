@@ -368,7 +368,6 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 	        	IU_MenuPrincipal principal = new IU_MenuPrincipal();
 	        	principal.setVisible(true);
 	        	setVisible(false);
-	        	clip.stop();
 			} catch (NoArchivoAudioException e1) {
 				e1.printStackTrace();
 			}
@@ -421,7 +420,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		}else{
 			if (new File("sources/win.wav").getAbsoluteFile() != null){
 				try {
-					ais = AudioSystem.getAudioInputStream(new File("sources/win.wav").getAbsoluteFile());
+					ais = AudioSystem.getAudioInputStream(new File("src/main/resources/win.wav").getAbsoluteFile());
 				} catch (UnsupportedAudioFileException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

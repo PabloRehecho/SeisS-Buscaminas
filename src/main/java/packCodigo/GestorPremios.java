@@ -16,7 +16,7 @@ public class GestorPremios {
 	
 	public ResultSet getPremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM UsuarioPremio NATURAL JOIN Premio WHERE emailJugador="+pEmail+"");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM UsuarioPremio NATURAL JOIN Premio WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public ResultSet getTodosPremios() {
@@ -26,10 +26,10 @@ public class GestorPremios {
 	}
 	public ResultSet getNombrePremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM UsuarioPremio NATURAL JOIN Premio WHERE emailJugador="+pEmail+"");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM UsuarioPremio NATURAL JOIN Premio WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public void ganarPremio(String pEmail, String pNombre) {
-		GestorBD.getGestorBD().execSQL("INSERT INTO UsuarioPremio (emailJugador, nombrePremio)"+"values("+pEmail+""+pNombre+")");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO UsuarioPremio (emailJugador, nombrePremio) values ('"+pEmail+"', '"+pNombre+"')");
 	}
 }

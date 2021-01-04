@@ -21,7 +21,17 @@ public class Buscaminas {
 	public boolean iniciarSesion(String pText, char[] pPassword) {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
+
+	public void crearValores() 
+	{
+		//no se si es apropiado
+		GestorJuego.getGestorJuego().crearValores();		
+	}	
 	
+	public ResultSet extraerValores() 
+	{
+		return GestorJuego.getGestorJuego().extraerValores();
+	}
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
@@ -130,8 +140,15 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
-	
-	
-	
-}
+	public boolean crearCuenta(String text, char[] password) {
+		return GestorUsuario.getGestorUsuario().crearCuenta(text, password);
+	}
 
+	public void setUsuario(String text) {
+		GestorUsuario.getGestorUsuario().setUsuario(text);
+	}
+
+	public boolean resetContraseña(String text) {
+		return GestorUsuario.getGestorUsuario().resetContraseña(text);
+	}
+}

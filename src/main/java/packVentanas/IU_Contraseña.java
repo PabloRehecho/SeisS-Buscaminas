@@ -32,17 +32,14 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class IU_LogIn extends JFrame {
-
-	private JPanel contentPane;
+public class IU_Contraseña extends JFrame {
 	private Clip clip;
 	private AudioInputStream ais;
 	private Image fondo;
 	private JTextField txtCorreo;
-	private JPasswordField pswContraseña;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
-	private JButton btnRecuperar;
+	private JLabel lblCargando;
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +47,7 @@ public class IU_LogIn extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IU_LogIn frame = new IU_LogIn();
+					IU_Contraseña frame = new IU_Contraseña();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +59,7 @@ public class IU_LogIn extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_LogIn() throws NoArchivoAudioException {
+	public IU_Contraseña() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
@@ -72,19 +69,19 @@ public class IU_LogIn extends JFrame {
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
-		contentPane = new JPanel(){
+		JPanel contentPane = new JPanel(){
 			public void paintComponent(Graphics g){
 				g.drawImage(fondo,0,0,getWidth(),getHeight(),this);
 			}
 		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60][60][60.00]"));
+		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60.00]"));
 
-		JLabel lblIniciarSesion = new JLabel("INICIAR SESI\u00D3N");
-		lblIniciarSesion.setForeground(new Color(255, 255, 255));
-		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 24));
-		contentPane.add(lblIniciarSesion, "cell 1 0,alignx center");
+		JLabel lblRecuperar = new JLabel("RECUPERAR CONTRASE\u00D1A");
+		lblRecuperar.setForeground(new Color(255, 255, 255));
+		lblRecuperar.setFont(new Font("Tahoma", Font.BOLD, 24));
+		contentPane.add(lblRecuperar, "cell 1 0,alignx center");
 
 		JLabel lblCorreo = new JLabel("Correo electr\u00F3nico");
 		lblCorreo.setForeground(new Color(255, 255, 255));
@@ -95,40 +92,13 @@ public class IU_LogIn extends JFrame {
 		txtCorreo.setName("");
 		contentPane.add(txtCorreo, "cell 1 2,growx");
 		txtCorreo.setColumns(10);
-
-		JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-		lblContraseña.setForeground(new Color(255, 255, 255));
-		contentPane.add(lblContraseña, "cell 1 3,aligny bottom");
-
-		pswContraseña = new JPasswordField();
-		contentPane.add(pswContraseña, "cell 1 4,growx");
-		
-		contentPane.add(getBtnRecuperar(), "cell 1 5,alignx center,aligny top");
+		contentPane.add(getLblCargando(), "cell 1 3,alignx center,aligny top");
 
 		//aceptar-cancelar
-		contentPane.add(getBtnCancelar(), "flowx,cell 1 6,alignx center");
-		contentPane.add(getBtnAceptar(), "cell 1 6,alignx center");
+		contentPane.add(getBtnCancelar(), "flowx,cell 1 4,alignx center");
+		contentPane.add(getBtnAceptar(), "cell 1 4,alignx center");
 	}
-	
-	private JButton getBtnRecuperar() {
-		if (btnRecuperar == null) {
-			btnRecuperar = new JButton("Recuperar contraseña");
-			btnRecuperar.setFont(new Font("Tahoma", Font.PLAIN, 9));
-			btnRecuperar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					try {
-						IU_Contraseña login = new IU_Contraseña();
-						login.setVisible(true);
-						setVisible(false);
-					} catch (NoArchivoAudioException e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-		}
-		return btnRecuperar;
-	}
-	
+
 	private JButton getBtnCancelar() {
 		if (btnCancelar == null) {
 			btnCancelar = new JButton("Cancelar");
@@ -153,23 +123,36 @@ public class IU_LogIn extends JFrame {
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
-							GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
-							IU_MenuPrincipal principal = new IU_MenuPrincipal();
-							principal.setVisible(true);
+						lblCargando.setVisible(true);
+						if(Buscaminas.getBuscaminas().resetContraseña(txtCorreo.getText())) {
+							IU_LogIn login = new IU_LogIn();
+							VMensaje msg = new VMensaje();
+							login.setVisible(true);
+							msg.setMensaje("Una nueva contraseña ha sido enviada al correo");
+							msg.setVisible(true);
 							setVisible(false);
 						}else {
 							VMensaje error = new VMensaje();
-							error.setMensaje("Correo o contraseña incorrectas");
+							error.setMensaje("El correo no existe");
 							error.setVisible(true);
 						}
 
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
 					}
+					lblCargando.setVisible(false);
 				}
 			});
 		}
 		return btnAceptar;
+	}
+	private JLabel getLblCargando() {
+		if (lblCargando == null) {
+			lblCargando = new JLabel("Procesando correo...");
+			lblCargando.setVisible(false);
+			lblCargando.setForeground(Color.WHITE);
+			lblCargando.setHorizontalAlignment(SwingConstants.CENTER);
+		}
+		return lblCargando;
 	}
 }
