@@ -4,6 +4,16 @@ package packCodigo;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 public class GestorUsuario {
@@ -51,6 +61,7 @@ public class GestorUsuario {
 		return false;
 	}
 
+	
 	public boolean crearCuenta(String pText, char[] pPassword) {
 		try {
 			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "'").next()){
@@ -63,6 +74,67 @@ public class GestorUsuario {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public boolean resetContraseña(String pCorreo) {
+		String psw= crearNuevaContraseña();
+		
+		try {
+			if (!GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "'").next()){
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+        Properties prop = new Properties();
+        prop.setProperty("mail.smtp.host", "smtp.gmail.com");
+        prop.setProperty("mail.smtp.starttls.enable", "true");
+        prop.setProperty("mail.smtp.port", "587");
+        prop.setProperty("main.smtp.auth", "true");
+		
+        Session sesion = Session.getDefaultInstance(prop);
+        String correoEnvia = "SeisSBuscaminas@gmail.com";
+        String contrasena = "6SBuscaminas";
+        String receptor = pCorreo;
+        String asunto = "Buscaminas reset de contraseña";
+        String mensaje= "Tu nueva contraseña es: " + psw;
+        
+        MimeMessage mail = new MimeMessage(sesion);
+        try {
+            mail.setFrom(new InternetAddress (correoEnvia));
+            mail.addRecipient(Message.RecipientType.TO, new InternetAddress (receptor));
+            mail.setSubject(asunto);
+            mail.setText(mensaje);
+            
+            Transport transportar = sesion.getTransport("smtp");
+            transportar.connect(correoEnvia,contrasena);
+            transportar.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));          
+            transportar.close();
+            
+            GestorBD.getGestorBD().execSQL2("UPDATE usuario SET contrasena='" + psw + "' WHERE Email='" + pCorreo + "'");
+            
+            return true;
+            
+            
+            
+        } catch (AddressException e) {
+        	e.printStackTrace();
+        } catch (MessagingException e) {
+        	e.printStackTrace();
+        }
+		return false;
+        
+	}
+
+	private String crearNuevaContraseña() {
+		Random num = new Random();
+		char[] psw = new char[7];
+		for(int i=0; i<7; i++)
+        {
+			psw[i] = (char) ('a' + num.nextInt(26));
+        }
+		return String.valueOf(psw);
 	}
 	
 

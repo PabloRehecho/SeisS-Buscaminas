@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VError extends JDialog {
+public class VMensaje extends JDialog {
 
 	/**
 	 * 
@@ -21,14 +21,14 @@ public class VError extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
-	private JLabel lblError;
+	private JLabel lblMensaje;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			VError dialog = new VError();
+			VMensaje dialog = new VMensaje();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -39,7 +39,7 @@ public class VError extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public VError() {
+	public VMensaje() {
 		setModal(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -47,10 +47,10 @@ public class VError extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		lblError = new JLabel("");
-		lblError.setBounds(0, 74, 434, 14);
-		lblError.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPanel.add(lblError);
+		lblMensaje = new JLabel("");
+		lblMensaje.setBounds(0, 74, 434, 14);
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPanel.add(lblMensaje);
 		{
 			JPanel buttonPane = new JPanel();
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -82,7 +82,7 @@ public class VError extends JDialog {
 		}
 	}
 	
-	public void setError(String pError) {
-		lblError.setText(pError);
+	public void setMensaje(String pMensaje) {
+		lblMensaje.setText(pMensaje);
 	}
 }

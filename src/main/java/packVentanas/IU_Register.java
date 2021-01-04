@@ -165,23 +165,23 @@ public class IU_Register extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						if (!esCorreo(txtCorreo.getText())) {
-							VError error = new VError();
-							error.setError("Correo no válido");
+							VMensaje error = new VMensaje();
+							error.setMensaje("Correo no válido");
 							error.setVisible(true);
 						}
 						else if(String.valueOf(pswContraseña.getPassword()).length()==0) {
-							VError error = new VError();
-							error.setError("Contraseña no válida");
+							VMensaje error = new VMensaje();
+							error.setMensaje("Contraseña no válida");
 							error.setVisible(true);
 						}
 						else if (!String.valueOf(pswContraseña.getPassword()).equals(String.valueOf(pswRepiteContraseña.getPassword()))){
-							VError error = new VError();
-							error.setError("Las contraseñas no coinciden");
+							VMensaje error = new VMensaje();
+							error.setMensaje("Las contraseñas no coinciden");
 							error.setVisible(true);
 						}
 						else if(!Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), pswContraseña.getPassword())) {
-							VError error = new VError();
-							error.setError("Ya existe una cuenta con este correo");
+							VMensaje error = new VMensaje();
+							error.setMensaje("Ya existe una cuenta con este correo");
 							error.setVisible(true);
 						}
 						else {
@@ -198,7 +198,7 @@ public class IU_Register extends JFrame {
 
 				private boolean esCorreo(String text) {
 					String[] correo = text.split("@");
-					if(correo.length==2 && !correo[0].contains(".") && correo[1].contains(".")) {
+					if(correo.length==2 && correo[1].contains(".")) {
 						//Por razones que todavía desconozco no funcionaba el .split("."), por lo que haré algo a mano
 						return (correo[1].indexOf(".")!=0 && correo[1].indexOf(".")!=correo[1].length()-1);
 							
