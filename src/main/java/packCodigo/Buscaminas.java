@@ -28,6 +28,11 @@ public class Buscaminas {
 		GestorJuego.getGestorJuego().crearValores();		
 	}	
 	
+
+	public ResultSet extraerListaUsuarios() {
+		return GestorUsuario.getGestorUsuario().extraerListaUsuarios();
+	}
+	
 	public ResultSet extraerValores() 
 	{
 		return GestorJuego.getGestorJuego().extraerValores();

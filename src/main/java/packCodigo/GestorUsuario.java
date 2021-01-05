@@ -145,4 +145,10 @@ public class GestorUsuario {
 		return false;
 	}
 
+	public ResultSet extraerListaUsuarios() {
+		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
+		
+	}
+	
+
 }

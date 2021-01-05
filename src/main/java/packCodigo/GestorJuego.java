@@ -39,14 +39,6 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
 	}
 		
-
-	public Partida getPartida() {
-		if (partida == null) {
-			partida = new Partida();
-		}
-		return partida;
-	}
-	
 	public void modificarValores(int[] pValores, String[] pNombres) 
 	{
 		int i=0;
@@ -57,9 +49,17 @@ public class GestorJuego {
 		}
 	}
 	
+	public Partida getPartida() {
+		if (partida == null) {
+			partida = new Partida();
+		}
+		return partida;
+	}
+	
 	public void comenzarPartida() {
 		partida = new Partida();
 	}
+
 
 	
 }
