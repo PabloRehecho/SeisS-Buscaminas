@@ -15,6 +15,9 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+
 
 public class GestorUsuario {
 
@@ -136,6 +139,10 @@ public class GestorUsuario {
         }
 		return String.valueOf(psw);
 	}
-	
+
+	public boolean logearRedSocial() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
