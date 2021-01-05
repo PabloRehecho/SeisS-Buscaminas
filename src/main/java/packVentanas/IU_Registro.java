@@ -31,7 +31,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
-public class IU_Register extends JFrame {
+public class IU_Registro extends JFrame {
 
 	private JPanel contentPane;
 	private Clip clip;
@@ -50,7 +50,7 @@ public class IU_Register extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IU_Register frame = new IU_Register();
+					IU_Registro frame = new IU_Registro();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,36 +62,11 @@ public class IU_Register extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_Register() throws NoArchivoAudioException {
+	public IU_Registro() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
-		//SONIDO-INICIO		
-		if (new File("sources/login.wav").getAbsoluteFile() != null){
-			try {
-				ais = AudioSystem.getAudioInputStream(new File("src/main/resources/login.wav").getAbsoluteFile());
-			} catch (UnsupportedAudioFileException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip = AudioSystem.getClip();
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip.open(ais);
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else {
-			throw new NoArchivoAudioException();
-		}
-		clip.start();
-		//SONIDO FIN
+
 
 		setResizable(false);
 		setTitle("Login");

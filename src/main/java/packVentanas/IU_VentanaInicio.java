@@ -64,32 +64,7 @@ public class IU_VentanaInicio extends JFrame {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
-		//SONIDO-INICIO		
-		if (new File("sources/login.wav").getAbsoluteFile() != null){
-			try {
-				ais = AudioSystem.getAudioInputStream(new File("src/main/resources/login.wav").getAbsoluteFile());
-			} catch (UnsupportedAudioFileException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip = AudioSystem.getClip();
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip.open(ais);
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else {
-			throw new NoArchivoAudioException();
-		}
-		clip.start();
-		//SONIDO FIN
+
 		
 		setResizable(false);
 		setTitle("Login");
@@ -163,7 +138,7 @@ public class IU_VentanaInicio extends JFrame {
 			btnRegistrarse.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_Register register = new IU_Register();
+						IU_Registro register = new IU_Registro();
 						register.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {

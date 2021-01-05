@@ -75,32 +75,7 @@ public class IU_VentanaValores extends JFrame {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();
-		//SONIDO-INICIO		
-		if (new File("sources/login.wav").getAbsoluteFile() != null){
-			try {
-				ais = AudioSystem.getAudioInputStream(new File("src/main/resources/login.wav").getAbsoluteFile());
-			} catch (UnsupportedAudioFileException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip = AudioSystem.getClip();
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip.open(ais);
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else {
-			throw new NoArchivoAudioException();
-		}
-		clip.start();
-		//SONIDO FIN
+
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
