@@ -33,6 +33,10 @@ public class Buscaminas {
 		return GestorUsuario.getGestorUsuario().extraerListaUsuarios();
 	}
 	
+	public int extraerNivelUsuario(String pCorreo) {
+		return GestorUsuario.getGestorUsuario().extraerNivelUsuario(pCorreo);
+	}
+	
 	public ResultSet extraerValores() 
 	{
 		return GestorJuego.getGestorJuego().extraerValores();
@@ -156,4 +160,6 @@ public class Buscaminas {
 	public boolean resetContraseña(String text) {
 		return GestorUsuario.getGestorUsuario().resetContraseña(text);
 	}
+
+	
 }

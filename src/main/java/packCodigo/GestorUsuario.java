@@ -142,6 +142,11 @@ public class GestorUsuario {
 		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
 		
 	}
+
+	public int extraerNivelUsuario(String pCorreo) {
+		//GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='"
+		return 0;
+	}
 	
 
 }

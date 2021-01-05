@@ -44,6 +44,10 @@ public class IU_VentanaUsuarios extends JFrame {
 	private JPanel contentPane;
 	private Image fondo;
 	private JFrame frame = new JFrame();
+	private ArrayList<JLabel> listaCorreos= new ArrayList<JLabel>();
+	private ArrayList<JButton> listaEdicion= new ArrayList<JButton>();
+	private ArrayList<JButton> listaBorrado= new ArrayList<JButton>();
+	
 	
 	/**
 	 * Launch the application.
@@ -93,22 +97,57 @@ public class IU_VentanaUsuarios extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 650, 400);
 		
+		JButton btnVolverAlMenu = new JButton("Volver al menu");
+		btnVolverAlMenu.setBackground(Color.RED);
+		btnVolverAlMenu.setForeground(Color.BLACK);
+		btnVolverAlMenu.setBounds(53, 217, 129, 23);
+		frame.add(btnVolverAlMenu);
 
 		ResultSet rs =Buscaminas.getBuscaminas().extraerListaUsuarios();
 		try {
 			int i=0;
 			while(rs.next()) {
 				String nombre= rs.getString("email");
-				JButton l1= new JButton("" + nombre + "");
+				JLabel l1= new JLabel("" + nombre + "");
 				JButton l2= new JButton("editar usuario");
 				JButton l3= new JButton("borrar usuario");
-				l1.setBackground(Color.LIGHT_GRAY);
 				l2.setBackground(Color.LIGHT_GRAY);
 				l3.setBackground(Color.LIGHT_GRAY);
+				listaCorreos.add(l1);
+				listaEdicion.add(l2);
+				listaBorrado.add(l3);
+				l2.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						//try
+						//{
+							int posicion= listaEdicion.indexOf(this);
+							System.out.println(posicion);
+							//IU_VentanaUsuarioEspecifico ventana= new IU_VentanaUsuarioEspecifico(listaCorreos.get(posicion).getName());
+
+						//} 
+						//catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
+					}
+				});
+				
+				l3.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) 
+					{
+						/*try 
+						{
+							IU_MenuPrincipal ventana = new IU_MenuPrincipal();
+							ventana.setVisible(true);
+							setVisible(false);
+						} 
+						catch (NoArchivoAudioException e1)	{e1.printStackTrace();}*/
+					}
+				});
+		        
 				panel.add(l1);
 				panel.add(l2);
 				panel.add(l3);
-				i++;
 			}
 			rs.close();
 		} catch (SQLException e) {
