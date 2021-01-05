@@ -45,7 +45,6 @@ public class IU_MenuPrincipal extends JFrame {
 	private JLabel lblNombre;
 	private JLabel lblNivel;
 	private Image fondo;
-	private JButton btnNewButton;
 	
 	/**
 	 * Launch the application.
