@@ -138,7 +138,7 @@ public class IU_VentanaInicio extends JFrame {
 			btnRegistrarse.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_Register register = new IU_Register();
+						IU_Registro register = new IU_Registro();
 						register.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
