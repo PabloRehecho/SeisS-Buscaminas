@@ -160,4 +160,8 @@ public class Buscaminas {
 	public boolean logearRedSocial() {
 		return GestorUsuario.getGestorUsuario().logearRedSocial();
 	}
+
+	public void cerrarSesion() {
+		GestorUsuario.getGestorUsuario().cerrarSesion();
+	}
 }

@@ -149,6 +149,10 @@ public class GestorUsuario {
 		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
 		
 	}
+
+	public void cerrarSesion() {
+		this.email = null;
+	}
 	
 
 }

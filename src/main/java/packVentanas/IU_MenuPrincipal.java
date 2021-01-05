@@ -138,6 +138,7 @@ public class IU_MenuPrincipal extends JFrame {
 			btnExit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
+						Buscaminas.getBuscaminas().cerrarSesion();
 						IU_VentanaInicio login = new IU_VentanaInicio();
 						login.setVisible(true);
 						setVisible(false);
