@@ -30,16 +30,13 @@ import java.awt.Color;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class IU_VentanaUsuarios extends JFrame {
 
 	private JPanel contentPane;
-	private Clip clip;
-	private AudioInputStream ais;
 	private Image fondo;
-	private String[] listaNombres;
-	private JLabel[] listaCorreos;
 	
 	/**
 	 * Launch the application.
@@ -64,31 +61,6 @@ public class IU_VentanaUsuarios extends JFrame {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();
-		//SONIDO-INICIO		
-		if (new File("sources/login.wav").getAbsoluteFile() != null){
-			try {
-				ais = AudioSystem.getAudioInputStream(new File("src/main/resources/login.wav").getAbsoluteFile());
-			} catch (UnsupportedAudioFileException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip = AudioSystem.getClip();
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			}
-			try {
-				clip.open(ais);
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else {
-			throw new NoArchivoAudioException();
-		}
-		clip.start();
 		//SONIDO FIN
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,16 +80,28 @@ public class IU_VentanaUsuarios extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		listaNombres =Buscaminas.getBuscaminas().extraerListaUsuarios();
+		ResultSet rs =Buscaminas.getBuscaminas().extraerListaUsuarios();
+		try {
+			int i=0;
+			while(rs.next()) {
+				String nombre= rs.getString("email");
+				JLabel l= new JLabel("" + nombre + "");
+				l.setBounds(10, 25*i + 20, 145, 14);
+				panel.add(l);
+				i++;
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
-		
-		JLabel lblNewLabel = new JLabel("New label");
+		/* JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(10, 33, 145, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBounds(10, 58, 145, 14);
-		panel.add(lblNewLabel_1);
+		panel.add(lblNewLabel_1); */
 		
 		
 	}

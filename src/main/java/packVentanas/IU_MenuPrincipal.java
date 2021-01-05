@@ -36,6 +36,7 @@ public class IU_MenuPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private Choice choice;
+	private JButton btnUsuarios;
 	private JButton btnValores;
 	private JButton btnRanking;
 	private JButton btnPremio;
@@ -43,9 +44,8 @@ public class IU_MenuPrincipal extends JFrame {
 	private JButton btnExit;
 	private JLabel lblNombre;
 	private JLabel lblNivel;
-	private Clip clip;
-	private AudioInputStream ais;
 	private Image fondo;
+	private JButton btnNewButton;
 	
 	/**
 	 * Launch the application.
@@ -84,14 +84,15 @@ public class IU_MenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60.00][61.00][50][50][50]"));
 		contentPane.add(getLblNombre(), "flowx,cell 2 0,alignx center");
-		contentPane.add(getBtnValores(), "cell 0 1,alignx center");
 		contentPane.add(getLblNivel(), "flowx,cell 2 1,alignx center");
 		contentPane.add(getBtnExit(), "flowx,cell 0 0,alignx center");
 		contentPane.add(getTextField(), "cell 2 0,alignx center");
 		contentPane.add(getChoice(), "cell 2 1,alignx center");
-		contentPane.add(getBtnRanking(), "cell 0 2,alignx center");
+		contentPane.add(getBtnUsuarios(), "cell 0 1,alignx center");
+		contentPane.add(getBtnValores(), "cell 0 2,alignx center");
 		contentPane.add(getBtnOk(), "cell 2 2,alignx center");
-		contentPane.add(getBtnPremio(), "cell 0 3,alignx center");
+		contentPane.add(getBtnRanking(), "cell 0 3,alignx center");
+		contentPane.add(getBtnPremio(), "cell 0 4,alignx center");
 		setTitle("Menú Principal");
 	}
 
@@ -125,7 +126,6 @@ public class IU_MenuPrincipal extends JFrame {
 						 VBuscaminas vB = new VBuscaminas(Integer.parseInt(getChoice().getSelectedItem()));
 						 vB.setVisible(true);
 						 setVisible(false);
-						 clip.stop();
 					 }
 				}
 			});
@@ -149,6 +149,27 @@ public class IU_MenuPrincipal extends JFrame {
 		}
 		return btnExit;
 	}
+	
+
+	private JButton getBtnUsuarios() {
+		if (btnUsuarios == null) {
+			btnUsuarios = new JButton("Mostrar usuarios");
+			btnUsuarios.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_VentanaUsuarios usuarios;
+					try {
+						usuarios = new IU_VentanaUsuarios();
+						usuarios.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}					
+				}
+			});
+		}
+		return btnUsuarios;
+	}
 	private JButton getBtnValores() {
 		if (btnValores == null) {
 			btnValores = new JButton("Ver valores");
@@ -159,7 +180,6 @@ public class IU_MenuPrincipal extends JFrame {
 						valores = new IU_VentanaValores();
 						valores.setVisible(true);
 						setVisible(false);
-						clip.stop();
 					} catch (NoArchivoAudioException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -176,7 +196,6 @@ public class IU_MenuPrincipal extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					IU_RankingUsuario ranking = new IU_RankingUsuario();
 					ranking.setVisible(true);
-					clip.stop();
 				}
 			});
 		}
@@ -190,7 +209,6 @@ public class IU_MenuPrincipal extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					IU_Premios premio = new IU_Premios();
 					premio.setVisible(true);
-					clip.stop();
 				}
 			});
 		}

@@ -48,8 +48,6 @@ public class IU_VentanaValores extends JFrame {
 	private Choice choiceMensaje;
 	private int[] valores= new int[11];
 	private String[] nombreValores= new String [11];
-	private Clip clip;
-	private AudioInputStream ais;
 	private Image fondo;
 	
 	/**
@@ -230,7 +228,7 @@ public class IU_VentanaValores extends JFrame {
 					IU_MenuPrincipal ventana = new IU_MenuPrincipal();
 					ventana.setVisible(true);
 					setVisible(false);
-					clip.stop();
+
 				} 
 				catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
 			}
@@ -293,7 +291,6 @@ public class IU_VentanaValores extends JFrame {
 						IU_MenuPrincipal ventana = new IU_MenuPrincipal();
 						ventana.setVisible(true);
 						setVisible(false);
-						clip.stop();
 					} 
 					catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
 				}

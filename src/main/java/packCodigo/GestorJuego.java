@@ -39,10 +39,6 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
 	}
 		
-	public String[] extraerListaUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public void modificarValores(int[] pValores, String[] pNombres) 
 	{
 		int i=0;

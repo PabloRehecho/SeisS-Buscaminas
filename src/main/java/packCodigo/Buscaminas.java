@@ -29,8 +29,8 @@ public class Buscaminas {
 	}	
 	
 
-	public String[] extraerListaUsuarios() {
-		return GestorJuego.getGestorJuego().extraerListaUsuarios();
+	public ResultSet extraerListaUsuarios() {
+		return GestorUsuario.getGestorUsuario().extraerListaUsuarios();
 	}
 	
 	public ResultSet extraerValores() 

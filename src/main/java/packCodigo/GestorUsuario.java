@@ -138,4 +138,10 @@ public class GestorUsuario {
 	}
 	
 
+	public ResultSet extraerListaUsuarios() {
+		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
+		
+	}
+	
+
 }
