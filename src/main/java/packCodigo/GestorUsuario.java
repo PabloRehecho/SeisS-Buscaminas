@@ -15,8 +15,10 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
+import packVentanas.VMensaje;
+
+//import com.restfb.DefaultFacebookClient;
+//import com.restfb.FacebookClient;
 
 
 public class GestorUsuario {
@@ -53,9 +55,10 @@ public class GestorUsuario {
 	}
 
 	
-	public boolean iniciarSesion(String pText, char[] pPassword) {
+	public boolean iniciarSesion(String pEmail, String pContraseña) {
 		try {
-			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "' AND Contrasena='" + String.valueOf(pPassword) + "'").next()) {
+			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pEmail + "' AND Contrasena='" + pContraseña + "'").next()) {
+				email=pEmail;
 				return true;
 			}
 		} catch (SQLException e) {
@@ -65,18 +68,34 @@ public class GestorUsuario {
 	}
 
 	
-	public boolean crearCuenta(String pText, char[] pPassword) {
+	public boolean crearCuenta(String pCorreo, String pContraseña, String pCopiaPassword) {
 		try {
-			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pText + "'").next()){
-				return false;
-			}else {
-				GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (Email,Contrasena) VALUES ('" + pText + "','" + String.valueOf(pPassword) + "')");
-				return true;
+			
+			String[] correo = pCorreo.split("@");
+			if(correo.length==2 && correo[1].contains(".") && correo[1].indexOf(".")!=0 && correo[1].indexOf(".")!=correo[1].length()-1 &&
+					pContraseña.length()>0 && pContraseña.equals(pCopiaPassword)){
+				//si el coreo está en formato válido, hay una contraseña y las dos contraseñas son iguales
+				
+				
+				if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "'").next()){
+					return false;
+				}else {
+					GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (Email,Contrasena) VALUES ('" + pCorreo + "','" + pContraseña + "')");
+					email=pCorreo;
+					return true;
+				}
 			}
+			
+			
+			
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
+		
+		
 	}
 
 	public boolean resetContraseña(String pCorreo) {
@@ -153,6 +172,5 @@ public class GestorUsuario {
 	public void cerrarSesion() {
 		this.email = null;
 	}
-	
 
 }
