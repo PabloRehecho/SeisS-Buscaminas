@@ -160,4 +160,12 @@ public class Buscaminas {
 	public boolean resetContraseña(String text) {
 		return GestorUsuario.getGestorUsuario().resetContraseña(text);
 	}
+
+	public boolean logearRedSocial() {
+		return GestorUsuario.getGestorUsuario().logearRedSocial();
+	}
+
+	public void cerrarSesion() {
+		GestorUsuario.getGestorUsuario().cerrarSesion();
+	}
 }
