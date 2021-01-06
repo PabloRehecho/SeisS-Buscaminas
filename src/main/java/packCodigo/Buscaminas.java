@@ -37,6 +37,10 @@ public class Buscaminas {
 	{
 		return GestorJuego.getGestorJuego().extraerValores();
 	}
+	public ResultSet extraerPersonalizacion() 
+	{
+		return GestorJuego.getGestorJuego().extraerPersonalizacion();
+	}
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);

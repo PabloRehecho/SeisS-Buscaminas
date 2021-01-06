@@ -42,6 +42,7 @@ public class IU_MenuPrincipal extends JFrame {
 	private JButton btnPremio;
 	private JButton btnOk;
 	private JButton btnExit;
+	private JButton btnPersonalizar;
 	private JLabel lblNombre;
 	private JLabel lblNivel;
 	private Image fondo;
@@ -91,8 +92,9 @@ public class IU_MenuPrincipal extends JFrame {
 		contentPane.add(getBtnUsuarios(), "cell 0 1,alignx center");
 		contentPane.add(getBtnValores(), "cell 0 2,alignx center");
 		contentPane.add(getBtnOk(), "cell 2 2,alignx center");
-		contentPane.add(getBtnRanking(), "cell 0 3,alignx center");
-		contentPane.add(getBtnPremio(), "cell 0 4,alignx center");
+		contentPane.add(getBtnPersonalizar(), "cell 0 3,alignx center");
+		contentPane.add(getBtnRanking(), "cell 0 4,alignx center");
+		contentPane.add(getBtnPremio(), "cell 2 4,alignx center");
 		setTitle("Menú Principal");
 	}
 
@@ -213,6 +215,25 @@ public class IU_MenuPrincipal extends JFrame {
 			});
 		}
 		return btnPremio;
+	}
+	private JButton getBtnPersonalizar() {
+		if (btnPersonalizar == null) {
+			btnPersonalizar = new JButton("Personalizar");
+			btnPersonalizar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IU_Personalizar personalizacion;
+					try {
+						personalizacion = new IU_Personalizar();
+						personalizacion.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnPersonalizar;
 	}
 	private JLabel getLblNombre() {
 		if (lblNombre == null) {
