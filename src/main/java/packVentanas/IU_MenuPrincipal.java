@@ -45,6 +45,8 @@ public class IU_MenuPrincipal extends JFrame {
 	private JLabel lblNombre;
 	private JLabel lblNivel;
 	private Image fondo;
+	private JButton btnNewButton;
+	private JButton btnCambioContraseña;
 	
 	/**
 	 * Launch the application.
@@ -81,17 +83,18 @@ public class IU_MenuPrincipal extends JFrame {
 		};	
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60.00][61.00][50][50][50]"));
-		contentPane.add(getLblNombre(), "flowx,cell 2 0,alignx center");
-		contentPane.add(getLblNivel(), "flowx,cell 2 1,alignx center");
-		contentPane.add(getBtnExit(), "flowx,cell 0 0,alignx center");
-		contentPane.add(getTextField(), "cell 2 0,alignx center");
-		contentPane.add(getChoice(), "cell 2 1,alignx center");
-		contentPane.add(getBtnUsuarios(), "cell 0 1,alignx center");
-		contentPane.add(getBtnValores(), "cell 0 2,alignx center");
-		contentPane.add(getBtnOk(), "cell 2 2,alignx center");
-		contentPane.add(getBtnRanking(), "cell 0 3,alignx center");
-		contentPane.add(getBtnPremio(), "cell 0 4,alignx center");
+		contentPane.setLayout(new MigLayout("", "[188.00][][224.00]", "[60][60.00][61.00][50][50][50]"));
+		contentPane.add(getBtnExit(), "cell 0 0,alignx center");
+		contentPane.add(getLblNombre(), "flowx,cell 2 1,alignx center");
+		contentPane.add(getLblNivel(), "flowx,cell 2 2,alignx center");
+		contentPane.add(getTextField(), "cell 2 1,alignx center");
+		contentPane.add(getChoice(), "cell 2 2,alignx center");
+		contentPane.add(getBtnUsuarios(), "cell 0 2,alignx center");
+		contentPane.add(getBtnValores(), "cell 0 3,alignx center");
+		contentPane.add(getBtnOk(), "cell 2 3,alignx center");
+		contentPane.add(getBtnRanking(), "cell 0 4,alignx center");
+		contentPane.add(getBtnPremio(), "cell 0 5,alignx center");
+		contentPane.add(getBtnCambioContraseña(), "cell 0 1,alignx center");
 		setTitle("Menú Principal");
 	}
 
@@ -226,5 +229,28 @@ public class IU_MenuPrincipal extends JFrame {
 			lblNivel = new JLabel("Seleccione el nivel:");
 		}
 		return lblNivel;
+	}
+	private JButton getBtnCambioContraseña() {
+		if (btnCambioContraseña == null) {
+			btnCambioContraseña = new JButton("CambiarContrase\u00F1a");
+			btnCambioContraseña.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					try {
+						IU_CambioContraseña psw;
+						psw = new IU_CambioContraseña();
+						setVisible(false);
+						psw.setVisible(true);
+					} catch (NoArchivoAudioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+
+					
+				}
+			});
+		}
+		return btnCambioContraseña;
 	}
 }

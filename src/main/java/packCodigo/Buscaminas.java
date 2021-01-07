@@ -170,5 +170,17 @@ public class Buscaminas {
 	public boolean resetContraseña(String text) {
 		return GestorUsuario.getGestorUsuario().resetContraseña(text);
 	}
+
+	public boolean logearRedSocial() {
+		return GestorUsuario.getGestorUsuario().logearRedSocial();
+	}
+
+	public void cerrarSesion() {
+		GestorUsuario.getGestorUsuario().cerrarSesion();
+	}
 	
+	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
+		return GestorUsuario.getGestorUsuario().cambioDeContraseña(pAntigua, pN1, pN2);
+	}
+
 }

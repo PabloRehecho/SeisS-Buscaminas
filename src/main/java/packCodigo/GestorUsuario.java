@@ -172,6 +172,19 @@ public class GestorUsuario {
 		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
 		
 	}
+	
+	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
+		try {
+			if(pN1.length()>0 && pN1.contentEquals(pN2) && GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario WHERE email='" + email + "' and Contrasena='" + pAntigua + "'").next()){
+				GestorBD.getGestorBD().execSQL2("UPDATE usuario SET contrasena='" + pN1 + "' WHERE Email='" + email + "'");
+				return true;
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public int extraerNivelUsuario(String pCorreo) {
 		//GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='"
