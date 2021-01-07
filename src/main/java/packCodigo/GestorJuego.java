@@ -26,7 +26,8 @@ public class GestorJuego {
 	public ResultSet extraerPersonalizacion()
 	{
 		ResultSet rs = null;
-		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM imagenesaudio");
+		String email = GestorUsuario.getGestorUsuario().getUsuario();
+		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE email = '" + email + "'");
 		return rs;
 	}
 	public void crearValores() 
@@ -75,6 +76,19 @@ public class GestorJuego {
 		while (i< pValores.length)
 		{
 			GestorBD.getGestorBD().execSQL2(" UPDATE valores SET valor= " + pValores[i] + " WHERE nombre='" + pNombres[i] + "';");
+			i++;
+		}
+	}
+	
+	public void modificarPersonalizacion(int[] pValores) 
+	{
+		String email = GestorUsuario.getGestorUsuario().getUsuario();
+		int i=0;
+		while (i< pValores.length)
+		{
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenMinas='" + pValores[0] + "' WHERE Email='" + email + "'");
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenCara='" + pValores[1] + "' WHERE Email='" + email + "'");
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET sonido='" + pValores[2] + "' WHERE Email='" + email + "'");
 			i++;
 		}
 	}

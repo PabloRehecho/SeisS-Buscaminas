@@ -15,8 +15,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
+/*import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;*/
 
 
 public class GestorUsuario {
