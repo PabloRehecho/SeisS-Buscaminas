@@ -60,7 +60,7 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().iniciarSesion("u1@prueba.com", "contrasena2");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u1@prueba.com");
 		
-		GestorUsuario.getGestorUsuario().borrarUsuario("u1@prueba.com");
+		//GestorUsuario.getGestorUsuario().borrarUsuario("u1@prueba.com");
 		
 	}
 	@Test
@@ -82,7 +82,7 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().crearCuenta("u2@prueba.com", "Contraseña", "Contraseña");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u2@prueba.com");
 		
-		GestorUsuario.getGestorUsuario().borrarUsuario("u2@prueba.com");
+		//GestorUsuario.getGestorUsuario().borrarUsuario("u2@prueba.com");
 	}
 
 	@Test
@@ -97,7 +97,7 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().resetContraseña("u3@prueba.com");
 		assertFalse(GestorUsuario.getGestorUsuario().iniciarSesion("u3@prueba.com", "Contraseña"));
 		
-		GestorUsuario.getGestorUsuario().borrarUsuario("u3@prueba.com");
+		//GestorUsuario.getGestorUsuario().borrarUsuario("u3@prueba.com");
 	}
 
 	@Test
