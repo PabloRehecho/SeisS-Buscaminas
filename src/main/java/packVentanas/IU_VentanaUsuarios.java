@@ -68,8 +68,7 @@ public class IU_VentanaUsuarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_VentanaUsuarios() throws NoArchivoAudioException {
-		
+	public IU_VentanaUsuarios() throws NoArchivoAudioException {	
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		frame.setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();		
@@ -92,19 +91,16 @@ public class IU_VentanaUsuarios extends JFrame {
         jsp.setBounds(150,670,850,200);        
         frame.getContentPane().add(jsp); 
         frame.pack();
-        frame.setVisible( true );
+        frame.setVisible(true);
         frame.setTitle("Ventana Usuarios");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 650, 400);
 		
-		JButton btnVolverAlMenu = new JButton("Volver al menu");
-		btnVolverAlMenu.setBackground(Color.RED);
-		btnVolverAlMenu.setForeground(Color.BLACK);
-		btnVolverAlMenu.setBounds(53, 217, 129, 23);
-		frame.add(btnVolverAlMenu);
+		
 
 		ResultSet rs =Buscaminas.getBuscaminas().extraerListaUsuarios();
-		try {
+		try 
+		{
 			int i=0;
 			while(rs.next()) {
 				String nombre= rs.getString("email");
@@ -120,14 +116,15 @@ public class IU_VentanaUsuarios extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e) 
 					{
-						//try
-						//{
-							int posicion= listaEdicion.indexOf(this);
-							System.out.println(posicion);
-							//IU_VentanaUsuarioEspecifico ventana= new IU_VentanaUsuarioEspecifico(listaCorreos.get(posicion).getName());
+						try
+						{
+							int posicion= listaEdicion.indexOf(e.getSource());
+							IU_VentanaUsuarioEspecifico ventana= new IU_VentanaUsuarioEspecifico(listaCorreos.get(posicion).getText());
+							ventana.setVisible(true);
+							frame.setVisible(false);
 
-						//} 
-						//catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
+						} 
+						catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
 					}
 				});
 				
@@ -150,8 +147,26 @@ public class IU_VentanaUsuarios extends JFrame {
 				panel.add(l3);
 			}
 			rs.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-	}
+		} catch (SQLException e) {e.printStackTrace();}		
+		
+		JButton btnVolverAlMenu = new JButton("Volver al menu");
+		btnVolverAlMenu.setBackground(Color.RED);
+		btnVolverAlMenu.setForeground(Color.BLACK);
+		btnVolverAlMenu.setBounds(53, 217, 129, 23);
+		panel.add(btnVolverAlMenu);
+		btnVolverAlMenu.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				try 
+				{
+					IU_MenuPrincipal ventana = new IU_MenuPrincipal();
+					ventana.setVisible(true);
+					frame.setVisible(false);
+
+				} 
+				catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
+			}
+		});
+	}	
 }

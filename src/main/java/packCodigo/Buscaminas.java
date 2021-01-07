@@ -31,6 +31,21 @@ public class Buscaminas {
 		GestorUsuario.getGestorUsuario().cerrarSesion();
 	}
 
+	public boolean crearCuenta(String text, String password, String copiaPassword) {
+		return GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
+	}
+
+	public void setUsuarioLogeado(String text) {
+		GestorUsuario.getGestorUsuario().setUsuario(text);
+	}
+
+	public boolean resetContraseña(String text) {
+		return GestorUsuario.getGestorUsuario().resetContraseña(text);
+	}
+	
+	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
+		return GestorUsuario.getGestorUsuario().cambioDeContraseña(pAntigua, pN1, pN2);
+	}
 
 	public void crearValores() 
 	{
@@ -47,6 +62,10 @@ public class Buscaminas {
 		return GestorUsuario.getGestorUsuario().extraerNivelUsuario(pCorreo);
 	}
 	
+	public void actualizarNivelInicial(String pCorreo, int valorNivel) {
+		GestorUsuario.getGestorUsuario().actualizarNivelInical(pCorreo, valorNivel);
+		
+	}
 	public ResultSet extraerValores() 
 	{
 		return GestorJuego.getGestorJuego().extraerValores();
@@ -56,8 +75,14 @@ public class Buscaminas {
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
 	}
 	
+	
+	
 	public Partida obtenerPartida() {
 		return GestorJuego.getGestorJuego().getPartida();
+	}
+	
+	public void comenzarPartida() {
+		GestorJuego.getGestorJuego().comenzarPartida();
 	}
 	
 	public void establecerNombreJugador(String pNombre) {
@@ -85,9 +110,7 @@ public class Buscaminas {
 		GestorRanking.getGestorRanking().actualizarRanking(email, nombreJugador, puntuacion, nivel, pPartida);
 	}		
 	
-	public void comenzarPartida() {
-		GestorJuego.getGestorJuego().comenzarPartida();
-	}
+	
 
 	public ResultSet obtenerPremios() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
@@ -159,28 +182,8 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
-	public boolean crearCuenta(String text, String password, String copiaPassword) {
-		return GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
-	}
 
-	public void setUsuarioLogeado(String text) {
-		GestorUsuario.getGestorUsuario().setUsuario(text);
-	}
-
-	public boolean resetContraseña(String text) {
-		return GestorUsuario.getGestorUsuario().resetContraseña(text);
-	}
-
-	public boolean logearRedSocial() {
-		return GestorUsuario.getGestorUsuario().logearRedSocial();
-	}
-
-	public void cerrarSesion() {
-		GestorUsuario.getGestorUsuario().cerrarSesion();
-	}
 	
-	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
-		return GestorUsuario.getGestorUsuario().cambioDeContraseña(pAntigua, pN1, pN2);
-	}
+	
 
 }

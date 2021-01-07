@@ -43,16 +43,7 @@ public class GestorUsuario {
 		email = pEmail;
 	}
 
-	public ResultSet getHitos() {
-		ResultSet res=null;
-		String pEmail=getUsuario();
-		res=GestorBD.getGestorBD().execSQL("SELECT PartidasGanadas1, PartidasGanadas2, PartidasGanadas3, Racha FROM Usuario WHERE email='"+pEmail+"'");
-		return res;
-	}
-	public void actualizarHitos(int[] hitos) {
-		String pEmail=getUsuario();
-		GestorBD.getGestorBD().execSQL2("UPDATE Usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
-	}
+	
 
 	
 	public boolean iniciarSesion(String pEmail, String pContraseña) {
@@ -168,10 +159,6 @@ public class GestorUsuario {
 		this.email = null;
 	}
 
-	public ResultSet extraerListaUsuarios() {
-		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
-		
-	}
 	
 	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
 		try {
@@ -186,10 +173,41 @@ public class GestorUsuario {
 		return false;
 	}
 
-	public int extraerNivelUsuario(String pCorreo) {
-		//GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='"
-		return 0;
+
+	public ResultSet extraerListaUsuarios() {
+		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
+		
 	}
+	
+	public int extraerNivelUsuario(String pCorreo) {
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "';");
+		try {
+			rs.next();
+			return rs.getInt("NivelInicial");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public void actualizarNivelInical(String pCorreo, int valorNivel) {
+		GestorBD.getGestorBD().execSQL2("UPDATE usuario SET nivelInicial='" + valorNivel + "' WHERE Email='" + pCorreo + "'");
+		
+	}
+	
+	public ResultSet getHitos() {
+		ResultSet res=null;
+		String pEmail=getUsuario();
+		res=GestorBD.getGestorBD().execSQL("SELECT PartidasGanadas1, PartidasGanadas2, PartidasGanadas3, Racha FROM Usuario WHERE email='"+pEmail+"'");
+		return res;
+	}
+	public void actualizarHitos(int[] hitos) {
+		String pEmail=getUsuario();
+		GestorBD.getGestorBD().execSQL2("UPDATE Usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
+	}
+	
+
 	
 	
 

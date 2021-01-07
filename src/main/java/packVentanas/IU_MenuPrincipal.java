@@ -162,7 +162,7 @@ public class IU_MenuPrincipal extends JFrame {
 					IU_VentanaUsuarios usuarios;
 					try {
 						usuarios = new IU_VentanaUsuarios();
-						usuarios.setVisible(true);
+						//usuarios.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
 						// TODO Auto-generated catch block

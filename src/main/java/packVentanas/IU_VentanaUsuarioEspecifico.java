@@ -58,7 +58,7 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_VentanaUsuarioEspecifico(String pCorreo) throws NoArchivoAudioException {
+	public IU_VentanaUsuarioEspecifico(final String pCorreo) throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();
@@ -80,7 +80,7 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 		};	
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);	
-		
+		System.out.println(pCorreo + " b");
 		valorNivel=Buscaminas.getBuscaminas().extraerNivelUsuario(pCorreo);
 				
 		JLabel lblNivel = new JLabel("Nivel inicial preferido: " + valorNivel);
@@ -96,7 +96,7 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 		panel.add(choiceNivel);
 		
 		JLabel lblCorreo = new JLabel("email: " + pCorreo);
-		lblCorreo.setBounds(10, 4, 203, 14);
+		lblCorreo.setBounds(10, 54, 203, 14);
 		panel.add(lblCorreo);
 		
 		JButton btnVolverAlMenu = new JButton("Volver al menu");
@@ -111,8 +111,8 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 			{
 				try 
 				{
-					IU_MenuPrincipal ventana = new IU_MenuPrincipal();
-					ventana.setVisible(true);
+					IU_VentanaUsuarios ventana = new IU_VentanaUsuarios();
+					//ventana.setVisible(true);
 					setVisible(false);
 
 				} 
@@ -132,9 +132,9 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 				try 
 				{
 					valorNivel=Integer.parseInt(choiceNivel.getSelectedItem());
-					//Buscaminas.getBuscaminas().modificarValores(valorNivel[0]);
-					IU_VentanaValores ventana = new IU_VentanaValores();
-					ventana.setVisible(true);
+					Buscaminas.getBuscaminas().actualizarNivelInicial(pCorreo, valorNivel);
+					IU_VentanaUsuarios ventana = new IU_VentanaUsuarios();
+					//ventana.setVisible(true);
 					setVisible(false);
 				} 
 				catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
