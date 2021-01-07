@@ -32,7 +32,7 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class IU_Contraseña extends JFrame {
+public class IU_ResetContraseña extends JFrame {
 	private Clip clip;
 	private AudioInputStream ais;
 	private Image fondo;
@@ -47,7 +47,7 @@ public class IU_Contraseña extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IU_Contraseña frame = new IU_Contraseña();
+					IU_ResetContraseña frame = new IU_ResetContraseña();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +59,7 @@ public class IU_Contraseña extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_Contraseña() throws NoArchivoAudioException {
+	public IU_ResetContraseña() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();

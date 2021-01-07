@@ -139,28 +139,13 @@ public class IU_Registro extends JFrame {
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						if (!esCorreo(txtCorreo.getText())) {
+						if(!Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), String.copyValueOf(pswContraseña.getPassword()),String.copyValueOf(pswRepiteContraseña.getPassword()))) {
 							VMensaje error = new VMensaje();
-							error.setMensaje("Correo no válido");
-							error.setVisible(true);
-						}
-						else if(String.valueOf(pswContraseña.getPassword()).length()==0) {
-							VMensaje error = new VMensaje();
-							error.setMensaje("Contraseña no válida");
-							error.setVisible(true);
-						}
-						else if (!String.valueOf(pswContraseña.getPassword()).equals(String.valueOf(pswRepiteContraseña.getPassword()))){
-							VMensaje error = new VMensaje();
-							error.setMensaje("Las contraseñas no coinciden");
-							error.setVisible(true);
-						}
-						else if(!Buscaminas.getBuscaminas().crearCuenta(txtCorreo.getText(), pswContraseña.getPassword())) {
-							VMensaje error = new VMensaje();
-							error.setMensaje("Ya existe una cuenta con este correo");
+							error.setMensaje("Correo o contraseña(s) no válidos");
 							error.setVisible(true);
 						}
 						else {
-							Buscaminas.getBuscaminas().setUsuario(txtCorreo.getText());
+							Buscaminas.getBuscaminas().setUsuarioLogeado(txtCorreo.getText());
 							IU_MenuPrincipal menu = new IU_MenuPrincipal();
 							menu.setVisible(true);
 							setVisible(false);
@@ -169,18 +154,6 @@ public class IU_Registro extends JFrame {
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
 					}
-				}
-
-				private boolean esCorreo(String text) {
-					String[] correo = text.split("@");
-					if(correo.length==2 && correo[1].contains(".")) {
-						//Por razones que todavía desconozco no funcionaba el .split("."), por lo que haré algo a mano
-						return (correo[1].indexOf(".")!=0 && correo[1].indexOf(".")!=correo[1].length()-1);
-							
-						
-					}
-					return false;
-					//return (correo.length==2 && (!correo[0].contains(".") && correo[1].split(".").length==2));
 				}
 			});
 		}
