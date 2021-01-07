@@ -66,7 +66,7 @@ public class IU_VentanaInicio extends JFrame {
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
 
 		//SONIDO-INICIO		
-				if (new File("sources/login.wav").getAbsoluteFile() != null){
+				if (new File("sources/himno.wav").getAbsoluteFile() != null){
 					try {
 						ais = AudioSystem.getAudioInputStream(new File("src/main/resources/himno.wav").getAbsoluteFile());
 					} catch (UnsupportedAudioFileException e) {
@@ -152,6 +152,13 @@ public class IU_VentanaInicio extends JFrame {
 			btnRedSocial.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnRedSocial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					try {
+						IU_RedSocialLogIn register = new IU_RedSocialLogIn();
+						register.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 		}

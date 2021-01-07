@@ -18,9 +18,19 @@ public class Buscaminas {
 		return miBuscaminas;
 	}
 	
-	public boolean iniciarSesion(String pText, char[] pPassword) {
+	public boolean iniciarSesion(String pText, String pPassword) {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
 	}
+	
+
+	public boolean logearRedSocial() {
+		return GestorUsuario.getGestorUsuario().logearRedSocial();
+	}
+
+	public void cerrarSesion() {
+		GestorUsuario.getGestorUsuario().cerrarSesion();
+	}
+
 
 	public void crearValores() 
 	{
@@ -149,17 +159,16 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
-	public boolean crearCuenta(String text, char[] password) {
-		return GestorUsuario.getGestorUsuario().crearCuenta(text, password);
+	public boolean crearCuenta(String text, String password, String copiaPassword) {
+		return GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
 	}
 
-	public void setUsuario(String text) {
+	public void setUsuarioLogeado(String text) {
 		GestorUsuario.getGestorUsuario().setUsuario(text);
 	}
 
 	public boolean resetContraseña(String text) {
 		return GestorUsuario.getGestorUsuario().resetContraseña(text);
 	}
-
 	
 }

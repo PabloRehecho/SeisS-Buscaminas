@@ -23,9 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
-import packCodigo.Partida;
 import packCodigo.Buscaminas;
 import packCodigo.NoArchivoAudioException;
+import packCodigo.Partida;
 import packCodigo.Tablero;
 
 import javax.swing.JMenuBar;
