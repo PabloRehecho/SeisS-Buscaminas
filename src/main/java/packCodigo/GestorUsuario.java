@@ -163,22 +163,21 @@ public class GestorUsuario {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public void cerrarSesion() {
+		this.email = null;
+	}
 
 	public ResultSet extraerListaUsuarios() {
 		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
 		
 	}
 
-<<<<<<< HEAD
 	public int extraerNivelUsuario(String pCorreo) {
 		//GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='"
 		return 0;
 	}
 	
-=======
-	public void cerrarSesion() {
-		this.email = null;
-	}
->>>>>>> branch 'master' of https://github.com/PabloRehecho/SeisS-Buscaminas.git
+	
 
 }
