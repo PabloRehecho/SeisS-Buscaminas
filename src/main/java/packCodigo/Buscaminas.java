@@ -164,5 +164,9 @@ public class Buscaminas {
 	public void cerrarSesion() {
 		GestorUsuario.getGestorUsuario().cerrarSesion();
 	}
+	
+	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
+		return GestorUsuario.getGestorUsuario().cambioDeContraseña(pAntigua, pN1, pN2);
+	}
 
 }

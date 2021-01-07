@@ -29,20 +29,20 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class IU_LogIn extends JFrame {
+public class IU_CambioContraseña extends JFrame {
 
 	private JPanel contentPane;
 	private Clip clip;
 	private AudioInputStream ais;
 	private Image fondo;
-	private JTextField txtCorreo;
+	private JPasswordField pswAntigua;
 	private JPasswordField pswContraseña;
 	private JButton btnCancelar;
 	private JButton btnAceptar;
-	private JButton btnRecuperar;
+	private JLabel lblNueva2;
+	private JPasswordField pswRepiteContraseña;
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +50,7 @@ public class IU_LogIn extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					IU_LogIn frame = new IU_LogIn();
+					IU_CambioContraseña frame = new IU_CambioContraseña();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class IU_LogIn extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public IU_LogIn() throws NoArchivoAudioException {
+	public IU_CambioContraseña() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
@@ -79,64 +79,50 @@ public class IU_LogIn extends JFrame {
 		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60][60][60.00]"));
+		contentPane.setLayout(new MigLayout("", "[50][grow][50]", "[60.00][60][60][60][60][60][60][60][60.00]"));
 
 		JLabel lblIniciarSesion = new JLabel("INICIAR SESI\u00D3N");
 		lblIniciarSesion.setForeground(new Color(255, 255, 255));
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.BOLD, 24));
 		contentPane.add(lblIniciarSesion, "cell 1 0,alignx center");
 
-		JLabel lblCorreo = new JLabel("Correo electr\u00F3nico");
-		lblCorreo.setForeground(new Color(255, 255, 255));
-		contentPane.add(lblCorreo, "cell 1 1,aligny bottom");
+		JLabel lblAntigua = new JLabel("Contrase\u00F1a actual");
+		lblAntigua.setForeground(new Color(255, 255, 255));
+		contentPane.add(lblAntigua, "cell 1 1,aligny bottom");
 
-		txtCorreo = new JTextField();
-		txtCorreo.setToolTipText("");
-		txtCorreo.setName("");
-		contentPane.add(txtCorreo, "cell 1 2,growx");
-		txtCorreo.setColumns(10);
-
-		JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-		lblContraseña.setForeground(new Color(255, 255, 255));
-		contentPane.add(lblContraseña, "cell 1 3,aligny bottom");
+		pswAntigua = new JPasswordField();
+		pswAntigua.setToolTipText("");
+		pswAntigua.setName("");
+		contentPane.add(pswAntigua, "cell 1 2,growx");
+		pswAntigua.setColumns(10);
+		
+		JLabel lblNueva = new JLabel("Nueva contrase\u00F1a");
+		lblNueva.setForeground(new Color(255, 255, 255));
+		contentPane.add(lblNueva, "cell 1 3,aligny bottom");
 
 		pswContraseña = new JPasswordField();
 		contentPane.add(pswContraseña, "cell 1 4,growx");
 		
-		contentPane.add(getBtnRecuperar(), "cell 1 5,alignx center,aligny top");
+		lblNueva2 = new JLabel("Repite la nueva contrase\u00F1a");
+		lblNueva2.setForeground(Color.WHITE);
+		contentPane.add(lblNueva2, "cell 1 5");
+		
+		pswRepiteContraseña = new JPasswordField();
+		contentPane.add(pswRepiteContraseña, "cell 1 6,growx");
 
 		//aceptar-cancelar
-		contentPane.add(getBtnCancelar(), "flowx,cell 1 6,alignx center");
-		contentPane.add(getBtnAceptar(), "cell 1 6,alignx center");
+		contentPane.add(getBtnCancelar(), "flowx,cell 1 8,alignx center");
+		contentPane.add(getBtnAceptar(), "cell 1 8,alignx center");
 	}
-	
-	private JButton getBtnRecuperar() {
-		if (btnRecuperar == null) {
-			btnRecuperar = new JButton("Recuperar contraseña");
-			btnRecuperar.setFont(new Font("Tahoma", Font.PLAIN, 9));
-			btnRecuperar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					try {
-						IU_ResetContraseña login = new IU_ResetContraseña();
-						login.setVisible(true);
-						setVisible(false);
-					} catch (NoArchivoAudioException e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-		}
-		return btnRecuperar;
-	}
-	
+
 	private JButton getBtnCancelar() {
 		if (btnCancelar == null) {
 			btnCancelar = new JButton("Cancelar");
 			btnCancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_VentanaInicio login = new IU_VentanaInicio();
-						login.setVisible(true);
+						IU_MenuPrincipal menu = new IU_MenuPrincipal();
+						menu.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
@@ -153,16 +139,23 @@ public class IU_LogIn extends JFrame {
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), String.copyValueOf(pswContraseña.getPassword()))) {
-							IU_MenuPrincipal principal = new IU_MenuPrincipal();
-							principal.setVisible(true);
+						if(Buscaminas.getBuscaminas().cambioDeContraseña(String.copyValueOf(pswAntigua.getPassword()), 
+								String.copyValueOf(pswContraseña.getPassword()), 
+								String.copyValueOf(pswRepiteContraseña.getPassword()))) {
+							
+							VMensaje msg = new VMensaje();
+							msg.setMensaje("Contraseña cambiada correctamente");
+							IU_MenuPrincipal menu = new IU_MenuPrincipal();
+							menu.setVisible(true);
 							setVisible(false);
-						}else {
-							VMensaje error = new VMensaje();
-							error.setMensaje("Correo o contraseña incorrectas");
-							error.setVisible(true);
+							msg.setVisible(true);
 						}
-
+						else {
+							VMensaje msg = new VMensaje();
+							msg.setMensaje("Datos introducidos incorrectos");
+							msg.setVisible(true);
+						}
+						
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
 					}
