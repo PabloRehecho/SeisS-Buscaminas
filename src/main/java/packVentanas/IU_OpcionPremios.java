@@ -70,7 +70,7 @@ public class IU_OpcionPremios extends JFrame{
 			btnCerrar.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent e){
 					 if (e.getButton() == MouseEvent.BUTTON1) {
-					setVisible(false);
+						 setVisible(false);
 					 }
 				}
 			});
