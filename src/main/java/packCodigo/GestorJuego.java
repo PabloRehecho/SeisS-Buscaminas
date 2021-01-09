@@ -23,6 +23,13 @@ public class GestorJuego {
 		return rs;
 	}
 
+	public ResultSet extraerPersonalizacion()
+	{
+		ResultSet rs = null;
+		String email = GestorUsuario.getGestorUsuario().getUsuario();
+		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE email = '" + email + "'");
+		return rs;
+	}
 	public void crearValores() 
 	{		
 		GestorBD.getGestorBD().execSQL2("DELETE FROM valores");
@@ -37,16 +44,32 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas2', 32) ");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas3', 78) ");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM imagenesaudio");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,2,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,3,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,2,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,3,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,2,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,3,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,2,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,3,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,2,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,3,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,2,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,3,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,1,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,2,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,3,1,'a')");
+		
+		
 	}
 		
-
-	public Partida getPartida() {
-		if (partida == null) {
-			partida = new Partida();
-		}
-		return partida;
-	}
-	
 	public void modificarValores(int[] pValores, String[] pNombres) 
 	{
 		int i=0;
@@ -57,9 +80,30 @@ public class GestorJuego {
 		}
 	}
 	
+	public void modificarPersonalizacion(int[] pValores) 
+	{
+		String email = GestorUsuario.getGestorUsuario().getUsuario();
+		int i=0;
+		while (i< pValores.length)
+		{
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenMinas='" + pValores[0] + "' WHERE Email='" + email + "'");
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenCara='" + pValores[1] + "' WHERE Email='" + email + "'");
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET sonido='" + pValores[2] + "' WHERE Email='" + email + "'");
+			i++;
+		}
+	}
+	
+	public Partida getPartida() {
+		if (partida == null) {
+			partida = new Partida();
+		}
+		return partida;
+	}
+	
 	public void comenzarPartida() {
 		partida = new Partida();
 	}
+
 
 	
 }

@@ -18,8 +18,33 @@ public class Buscaminas {
 		return miBuscaminas;
 	}
 	
-	public boolean iniciarSesion(String pText, char[] pPassword) {
+	public boolean iniciarSesion(String pText, String pPassword) {
 		return GestorUsuario.getGestorUsuario().iniciarSesion(pText,pPassword);
+	}
+	
+
+	public boolean logearRedSocial() {
+		return GestorUsuario.getGestorUsuario().logearRedSocial();
+	}
+
+	public void cerrarSesion() {
+		GestorUsuario.getGestorUsuario().cerrarSesion();
+	}
+
+	public boolean crearCuenta(String text, String password, String copiaPassword) {
+		return GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
+	}
+
+	public void setUsuarioLogeado(String text) {
+		GestorUsuario.getGestorUsuario().setUsuario(text);
+	}
+
+	public boolean resetContraseña(String text) {
+		return GestorUsuario.getGestorUsuario().resetContraseña(text);
+	}
+	
+	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
+		return GestorUsuario.getGestorUsuario().cambioDeContraseña(pAntigua, pN1, pN2);
 	}
 
 	public void crearValores() 
@@ -28,10 +53,31 @@ public class Buscaminas {
 		GestorJuego.getGestorJuego().crearValores();		
 	}	
 	
+
+	public ResultSet extraerListaUsuarios() {
+		return GestorUsuario.getGestorUsuario().extraerListaUsuarios();
+	}
+	
+	public int extraerNivelUsuario(String pCorreo) {
+		return GestorUsuario.getGestorUsuario().extraerNivelUsuario(pCorreo);
+	}
+	
+	public void actualizarNivelInicial(String pCorreo, int valorNivel) {
+		GestorUsuario.getGestorUsuario().actualizarNivelInical(pCorreo, valorNivel);
+		
+	}
 	public ResultSet extraerValores() 
 	{
 		return GestorJuego.getGestorJuego().extraerValores();
 	}
+	public ResultSet extraerPersonalizacion() 
+	{
+		return GestorJuego.getGestorJuego().extraerPersonalizacion();
+	}
+	public void modificarPersonalizacion( int[] pValores) {
+		GestorJuego.getGestorJuego().modificarPersonalizacion(pValores);
+	}
+	
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
@@ -39,6 +85,10 @@ public class Buscaminas {
 	
 	public Partida obtenerPartida() {
 		return GestorJuego.getGestorJuego().getPartida();
+	}
+	
+	public void comenzarPartida() {
+		GestorJuego.getGestorJuego().comenzarPartida();
 	}
 	
 	public void establecerNombreJugador(String pNombre) {
@@ -66,9 +116,7 @@ public class Buscaminas {
 		GestorRanking.getGestorRanking().actualizarRanking(email, nombreJugador, puntuacion, nivel, pPartida);
 	}		
 	
-	public void comenzarPartida() {
-		GestorJuego.getGestorJuego().comenzarPartida();
-	}
+	
 
 	public ResultSet obtenerPremios() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
@@ -140,15 +188,8 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
-	public boolean crearCuenta(String text, char[] password) {
-		return GestorUsuario.getGestorUsuario().crearCuenta(text, password);
-	}
 
-	public void setUsuario(String text) {
-		GestorUsuario.getGestorUsuario().setUsuario(text);
-	}
+	
+	
 
-	public boolean resetContraseña(String text) {
-		return GestorUsuario.getGestorUsuario().resetContraseña(text);
-	}
 }

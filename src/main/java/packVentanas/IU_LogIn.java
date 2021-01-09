@@ -117,7 +117,7 @@ public class IU_LogIn extends JFrame {
 			btnRecuperar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						IU_Contraseña login = new IU_Contraseña();
+						IU_ResetContraseña login = new IU_ResetContraseña();
 						login.setVisible(true);
 						setVisible(false);
 					} catch (NoArchivoAudioException e1) {
@@ -153,8 +153,7 @@ public class IU_LogIn extends JFrame {
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), pswContraseña.getPassword())) {
-							GestorUsuario.getGestorUsuario().setUsuario(txtCorreo.getText());
+						if(Buscaminas.getBuscaminas().iniciarSesion(txtCorreo.getText(), String.copyValueOf(pswContraseña.getPassword()))) {
 							IU_MenuPrincipal principal = new IU_MenuPrincipal();
 							principal.setVisible(true);
 							setVisible(false);
