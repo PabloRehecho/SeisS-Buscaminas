@@ -80,7 +80,6 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 		};	
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);	
-		System.out.println(pCorreo + " b");
 		valorNivel=Buscaminas.getBuscaminas().extraerNivelUsuario(pCorreo);
 				
 		JLabel lblNivel = new JLabel("Nivel inicial preferido: " + valorNivel);
