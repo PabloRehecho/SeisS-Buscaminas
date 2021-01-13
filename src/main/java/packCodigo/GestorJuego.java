@@ -118,6 +118,18 @@ public class GestorJuego {
 		return a;
 	}
 
+	public int calcularMinas(int pNivel) {
+		int a=0;
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores WHERE nombre='minas" + pNivel + "';");
+		try
+		{
+			rs.next();
+			a=rs.getInt("valor");
+			rs.close();
+		} 
+		catch (SQLException e) {e.printStackTrace();}
+		return a;
+	}
 	
 	public Partida getPartida() {
 		if (partida == null) {
@@ -142,6 +154,8 @@ public class GestorJuego {
 			i++;
 		}
 	}
+
+	
 
 	
 

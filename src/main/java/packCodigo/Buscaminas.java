@@ -98,6 +98,10 @@ public class Buscaminas {
 		return GestorJuego.getGestorJuego().conseguirFilasColumnas(pNivel);
 	}
 
+	public int calcularMinas(int pNivel) 
+	{
+		return GestorJuego.getGestorJuego().calcularMinas(pNivel);
+	}
 	
 	public Partida obtenerPartida() {
 		return GestorJuego.getGestorJuego().getPartida();
@@ -204,6 +208,8 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+
+	
 
 
 

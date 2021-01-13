@@ -162,7 +162,7 @@ public class IU_VentanaValores extends JFrame {
 		
 		choiceMinas3 = new Choice();
 		choiceMinas3.setBounds(139, 76, 86, 20);
-		for(int i=30; i<=99; i++){
+		for(int i=30; i<=799; i++){
 			choiceMinas3.add("" + i +"");
 		}
 		choiceMinas3.select(valores[9]-30);
@@ -186,7 +186,7 @@ public class IU_VentanaValores extends JFrame {
 		
 		choiceTamano2a = new Choice();
 		choiceTamano2a.setBounds(182, 126, 86, 20);
-		for(int i=5; i<=20; i++){
+		for(int i=5; i<=15; i++){
 			choiceTamano2a.add("" + i +"");
 		}
 		choiceTamano2a.select(valores[4]-5);
@@ -202,15 +202,15 @@ public class IU_VentanaValores extends JFrame {
 		
 		choiceTamano3a = new Choice();
 		choiceTamano3a.setBounds(182, 151, 86, 20);
-		for(int i=15; i<=30; i++){
+		for(int i=12; i<=20; i++){
 			choiceTamano3a.add("" + i +"");
 		}
-		choiceTamano3a.select(valores[5]-15);
+		choiceTamano3a.select(valores[5]-12);
 		panel.add(choiceTamano3a);
 		
 		choiceTamano3b = new Choice();
 		choiceTamano3b.setBounds(278, 151, 86, 20);
-		for(int i=15; i<=50; i++){
+		for(int i=15; i<=40; i++){
 			choiceTamano3b.add("" + i +"");
 		}
 		choiceTamano3b.select(valores[2]-15);
