@@ -45,9 +45,11 @@ public class IU_RedSocialLogIn extends JFrame {
 	private AudioInputStream ais;
 	private Image fondo;
 	private JButton btnCancelar;
+	private JButton btnGG;
 	private JButton btnFB;
 	private JButton btnTT;
 	private Component horizontalStrut;
+	private Component horizontalStrut_1;
 	/**
 	 * Launch the application.
 	 */
@@ -95,18 +97,44 @@ public class IU_RedSocialLogIn extends JFrame {
 		lblRedSocial.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblRedSocial.setForeground(new Color(255, 255, 255));
 		contentPane.add(lblRedSocial, "cell 1 1,alignx center,aligny bottom");
+		contentPane.add(getBtnGG(), "flowx,cell 1 2,alignx center");
+		contentPane.add(getHorizontalStrut_1(), "cell 1 2,alignx center");
 		
-		//botones TT y FB
-		contentPane.add(getBtnFB(), "flowx,cell 1 2,alignx center");
+		//botones RRSS
+		contentPane.add(getBtnFB(), "cell 1 2,alignx center");
 		
 		horizontalStrut = Box.createHorizontalStrut(20);
 		contentPane.add(horizontalStrut, "cell 1 2");
 		contentPane.add(getBtnTT(), "cell 1 2,alignx center");
-		
 		//cancelar
 		contentPane.add(getBtnCancelar(), "flowx,cell 1 4,alignx center");
 		
 
+	}
+	
+	private JButton getBtnGG() {
+		if (btnGG == null) {
+			btnGG = new JButton("");
+			btnGG.setOpaque(false);
+			btnGG.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnGG.setBorder(null);
+			btnGG.setBackground(Color.WHITE);
+			btnGG.setMinimumSize(new Dimension(1, 1));
+			btnGG.setPreferredSize(new Dimension(70, 70));
+			btnGG.setIcon(new ImageIcon(getClass().getResource("/gg.png")));
+			btnGG.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						IU_VentanaInicio login = new IU_VentanaInicio();
+						login.setVisible(true);
+						setVisible(false);
+					} catch (NoArchivoAudioException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnGG;
 	}
 	
 	private JButton getBtnFB() {
@@ -123,13 +151,9 @@ public class IU_RedSocialLogIn extends JFrame {
 			btnFB.setIcon(new ImageIcon(getClass().getResource("/fb.png")));
 			btnFB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					try {
-						IU_VentanaInicio login = new IU_VentanaInicio();
-						login.setVisible(true);
-						setVisible(false);
-					} catch (NoArchivoAudioException e1) {
-						e1.printStackTrace();
-					}
+					VMensaje m = new VMensaje();
+					m.setMensaje("No es posible por el momento iniciar sesión con Facebook");
+					m.setVisible(true);
 				}
 			});
 		}
@@ -148,13 +172,9 @@ public class IU_RedSocialLogIn extends JFrame {
 			btnTT.setIcon(new ImageIcon(getClass().getResource("/tt.png")));
 			btnTT.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					try {
-						IU_VentanaInicio login = new IU_VentanaInicio();
-						login.setVisible(true);
-						setVisible(false);
-					} catch (NoArchivoAudioException e1) {
-						e1.printStackTrace();
-					}
+					VMensaje m = new VMensaje();
+					m.setMensaje("No es posible por el momento iniciar sesión con Twitter");
+					m.setVisible(true);
 				}
 			});
 		}
@@ -177,5 +197,11 @@ public class IU_RedSocialLogIn extends JFrame {
 			});
 		}
 		return btnCancelar;
+	}
+	private Component getHorizontalStrut_1() {
+		if (horizontalStrut_1 == null) {
+			horizontalStrut_1 = Box.createHorizontalStrut(20);
+		}
+		return horizontalStrut_1;
 	}
 }
