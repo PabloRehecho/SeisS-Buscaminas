@@ -185,7 +185,9 @@ public class GestorUsuario {
 		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "';");
 		try {
 			rs.next();
-			return rs.getInt("NivelInicial");
+			int a= rs.getInt("NivelInicial");
+			rs.close();
+			return a;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -193,8 +195,13 @@ public class GestorUsuario {
 		}
 	}
 	
-	public void actualizarNivelInical(String pCorreo, int valorNivel) {
+	public void actualizarNivelInicial(String pCorreo, int valorNivel) {
 		GestorBD.getGestorBD().execSQL2("UPDATE usuario SET nivelInicial='" + valorNivel + "' WHERE Email='" + pCorreo + "'");
+		
+	}
+	
+	public void borrarUsuario(String pCorreo) {
+		GestorBD.getGestorBD().execSQL2("DELETE FROM Usuario WHERE Email='" + pCorreo +"';");
 		
 	}
 	
@@ -208,6 +215,8 @@ public class GestorUsuario {
 		String pEmail=getUsuario();
 		GestorBD.getGestorBD().execSQL2("UPDATE Usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
 	}
+
+	
 	
 
 	

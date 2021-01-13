@@ -84,5 +84,6 @@ public class VMensaje extends JDialog {
 	
 	public void setMensaje(String pMensaje) {
 		lblMensaje.setText(pMensaje);
-	}
+	}	
+
 }

@@ -1,5 +1,6 @@
 package packCodigo;
 
+
 public class TableroBuilder {
 	
 	private Tablero elTablero;
@@ -22,19 +23,11 @@ public class TableroBuilder {
 	
 	public Tablero asignarTablero(int pNivel){
 		//hay que hacer selects
-		if (pNivel==1)
-		{
-			elTablero = new Tablero(1,7,10);
-		}
-		else if (pNivel==2)
-		{
-			elTablero = new Tablero(2,10,15);
-			
-		}
-		else 
-		{
-			elTablero = new Tablero(3,12,25);			
-		}
+		
+		int[] a= new int[2];
+		a= Buscaminas.getBuscaminas().conseguirFilasColumnas(pNivel);
+		elTablero = new Tablero(pNivel,a[0],a[1]);			
+		
 		elTablero.generarMatriz();		
 		return elTablero;
 		
