@@ -170,7 +170,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 
 	private void iniciarCasillas(int pNivel) {
 		int[] a = Buscaminas.getBuscaminas().conseguirFilasColumnas(pNivel);
-		lcasillas = new JLabel[a[0]*a[1]];
+		lcasillas = new JLabel[a[0] * a[1]];
 	}
 
 	private void mostrarTablero() {
@@ -326,6 +326,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 					Buscaminas.getBuscaminas().obtenerPartida().resetearTablero(vBusca);
 				} else if (Integer.parseInt(p[2]) == 13) {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50V1.jpg")));
+					Buscaminas.getBuscaminas().obtenerPartida().contMinasMitad();
 				} else if (Integer.parseInt(p[2]) == 14) {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina.png")));
 
