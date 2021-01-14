@@ -83,7 +83,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		setIconImage(icon);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if(nivel == 1){
-			setBounds(100, 100, 1000, 100);
+			setBounds(100, 100, 1000, 1000);
 		}else if(nivel == 2){
 			setBounds(100, 100, 1500, 1500);
 		}else if(nivel == 3){
