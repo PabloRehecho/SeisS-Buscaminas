@@ -32,7 +32,9 @@ public class Buscaminas {
 	}
 
 	public boolean crearCuenta(String text, String password, String copiaPassword) {
-		return GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
+		boolean a= GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
+		Buscaminas.getBuscaminas().crearValores();
+		return a;
 	}
 
 	public void setUsuarioLogeado(String text) {
