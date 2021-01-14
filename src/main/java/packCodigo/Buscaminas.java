@@ -164,9 +164,9 @@ public class Buscaminas {
 		nom=new String[20];
 		try {
 			while(todos.next()) {
-				cond[i]=todos.getInt("Requisito");
-				nom[i]=todos.getString("Nombre");
-				descr[i]=todos.getString("Decripcion");
+				cond[i]=todos.getInt("requisito");
+				nom[i]=todos.getString("nombre");
+				descr[i]=todos.getString("descripcion");
 				i++;
 			}
 			todos.close();
@@ -212,14 +212,4 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
-
-
-
-	
-
-
-
-	
-	
-
 }
