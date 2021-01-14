@@ -177,14 +177,8 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 
 	
 	private void iniciarCasillas(int pNivel) {
-		if(pNivel == 1){
-			lcasillas = new JLabel[1000];
-		}else if(pNivel == 2){
-			lcasillas = new JLabel[2000];
-		}else if(pNivel == 3){
-			lcasillas = new JLabel[3000];
-		}
-		
+		int[] a = Buscaminas.getBuscaminas().conseguirFilasColumnas(pNivel);
+		lcasillas = new JLabel[a[0]*a[1]];
 	}
 
 	private void mostrarTablero(){

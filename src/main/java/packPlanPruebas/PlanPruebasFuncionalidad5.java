@@ -1,5 +1,6 @@
 package packPlanPruebas;
 
+import packCodigo.Buscaminas;
 import packCodigo.GestorBD;
 import packCodigo.GestorRanking;
 import packCodigo.GestorUsuario;
@@ -19,8 +20,8 @@ public class PlanPruebasFuncionalidad5 {
 		/*	Volcado de datos en la base de datos para las comprobaciones
 		 */
 		
-		GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (email, contrasena) VALUES ('usuario1@gmail.com', 'contrasena1')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (email, contrasena) VALUES ('administrador@gmail.com', 'contrasena0')");
+		Buscaminas.getBuscaminas().crearCuenta("usuario1@gmail.com", "contraseña1", "contraseña1");
+		Buscaminas.getBuscaminas().crearCuenta("seissbuscaminas@gmail.com", "admin", "admin");
 		try {
 			GestorRanking.getGestorRanking().actualizarRanking("usuario1@gmail.com", "usuario1", 100, 1, "Ganada");
 			Thread.sleep(1*1000);
@@ -28,11 +29,11 @@ public class PlanPruebasFuncionalidad5 {
 			Thread.sleep(1*1000);
 			GestorRanking.getGestorRanking().actualizarRanking("usuario1@gmail.com", "usuario1", 300, 3, "Ganada");
 			Thread.sleep(1*1000);
-			GestorRanking.getGestorRanking().actualizarRanking("administrador@gmail.com", "administrador", 100, 1, "Ganada");
+			GestorRanking.getGestorRanking().actualizarRanking("seissbuscaminas@gmail.com", "administrador", 100, 1, "Ganada");
 			Thread.sleep(1*1000);
-			GestorRanking.getGestorRanking().actualizarRanking("administrador@gmail.com", "administrador", 200, 2, "Ganada");
+			GestorRanking.getGestorRanking().actualizarRanking("seissbuscaminas@gmail.com", "administrador", 200, 2, "Ganada");
 			Thread.sleep(1*1000);
-			GestorRanking.getGestorRanking().actualizarRanking("administrador@gmail.com", "administrador", 300, 3, "Ganada");
+			GestorRanking.getGestorRanking().actualizarRanking("seissbuscaminas@gmail.com", "administrador", 300, 3, "Ganada");
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
@@ -61,11 +62,6 @@ public class PlanPruebasFuncionalidad5 {
 		 *	Observaciones: Correcto
 		 */
 		
-		/*	Establecimiento de un usuario
-		 */
-		
-		GestorUsuario.getGestorUsuario().setUsuario("usuario1@gmail.com");
-		
 		/*	Código de Prueba: 5.1.2.1
 		 *	Descripción: Menú Principal usuario - Ver Ránking
 		 *	Resultado Esperado: Pantalla Consulta Ránking
@@ -80,12 +76,6 @@ public class PlanPruebasFuncionalidad5 {
 		 *	Resultado Obtenido: Pantalla Consulta Ránking
 		 *	Observaciones: Correcto
 		 */
-		
-		/*	Establecimiento de el administrador
-		 */
-		
-		//
-		GestorUsuario.getGestorUsuario().setUsuario("administrador@gmail.com");
 		
 		/*	Código de Prueba: 5.1.2.2
 		 *	Descripción: Menú Principal administrador - Ver Ránking

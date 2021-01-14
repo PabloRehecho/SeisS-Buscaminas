@@ -67,27 +67,6 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,1,1,'a')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,2,1,'a')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,3,1,'a')");
-		GestorBD.getGestorBD().execSQL2("DELETE FROM premio");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceI', 'Ganar en el nivel 1', 'premio bronce 5.png', 5)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceII', 'Ganar en el nivel 1', 'premio bronce 10.png', 10)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIII', 'Ganar en el nivel 1', 'premio bronce 15.png', 15)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIV', 'Ganar en el nivel 1', 'premio bronce 20.png', 20)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceV', 'Ganar en el nivel 1', 'premio bronce 25.png', 25)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroI', 'Ganar en el nivel 3', 'premio plata 5.png', 5)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroII', 'Ganar en el nivel 3', 'premio plata 10.png', 10)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroIII', 'Ganar en el nivel 3', 'premio plata 15.png', 15)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroIV', 'Ganar en el nivel 3', 'premio plata 20.png', 20)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroV', 'Ganar en el nivel 3', 'premio plata 25.png', 25)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataI', 'Ganar en el nivel 2', 'premio plata 5.png', 5)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataII', 'Ganar en el nivel 2', 'premio plata 10.png', 10)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataIII', 'Ganar en el nivel 2', 'premio plata 15.png', 15)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataIV', 'Ganar en el nivel 2', 'premio plata 20.png', 20)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataV', 'Ganar en el nivel 2', 'premio plata 25.png', 25)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaI', 'Gana partidas seguidas hasta', 'Racha1.png', 1)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaII', 'Gana partidas seguidas hasta', 'Racha2.png', 5)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaIII', 'Gana partidas seguidas hasta', 'Racha3.png', 8)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaIV', 'Gana partidas seguidas hasta', 'Racha4.png', 10)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaV', 'Gana partidas seguidas hasta', 'Racha5.png', 15)");
 	}
 		
 	public void modificarValores(int[] pValores, String[] pNombres) 

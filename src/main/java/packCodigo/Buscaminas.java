@@ -56,7 +56,8 @@ public class Buscaminas {
 	public void crearValores() 
 	{
 		//no se si es apropiado
-		GestorJuego.getGestorJuego().crearValores();		
+		GestorJuego.getGestorJuego().crearValores();	
+		GestorPremios.getGestorPremios().crearPremios();
 	}	
 	
 
