@@ -46,7 +46,6 @@ public class IU_MenuPrincipal extends JFrame {
 	private JLabel lblNombre;
 	private JLabel lblNivel;
 	private Image fondo;
-	private JButton btnNewButton;
 	private JButton btnCambioContraseña;
 	
 	/**
@@ -90,8 +89,12 @@ public class IU_MenuPrincipal extends JFrame {
 		contentPane.add(getLblNivel(), "flowx,cell 2 2,alignx center");
 		contentPane.add(getTextField(), "cell 2 1,alignx center");
 		contentPane.add(getChoice(), "cell 2 2,alignx center");
-		contentPane.add(getBtnUsuarios(), "cell 0 2,alignx center");
-		contentPane.add(getBtnValores(), "cell 0 3,alignx center");
+		if (Buscaminas.getBuscaminas().getUsuarioLogeado().contentEquals("seisSBuscaminas@gmail.com" ))
+		{
+			contentPane.add(getBtnUsuarios(), "cell 0 2,alignx center");
+			contentPane.add(getBtnValores(), "cell 0 3,alignx center");			
+		}
+		
 		contentPane.add(getBtnOk(), "cell 2 3,alignx center");
 		contentPane.add(getBtnRanking(), "cell 0 5,alignx center");
 		contentPane.add(getBtnPremio(), "cell 0 6,alignx center");

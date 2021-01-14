@@ -1,6 +1,7 @@
 package packCodigo;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class GestorJuego {
 
@@ -98,17 +99,54 @@ public class GestorJuego {
 		}
 	}
 	
-	public void modificarPersonalizacion(int[] pValores) 
+	public int conseguirMensajeAyuda() 
 	{
-		String email = GestorUsuario.getGestorUsuario().getUsuario();
-		int i=0;
-		while (i< pValores.length)
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores WHERE nombre='mensaje';");
+		int opcion=0;
+		try
 		{
-			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenMinas='" + pValores[0] + "' WHERE Email='" + email + "'");
-			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenCara='" + pValores[1] + "' WHERE Email='" + email + "'");
-			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET sonido='" + pValores[2] + "' WHERE Email='" + email + "'");
-			i++;
-		}
+			rs.next();
+			opcion=rs.getInt("valor");
+			rs.close();
+		} 
+		catch (SQLException e) {e.printStackTrace();}		
+		return opcion;
+	}	
+	
+	public int[] conseguirFilasColumnas(int pNivel) 
+	{
+		int[] a= new int[2];
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores WHERE nombre='filas" + pNivel + "';");
+		try
+		{
+			rs.next();
+			a[0]=rs.getInt("valor");
+			rs.close();
+		} 
+		catch (SQLException e) {e.printStackTrace();}
+		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores WHERE nombre='columnas" + pNivel + "';");
+		try
+		{
+			rs.next();
+			a[1]=rs.getInt("valor");
+			rs.close();
+		} 
+		catch (SQLException e) {e.printStackTrace();}
+		
+		return a;
+	}
+
+	public int calcularMinas(int pNivel) {
+		int a=0;
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores WHERE nombre='minas" + pNivel + "';");
+		try
+		{
+			rs.next();
+			a=rs.getInt("valor");
+			rs.close();
+		} 
+		catch (SQLException e) {e.printStackTrace();}
+		return a;
 	}
 	
 	public Partida getPartida() {
@@ -122,6 +160,22 @@ public class GestorJuego {
 		partida = new Partida();
 	}
 
+	public void modificarPersonalizacion(int[] pValores) 
+	{
+		String email = GestorUsuario.getGestorUsuario().getUsuario();
+		int i=0;
+		while (i< pValores.length)
+		{
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenMinas='" + pValores[0] + "' WHERE Email='" + email + "'");
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET imagenCara='" + pValores[1] + "' WHERE Email='" + email + "'");
+			GestorBD.getGestorBD().execSQL2("UPDATE usuario SET sonido='" + pValores[2] + "' WHERE Email='" + email + "'");
+			i++;
+		}
+	}
+
+	
+
+	
 
 	
 }

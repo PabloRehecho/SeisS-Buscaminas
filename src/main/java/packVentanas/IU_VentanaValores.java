@@ -104,35 +104,35 @@ public class IU_VentanaValores extends JFrame {
 			e.printStackTrace();
 		}
 		
-		JLabel lblNivel = new JLabel("Nivel inicial de cada usuario: " + valores[10]);
+		JLabel lblNivel = new JLabel("Nivel inicial de cada usuario: ");
 		lblNivel.setBounds(10, 4, 203, 14);
 		panel.add(lblNivel);
 		
-		JLabel lblMinas1 = new JLabel("Minas nivel 1: " + valores[7]);
+		JLabel lblMinas1 = new JLabel("Minas nivel 1");
 		lblMinas1.setBounds(10, 29, 119, 14);
 		panel.add(lblMinas1);
 		
-		JLabel lblMinas2 = new JLabel("Minas nivel 2: " + valores[8]);
+		JLabel lblMinas2 = new JLabel("Minas nivel 2");
 		lblMinas2.setBounds(10, 54, 119, 14);
 		panel.add(lblMinas2);
 		
-		JLabel lblMinas3 = new JLabel("Minas nivel 3: " + valores[9]);
+		JLabel lblMinas3 = new JLabel("Minas nivel 3");
 		lblMinas3.setBounds(10, 79, 119, 14);
 		panel.add(lblMinas3);
 		
-		JLabel lblTamano1 = new JLabel("Tamano nivel 1: " + valores[3] + " x " + valores[0]);
+		JLabel lblTamano1 = new JLabel("Tamano nivel 1");
 		lblTamano1.setBounds(10, 104, 162, 14);
 		panel.add(lblTamano1);
 		
-		JLabel lblTamano2 = new JLabel("Tamano nivel 2: " + valores[4] + " x " + valores[1]);
+		JLabel lblTamano2 = new JLabel("Tamano nivel 2");
 		lblTamano2.setBounds(10, 129, 162, 14);
 		panel.add(lblTamano2);
 		
-		JLabel lblTamano3 = new JLabel("Tamano nivel 3: " + valores[5] + " x " +  valores[2]);
+		JLabel lblTamano3 = new JLabel("Tamano nivel 3");
 		lblTamano3.setBounds(10, 154, 162, 14);
 		panel.add(lblTamano3);
 		
-		JLabel lblMensajeDeAyuda = new JLabel("Mensaje de ayuda: " + valores[6]);
+		JLabel lblMensajeDeAyuda = new JLabel("Mensaje de ayuda");
 		lblMensajeDeAyuda.setBounds(10, 179, 162, 14);
 		panel.add(lblMensajeDeAyuda);
 		
@@ -141,6 +141,7 @@ public class IU_VentanaValores extends JFrame {
 		for(int i=1; i<=3; i++){
 			choiceNivel.add("" + i +"");
 		}
+		choiceNivel.select(valores[10]-1);
 		panel.add(choiceNivel);
 		
 		choiceMinas1 = new Choice();
@@ -148,6 +149,7 @@ public class IU_VentanaValores extends JFrame {
 		for(int i=1; i<=20; i++){
 			choiceMinas1.add("" + i +"");
 		}
+		choiceMinas1.select(valores[7]-1);
 		panel.add(choiceMinas1);
 		
 		choiceMinas2 = new Choice();
@@ -155,13 +157,15 @@ public class IU_VentanaValores extends JFrame {
 		for(int i=10; i<=45; i++){
 			choiceMinas2.add("" + i +"");
 		}
+		choiceMinas2.select(valores[8]-10);
 		panel.add(choiceMinas2);
 		
 		choiceMinas3 = new Choice();
 		choiceMinas3.setBounds(139, 76, 86, 20);
-		for(int i=30; i<=99; i++){
+		for(int i=30; i<=799; i++){
 			choiceMinas3.add("" + i +"");
 		}
+		choiceMinas3.select(valores[9]-30);
 		panel.add(choiceMinas3);
 		
 		choiceTamano1a = new Choice();
@@ -169,6 +173,7 @@ public class IU_VentanaValores extends JFrame {
 		for(int i=1; i<=10; i++){
 			choiceTamano1a.add("" + i +"");
 		}
+		choiceTamano1a.select(valores[3]-1);
 		panel.add(choiceTamano1a);
 		
 		choiceTamano1b = new Choice();
@@ -176,13 +181,15 @@ public class IU_VentanaValores extends JFrame {
 		for(int i=1; i<=15; i++){
 			choiceTamano1b.add("" + i +"");
 		}
+		choiceTamano1b.select(valores[0]-1);
 		panel.add(choiceTamano1b);
 		
 		choiceTamano2a = new Choice();
 		choiceTamano2a.setBounds(182, 126, 86, 20);
-		for(int i=5; i<=20; i++){
+		for(int i=5; i<=15; i++){
 			choiceTamano2a.add("" + i +"");
 		}
+		choiceTamano2a.select(valores[4]-5);
 		panel.add(choiceTamano2a);
 		
 		choiceTamano2b = new Choice();
@@ -190,27 +197,31 @@ public class IU_VentanaValores extends JFrame {
 		for(int i=10; i<=30; i++){
 			choiceTamano2b.add("" + i +"");
 		}
+		choiceTamano2b.select(valores[1]-10);
 		panel.add(choiceTamano2b);
 		
 		choiceTamano3a = new Choice();
 		choiceTamano3a.setBounds(182, 151, 86, 20);
-		for(int i=15; i<=30; i++){
+		for(int i=12; i<=20; i++){
 			choiceTamano3a.add("" + i +"");
 		}
+		choiceTamano3a.select(valores[5]-12);
 		panel.add(choiceTamano3a);
 		
 		choiceTamano3b = new Choice();
 		choiceTamano3b.setBounds(278, 151, 86, 20);
-		for(int i=15; i<=50; i++){
+		for(int i=15; i<=40; i++){
 			choiceTamano3b.add("" + i +"");
 		}
+		choiceTamano3b.select(valores[2]-15);
 		panel.add(choiceTamano3b);
 		
 		choiceMensaje = new Choice();
 		choiceMensaje.setBounds(235, 176, 86, 20);
-		for(int i=1; i<=5; i++){
+		for(int i=1; i<=4; i++){
 			choiceMensaje.add("" + i +"");
 		}
+		choiceMensaje.select(valores[6]-1);
 		panel.add(choiceMensaje);
 		
 		JButton btnVolverAlMenu = new JButton("Volver al menu");
