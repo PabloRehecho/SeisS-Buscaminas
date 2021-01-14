@@ -38,6 +38,10 @@ public class Buscaminas {
 	public void setUsuarioLogeado(String text) {
 		GestorUsuario.getGestorUsuario().setUsuario(text);
 	}
+	
+	public String getUsuarioLogeado() {
+		return GestorUsuario.getGestorUsuario().getUsuario();
+	}
 
 	public boolean resetContraseña(String text) {
 		return GestorUsuario.getGestorUsuario().resetContraseña(text);
@@ -208,6 +212,8 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+
+
 
 	
 

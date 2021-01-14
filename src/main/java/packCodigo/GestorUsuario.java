@@ -73,6 +73,7 @@ public class GestorUsuario {
 				}else {
 					GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (Email,Contrasena) VALUES ('" + pCorreo + "','" + pContraseña + "')");
 					email=pCorreo;
+					Buscaminas.getBuscaminas().crearValores();
 					return true;
 				}
 			}
