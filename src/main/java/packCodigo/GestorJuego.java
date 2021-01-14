@@ -67,6 +67,7 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,1,1,'a')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,2,1,'a')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,3,1,'a')");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM premio");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceI', 'Ganar en el nivel 1', 'premio bronce 5.png', 5)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceII', 'Ganar en el nivel 1', 'premio bronce 10.png', 10)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIII', 'Ganar en el nivel 1', 'premio bronce 15.png', 15)");
