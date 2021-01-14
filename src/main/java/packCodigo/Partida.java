@@ -83,6 +83,10 @@ public class Partida extends Observable implements Observer {
 
 	}
 
+	public void contMinasMitad() {
+		contBanderas = contBanderas / 2;
+	}
+
 	/** SetJuego **/
 	private void setJuego(boolean pJuego) {
 		this.juego = pJuego;
