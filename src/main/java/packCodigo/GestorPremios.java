@@ -59,6 +59,8 @@ public class GestorPremios {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaIII', 'Gana partidas seguidas hasta', 'Racha3.png', 8)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaIV', 'Gana partidas seguidas hasta', 'Racha4.png', 10)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaV', 'Gana partidas seguidas hasta', 'Racha5.png', 15)");
+	}
+	
 	public boolean comprobarPremio(int[] hitos) {
 		Set<String> nMios=new HashSet<String>();
 		int i=0;
