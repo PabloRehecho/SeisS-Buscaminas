@@ -12,6 +12,7 @@ public class GestorUsuarioTest {
 	@Before
 	public void setUp() throws Exception {
 		GestorUsuario.getGestorUsuario().setUsuario(null);
+		GestorUsuario.getGestorUsuario().borrarUsuario("u1@prueba.com");
 	}
 	
 	@Test
@@ -44,9 +45,9 @@ public class GestorUsuarioTest {
 	// Identificación:
 	@Test
 	public void testIniciarSesion() {
-		
+
 		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "contrasena2", "contrasena2");
-		
+		GestorUsuario.getGestorUsuario().cerrarSesion();
 		//1.1.1
 		GestorUsuario.getGestorUsuario().iniciarSesion("usuarioInexistente", "ContraseñaQueNoExiste");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), null);
@@ -60,8 +61,6 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().iniciarSesion("u1@prueba.com", "contrasena2");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u1@prueba.com");
 		
-		//GestorUsuario.getGestorUsuario().borrarUsuario("u1@prueba.com");
-		
 	}
 	@Test
 	public void testCrearCuenta() {
@@ -70,39 +69,37 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().crearCuenta("usuarioInválido", "", "");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), null);
 		//1.3.2
-		GestorUsuario.getGestorUsuario().crearCuenta("usuarioIInválido", "Contraseña", "");
+		GestorUsuario.getGestorUsuario().crearCuenta("usuarioInválido", "Contraseña", "");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), null);
 		//1.3.3
-		GestorUsuario.getGestorUsuario().crearCuenta("u2@prueba.com", "", "");
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "", "");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), null);
 		//1.3.4
-		GestorUsuario.getGestorUsuario().crearCuenta("u2@prueba.com", "Contraseña1", "Contraseña2");
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña1", "Contraseña2");
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), null);
 		//1.3.5
-		GestorUsuario.getGestorUsuario().crearCuenta("u2@prueba.com", "Contraseña", "Contraseña");
-		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u2@prueba.com");
-		
-		//GestorUsuario.getGestorUsuario().borrarUsuario("u2@prueba.com");
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña", "Contraseña");
+		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u1@prueba.com");
+
 	}
 
 	@Test
 	public void testResetContraseña() {
-		
-		GestorUsuario.getGestorUsuario().crearCuenta("u3@prueba.com", "Contraseña", "Contraseña");
+
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña", "Contraseña");
 		GestorUsuario.getGestorUsuario().cerrarSesion();
 		
 		//1.4.1
 		assertFalse(GestorUsuario.getGestorUsuario().resetContraseña("correoInexistente"));
 		//1.4.2
-		GestorUsuario.getGestorUsuario().resetContraseña("u3@prueba.com");
-		assertFalse(GestorUsuario.getGestorUsuario().iniciarSesion("u3@prueba.com", "Contraseña"));
+		GestorUsuario.getGestorUsuario().resetContraseña("u1@prueba.com");
+		assertFalse(GestorUsuario.getGestorUsuario().iniciarSesion("u1@prueba.com", "Contraseña"));
 		
-		//GestorUsuario.getGestorUsuario().borrarUsuario("u3@prueba.com");
 	}
 
 	@Test
 	public void testLogearRedSocial() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -112,7 +109,11 @@ public class GestorUsuarioTest {
 
 	@Test
 	public void testCerrarSesion() {
-		fail("Not yet implemented");
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña", "Contraseña");
+		
+		//1.5.1
+		GestorUsuario.getGestorUsuario().cerrarSesion();
+		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), null);
 	}
 
 }
