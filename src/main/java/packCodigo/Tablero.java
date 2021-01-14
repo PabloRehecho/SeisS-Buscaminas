@@ -45,7 +45,7 @@ public class Tablero extends Observable {
 		i = 0;
 		j = 0;
 		if (!((matriz[i][j]) instanceof CasillaMina) || !((matriz[i][j]) instanceof CasillaMinaReset)
-				|| !((matriz[i][j]) instanceof CasillaMina50)) {
+				|| !((matriz[i][j]) instanceof CasillaMina50) && minasAColocar >= 1) {
 			matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina50");
 			matriz[i][j].inicializar(i + "," + j);
 			generarCasillasNumero(i, j);
