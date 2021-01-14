@@ -80,18 +80,19 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 		};	
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);	
-		valorNivel=Buscaminas.getBuscaminas().extraerNivelUsuario(pCorreo);
 				
-		JLabel lblNivel = new JLabel("Nivel inicial preferido: " + valorNivel);
+		JLabel lblNivel = new JLabel("Nivel inicial preferido: ");
 		lblNivel.setBounds(10, 4, 203, 14);
 		panel.add(lblNivel);
 		
-		
+
 		choiceNivel = new Choice();
 		choiceNivel.setBounds(235, 1, 86, 20);
 		for(int i=1; i<=3; i++){
 			choiceNivel.add("" + i +"");
 		}
+		valorNivel=Buscaminas.getBuscaminas().extraerNivelUsuario(pCorreo);
+		choiceNivel.select(valorNivel-1);
 		panel.add(choiceNivel);
 		
 		JLabel lblCorreo = new JLabel("email: " + pCorreo);
