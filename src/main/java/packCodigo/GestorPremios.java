@@ -19,7 +19,7 @@ public class GestorPremios {
 	
 	public ResultSet getPremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM UsuarioPremio NATURAL JOIN Premio WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM UsuarioPremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public ResultSet getTodosPremios() {
@@ -29,7 +29,7 @@ public class GestorPremios {
 	}
 	public ResultSet getNombrePremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM UsuarioPremio NATURAL JOIN Premio WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM UsuarioPremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public void ganarPremio(String pEmail, String pNombre) {
@@ -61,7 +61,7 @@ public class GestorPremios {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaV', 'Gana partidas seguidas hasta', 'Racha5.png', 15)");
 	}
 	
-	public boolean comprobarPremio(int[] hitos) {
+	public boolean comprobarPremio(int[] hitos, String email) {
 		Set<String> nMios=new HashSet<String>();
 		int i=0;
 		int cond[];
@@ -69,7 +69,6 @@ public class GestorPremios {
 		String descr[];
 		boolean nuevo=false;
 		
-		String email=GestorUsuario.getGestorUsuario().getUsuario();
 		ResultSet todos, actuales;
 		todos=getTodosPremios();
 		actuales=getNombrePremios(email);
@@ -95,36 +94,59 @@ public class GestorPremios {
 			e.printStackTrace();
 		}
 		int in=0;
-		while(in<=i) {
+		while(in<i) {
 			if(!nMios.isEmpty()) {
-				if(!nMios.contains(nom[i])) {
+				if(!nMios.contains(nom[in])) {
 					if(descr[i]=="Ganar en el nivel 1") {
-						if(hitos[0]>=cond[i]){
+						if(hitos[0]>=cond[in]){
 							nuevo=true;
-							ganarPremio(email, nom[i]);
+							ganarPremio(email, nom[in]);
+						}
+					}
+					else if(descr[in]=="Ganar en el nivel 2") {
+						if(hitos[1]>=cond[in]){
+							nuevo=true;
+						}
+					}
+					else if(descr[i]=="Ganar en el nivel 3") {
+						if(hitos[2]>=cond[in]){
+							nuevo=true;
+						}
+					}
+					else {
+						if(hitos[3]>=cond[in]){
+							nuevo=true;
 						}
 					}
 				}
-				else if(descr[i]=="Ganar en el nivel 2") {
-					if(hitos[1]>=cond[i]){
-						nuevo=true;
+				if(nMios.isEmpty()) {
+					if(descr[i]=="Ganar en el nivel 1") {
+						if(hitos[0]>=cond[in]){
+							nuevo=true;
+							ganarPremio(email, nom[in]);
+						}
 					}
-				}
-				else if(descr[i]=="Ganar en el nivel 3") {
-					if(hitos[2]>=cond[i]){
-						nuevo=true;
+					else if(descr[in]=="Ganar en el nivel 2") {
+						if(hitos[1]>=cond[in]){
+							nuevo=true;
+						}
 					}
-				}
-				else {
-					if(hitos[3]>=cond[i]){
-						nuevo=true;
+					else if(descr[i]=="Ganar en el nivel 3") {
+						if(hitos[2]>=cond[in]){
+							nuevo=true;
+						}
+					}
+					else {
+						if(hitos[3]>=cond[in]){
+							nuevo=true;
+						}
 					}
 				}
 				if(nuevo) {
-					ganarPremio(email, nom[i]);
+					ganarPremio(email, nom[in]);
 				}
+				in++;
 			}
-			in++;
 		}
 		return nuevo;
 	}

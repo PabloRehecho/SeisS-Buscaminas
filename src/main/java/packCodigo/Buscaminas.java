@@ -156,7 +156,8 @@ public class Buscaminas {
 	}
 	
 	public boolean comprobarPremiosGanados(int[] hitos) {
-		return GestorPremios.getGestorPremios().comprobarPremio(hitos);
+		String email=GestorUsuario.getGestorUsuario().getUsuario();
+		return GestorPremios.getGestorPremios().comprobarPremio(hitos,email);
 	}
 
 }
