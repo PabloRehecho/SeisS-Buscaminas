@@ -157,7 +157,7 @@ public class Buscaminas {
 			e.printStackTrace();
 		}
 		int in=0;
-		while(in<=i) {
+		while(in<i) {
 			if(!nMios.contains(nom[i])) {
 				if(descr[i]=="Ganar en el nivel 1") {
 					if(hitos[0]>=cond[i]){
