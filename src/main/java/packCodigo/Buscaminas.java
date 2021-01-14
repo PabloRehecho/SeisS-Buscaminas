@@ -93,6 +93,11 @@ public class Buscaminas {
 	{
 		GestorUsuario.getGestorUsuario().borrarUsuario(pCorreo);		
 	}	
+	
+	public int seleccionarNivelUsuario() {
+		String a= getUsuarioLogeado();
+		return GestorUsuario.getGestorUsuario().seleccionarNivelUsuario(a);
+	}
 
 	public int conseguirMensajeAyuda() 
 	{
@@ -214,4 +219,5 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+
 }

@@ -118,6 +118,8 @@ public class IU_MenuPrincipal extends JFrame {
 			for(int i=0; i<arr.length; i++){
 				choice.add(arr[i]);
 			}
+			int a= Buscaminas.getBuscaminas().seleccionarNivelUsuario();
+			choice.select(a-1);
 		}
 		
 		return choice;
