@@ -188,12 +188,14 @@ public class Buscaminas {
 			e.printStackTrace();
 		}
 		int in=0;
-		while(in<i) {
-			if(!nMios.contains(nom[i])) {
-				if(descr[i]=="Ganar en el nivel 1") {
-					if(hitos[0]>=cond[i]){
-						nuevo=true;
-						GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
+		while(in<=i) {
+			if(!nMios.isEmpty()) {
+				if(!nMios.contains(nom[i])) {
+					if(descr[i]=="Ganar en el nivel 1") {
+						if(hitos[0]>=cond[i]){
+							nuevo=true;
+							GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
+						}
 					}
 				}
 				else if(descr[i]=="Ganar en el nivel 2") {

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-01-2021 a las 14:02:24
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Tiempo de generaciÃ³n: 02-01-2021 a las 14:02:24
+-- VersiÃ³n del servidor: 10.4.11-MariaDB
+-- VersiÃ³n de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,31 +48,6 @@ CREATE TABLE `premio` (
   `requisito` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `premio`
---
-
-INSERT INTO `premio` (`nombre`, `descripcion`, `imagen`, `requisito`) VALUES
-('BronceI', 'Ganar en el nivel 1', 'premio bronce 5.png', 5),
-('BronceII', 'Ganar en el nivel 1', 'premio bronce 10.png', 10),
-('BronceIII', 'Ganar en el nivel 1', 'premio bronce 15.png', 15),
-('BronceIV', 'Ganar en el nivel 1', 'premio bronce 20.png', 20),
-('BronceV', 'Ganar en el nivel 1', 'premio bronce 25.png', 25),
-('OroI', 'Ganar en el nivel 3', 'premio plata 5.png', 5),
-('OroII', 'Ganar en el nivel 3', 'premio plata 10.png', 10),
-('OroIII', 'Ganar en el nivel 3', 'premio plata 15.png', 15),
-('OroIV', 'Ganar en el nivel 3', 'premio plata 20.png', 20),
-('OroV', 'Ganar en el nivel 3', 'premio plata 25.png', 25),
-('PlataI', 'Ganar en el nivel 2', 'premio plata 5.png', 5),
-('PlataII', 'Ganar en el nivel 2', 'premio plata 10.png', 10),
-('PlataIII', 'Ganar en el nivel 2', 'premio plata 15.png', 15),
-('PlataIV', 'Ganar en el nivel 2', 'premio plata 20.png', 20),
-('PlataV', 'Ganar en el nivel 2', 'premio plata 25.png', 25),
-('RachaI', 'Gana partidas seguidas hasta', 'Racha1.png', 1),
-('RachaII', 'Gana partidas seguidas hasta', 'Racha2.png', 5),
-('RachaIII', 'Gana partidas seguidas hasta', 'Racha3.png', 8),
-('RachaIV', 'Gana partidas seguidas hasta', 'Racha4.png', 10),
-('RachaV', 'Gana partidas seguidas hasta', 'Racha5.png', 15);
 
 -- --------------------------------------------------------
 
@@ -131,7 +106,7 @@ CREATE TABLE `valores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Ã�ndices para tablas volcadas
 --
 
 --
