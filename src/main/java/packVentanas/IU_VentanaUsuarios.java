@@ -131,14 +131,23 @@ public class IU_VentanaUsuarios extends JFrame {
 				l3.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) 
-					{
-						/*try 
-						{
-							IU_MenuPrincipal ventana = new IU_MenuPrincipal();
+					{						
+						int posicion= listaBorrado.indexOf(e.getSource());
+						Buscaminas.getBuscaminas().borrarUsuario(listaCorreos.get(posicion).getText());
+						VMensaje mensaje= new VMensaje();
+						mensaje.setMensaje("Usuario eliminado correctamente");
+						IU_MenuPrincipal ventana;
+						try {
+							ventana = new IU_MenuPrincipal();
 							ventana.setVisible(true);
-							setVisible(false);
-						} 
-						catch (NoArchivoAudioException e1)	{e1.printStackTrace();}*/
+							frame.setVisible(false);
+							mensaje.setVisible(true);
+						} catch (NoArchivoAudioException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
 					}
 				});
 		        

@@ -63,7 +63,7 @@ public class Buscaminas {
 	}
 	
 	public void actualizarNivelInicial(String pCorreo, int valorNivel) {
-		GestorUsuario.getGestorUsuario().actualizarNivelInical(pCorreo, valorNivel);
+		GestorUsuario.getGestorUsuario().actualizarNivelInicial(pCorreo, valorNivel);
 		
 	}
 	public ResultSet extraerValores() 
@@ -81,6 +81,26 @@ public class Buscaminas {
 	public void modificarValores (int[] pValores, String[] pNombres)
 	{
 		GestorJuego.getGestorJuego().modificarValores(pValores, pNombres);
+	}	
+
+	public void borrarUsuario(String pCorreo) 
+	{
+		GestorUsuario.getGestorUsuario().borrarUsuario(pCorreo);		
+	}	
+
+	public int conseguirMensajeAyuda() 
+	{
+		return GestorJuego.getGestorJuego().conseguirMensajeAyuda();
+	}
+	
+	public int[] conseguirFilasColumnas(int pNivel) 
+	{
+		return GestorJuego.getGestorJuego().conseguirFilasColumnas(pNivel);
+	}
+
+	public int calcularMinas(int pNivel) 
+	{
+		return GestorJuego.getGestorJuego().calcularMinas(pNivel);
 	}
 	
 	public Partida obtenerPartida() {
@@ -188,4 +208,5 @@ public class Buscaminas {
 		}
 		return nuevo;
 	}
+
 }
