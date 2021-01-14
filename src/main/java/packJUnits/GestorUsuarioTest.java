@@ -2,9 +2,13 @@ package packJUnits;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import packCodigo.GestorBD;
 import packCodigo.GestorUsuario;
 
 public class GestorUsuarioTest {
@@ -82,6 +86,14 @@ public class GestorUsuarioTest {
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u1@prueba.com");
 
 	}
+	
+	@Test
+	public void testcrearNuevaContraseña() {
+		for (int i=0;i<100;i++) {
+			assertNotNull(GestorUsuario.getGestorUsuario().crearNuevaContraseña());
+			assertFalse(GestorUsuario.getGestorUsuario().crearNuevaContraseña().equals(""));
+		}
+	}
 
 	@Test
 	public void testResetContraseña() {
@@ -107,6 +119,41 @@ public class GestorUsuarioTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void testCambioDeContraseña() {
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña", "Contraseña");
+
+		try {
+			//1.6.1
+			GestorUsuario.getGestorUsuario().cambioDeContraseña("", "", "");
+			ResultSet a = GestorBD.getGestorBD().execSQL("SELECT contrasena FROM usuario WHERE email='u1@prueba.com'");
+			a.next();
+			assertEquals(a.getString("contrasena"), "Contraseña");
+	
+			//1.6.2
+			GestorUsuario.getGestorUsuario().cambioDeContraseña("Contraseña", "", "");			
+			a = GestorBD.getGestorBD().execSQL("SELECT contrasena FROM usuario WHERE email='u1@prueba.com'");
+			a.next();
+			assertEquals(a.getString("contrasena"), "Contraseña");
+			
+			//1.6.3
+			GestorUsuario.getGestorUsuario().cambioDeContraseña("Contraseña", "c1", "c2");			
+			a = GestorBD.getGestorBD().execSQL("SELECT contrasena FROM usuario WHERE email='u1@prueba.com'");
+			a.next();
+			assertEquals(a.getString("contrasena"), "Contraseña");
+			
+			//1.6.4
+			GestorUsuario.getGestorUsuario().cambioDeContraseña("Contraseña", "c3", "c3");			
+			a = GestorBD.getGestorBD().execSQL("SELECT contrasena FROM usuario WHERE email='u1@prueba.com'");
+			a.next();
+			assertEquals(a.getString("contrasena"), "c3");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	public void testCerrarSesion() {
 		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña", "Contraseña");

@@ -141,7 +141,7 @@ public class GestorUsuario {
         
 	}
 
-	private String crearNuevaContraseña() {
+	public String crearNuevaContraseña() {
 		Random num = new Random();
 		char[] psw = new char[7];
 		for(int i=0; i<7; i++)
