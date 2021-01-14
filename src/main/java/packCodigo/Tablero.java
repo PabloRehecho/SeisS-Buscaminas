@@ -44,8 +44,8 @@ public class Tablero extends Observable {
 		MReset = matriz[i][j].obtenerCoordenadas();
 		i = 0;
 		j = 0;
-		if (!((matriz[i][j]) instanceof CasillaMina) || !((matriz[i][j]) instanceof CasillaMinaReset)
-				|| !((matriz[i][j]) instanceof CasillaMina50) && minasAColocar >= 1) {
+		if (!((matriz[i][j]) instanceof CasillaMina) && !((matriz[i][j]) instanceof CasillaMinaReset)
+				&& !((matriz[i][j]) instanceof CasillaMina50) && minasAColocar >= 1) {
 			matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina50");
 			matriz[i][j].inicializar(i + "," + j);
 			generarCasillasNumero(i, j);
@@ -55,8 +55,8 @@ public class Tablero extends Observable {
 		while (minasAColocar != 0) {
 			i = randInt(x);
 			j = randInt(y);
-			if (!((matriz[i][j]) instanceof CasillaMina) || !((matriz[i][j]) instanceof CasillaMinaReset)
-					|| !((matriz[i][j]) instanceof CasillaMina50)) {
+			if (!((matriz[i][j]) instanceof CasillaMina) && !((matriz[i][j]) instanceof CasillaMinaReset)
+					&& !((matriz[i][j]) instanceof CasillaMina50)) {
 				matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina");
 				matriz[i][j].inicializar(i + "," + j);
 				generarCasillasNumero(i, j);
@@ -614,7 +614,7 @@ public class Tablero extends Observable {
 			fila = this.separarCoordenadasFil(this.separarCoordenadasString(mina));
 			casilla = buscarCasilla(fila, col);
 			if (!casilla.estaDesvelada() && casilla instanceof CasillaMina) {
-				// lCasillasBandera.contains(fila + "," + col);
+
 				casilla.descubrir();
 				setChanged();
 				notifyObservers(fila + "," + col + "," + 14);

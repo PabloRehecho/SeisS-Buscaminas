@@ -179,6 +179,21 @@ public class Partida extends Observable implements Observer {
 		}
 	}
 
+	public void update50(Observable pObservable, Object pObjeto) {
+		if (pObservable instanceof Tablero) {
+			String[] p = pObjeto.toString().split(",");
+			if (p[1].equals("BANDERA") && p[0].equals("true")) {
+				if (contBanderas > 0) {
+					contBanderas--;
+				}
+			} else if (p[1].equals("BANDERA") && p[0].equals("false")) {
+				if (contBanderas < contMinas) {
+					contBanderas++;
+				}
+			}
+		}
+	}
+
 	public void anadirObservador(VBuscaminas vBuscaminas) {
 		addObserver(vBuscaminas);
 		tablero.addObserver(vBuscaminas);
