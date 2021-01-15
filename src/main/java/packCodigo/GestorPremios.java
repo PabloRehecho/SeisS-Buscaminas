@@ -90,6 +90,7 @@ public class GestorPremios {
 			while(actuales.next()) {
 				nMios.add(actuales.getString("Nombre"));
 			}
+			actuales.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

@@ -41,10 +41,12 @@ public class GestorPremioTest {
 			while(todos.next()) {
 				System.out.println(todos.getString("Nombre"));
 			}
+			todos.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Test
@@ -58,6 +60,7 @@ public class GestorPremioTest {
 			System.out.println(todos.getString("Nombre"));
 			System.out.println(todos.getString("Descripcion"));
 			}
+		todos.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,6 +81,7 @@ public class GestorPremioTest {
 			while(todos.next()) {
 					System.out.println(todos.getString("Nombre"));
 			}
+			todos.close();
 		}catch (SQLException e) {
 			//TODO Auto-generated catch block
 		e.printStackTrace();
@@ -97,6 +101,7 @@ public class GestorPremioTest {
 			while(todos.next()) {
 					System.out.println(todos.getString("Nombre"));
 			}
+			todos.close();
 		}catch (SQLException e) {
 			//TODO Auto-generated catch block
 		e.printStackTrace();
@@ -124,6 +129,7 @@ public class GestorPremioTest {
 			while(todos.next()) {
 				System.out.println(todos.getString("Nombre"));
 			}
+			todos.close();
 		}catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
