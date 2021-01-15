@@ -10,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -56,6 +58,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 	private Clip clip;
 	private AudioInputStream ais;
 	private int bomba = 0;
+	private int[] personalizacion= new int[3];
 
 	/**
 	 * Launch the application.
@@ -80,9 +83,9 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		if (nivel == 1) {
+		if(nivel == 1){
 			setBounds(100, 100, 1000, 1000);
-		} else if (nivel == 2) {
+		}else if(nivel == 2){
 			setBounds(100, 100, 1500, 1500);
 		} else if (nivel == 3) {
 			setBounds(10, 10, 5000, 5000);
@@ -133,18 +136,28 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 			panel_2.add(j1, "cell " + i + " 0, grow");
 			j1.setHorizontalAlignment(SwingConstants.LEFT);
 		}
+		ResultSet rs= Buscaminas.getBuscaminas().extraerPersonalizacion();
+		try {
+			rs.next();
+			personalizacion[0]=rs.getInt("imagenMinas");
+			personalizacion[1]=rs.getInt("imagenCara");
+			personalizacion[2]=rs.getInt("sonido");
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(new Color(255, 255, 0));
 		panel_2.add(lblNewLabel, "cell 3 0,growx");
-		lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset.png")));
+		lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset"+ personalizacion[1] +".png")));
 
 		lblNewLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				Buscaminas.getBuscaminas().obtenerPartida().reset(vBusca);
-				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset.png")));
+				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset"+ personalizacion[1] +".png")));
 			}
 		});
 
@@ -284,7 +297,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 					} catch (NoArchivoAudioException e) {
 						e.printStackTrace();
 					}
-					lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Perder.png")));
+					lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Perder" + personalizacion[1] +".png")));
 					JOptionPane.showMessageDialog(null, "OOOHHHHH QUE PENA, HAS ENCONTRADO UNA MINA!!!");
 					Buscaminas.getBuscaminas().actualizarRanking("Perdida");
 				} else {
@@ -308,7 +321,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 				} catch (NoArchivoAudioException e) {
 					e.printStackTrace();
 				}
-				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria.png")));
+				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria"+personalizacion[1]+".png")));
 				Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
 				Buscaminas.getBuscaminas().actualizarRanking("Ganada");
 				mostrarRanking();
@@ -322,27 +335,27 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 					lcasillas[pos].setIcon(
 							new ImageIcon(VBuscaminas.class.getResource("/Casilla" + Integer.parseInt(p[2]) + ".png")));
 				} else if (Integer.parseInt(p[2]) == 12) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mreset"+ personalizacion[0] +".png")));
 					Buscaminas.getBuscaminas().obtenerPartida().resetearTablero(vBusca);
 				} else if (Integer.parseInt(p[2]) == 13) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50V1.jpg")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50"+ personalizacion[0]+".png")));
 					Buscaminas.getBuscaminas().obtenerPartida().contMinasMitad();
 				} else if (Integer.parseInt(p[2]) == 14) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina.png")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina" + personalizacion[0] +".png")));
 
 				} else if (Integer.parseInt(p[2]) == 15) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mreset"+personalizacion[0]+".png")));
 				} else if (Integer.parseInt(p[2]) == 0) {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaVacia.png")));
 				} else if (Integer.parseInt(p[2]) == 10) {
 					if (bomba == 0) {
-						lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaPrimeraMina.png")));
+						lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaPrimeraMina" + personalizacion[0] +".png")));
 						bomba++;
 					} else {
-						lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina.png")));
+						lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina" + personalizacion[0] +".png")));
 					}
 				} else if (Integer.parseInt(p[2]) == 11) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaNoMina.png")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaNoMina" + personalizacion[0] +".png")));
 				}
 			}
 		}
@@ -384,12 +397,12 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 		IU_RankingUsuario ranking = new IU_RankingUsuario();
 		ranking.setVisible(true);
 	}
-
-	private void play(boolean pB, Observable part) throws NoArchivoAudioException {
-		if (pB == false) {
-			if (new File("sources/lose.wav").getAbsoluteFile() != null) {
+		
+	private void play(boolean pB, Observable part) throws NoArchivoAudioException{
+		if (pB==false){
+			if (new File("sources/lose"+ personalizacion[2] + ".wav").getAbsoluteFile() != null){
 				try {
-					ais = AudioSystem.getAudioInputStream(new File("src/main/resources/lose.wav").getAbsoluteFile());
+					ais = AudioSystem.getAudioInputStream(new File("src/main/resources/lose"+ personalizacion[2] + ".wav").getAbsoluteFile());
 				} catch (UnsupportedAudioFileException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

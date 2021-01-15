@@ -19,21 +19,21 @@ public class GestorPremios {
 	
 	public ResultSet getPremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM UsuarioPremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public ResultSet getTodosPremios() {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Requisito, Descripcion FROM Premio");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Requisito, Descripcion FROM premio");
 		return rs;
 	}
 	public ResultSet getNombrePremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM UsuarioPremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM usuariopremio INNER JOIN premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public void ganarPremio(String pEmail, String pNombre) {
-		GestorBD.getGestorBD().execSQL2("INSERT INTO UsuarioPremio (emailJugador, nombrePremio) values ('"+pEmail+"', '"+pNombre+"')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO usuariopremio (emailJugador, nombrePremio) values ('"+pEmail+"', '"+pNombre+"')");
 	}
 	
 	public void crearPremios() {
@@ -44,11 +44,11 @@ public class GestorPremios {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIII', 'Ganar en el nivel 1', 'premio bronce 15.png', 15)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIV', 'Ganar en el nivel 1', 'premio bronce 20.png', 20)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceV', 'Ganar en el nivel 1', 'premio bronce 25.png', 25)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroI', 'Ganar en el nivel 3', 'premio plata 5.png', 5)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroII', 'Ganar en el nivel 3', 'premio plata 10.png', 10)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroIII', 'Ganar en el nivel 3', 'premio plata 15.png', 15)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroIV', 'Ganar en el nivel 3', 'premio plata 20.png', 20)");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroV', 'Ganar en el nivel 3', 'premio plata 25.png', 25)");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroI', 'Ganar en el nivel 3', 'premio oro 5.png', 5)");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroII', 'Ganar en el nivel 3', 'premio oro 10.png', 10)");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroIII', 'Ganar en el nivel 3', 'premio oro 15.png', 15)");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroIV', 'Ganar en el nivel 3', 'premio oro 20.png', 20)");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('OroV', 'Ganar en el nivel 3', 'premio oro 25.png', 25)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataI', 'Ganar en el nivel 2', 'premio plata 5.png', 5)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataII', 'Ganar en el nivel 2', 'premio plata 10.png', 10)");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('PlataIII', 'Ganar en el nivel 2', 'premio plata 15.png', 15)");
@@ -88,7 +88,7 @@ public class GestorPremios {
 		}
 		try {
 			while(actuales.next()) {
-				nMios.add(todos.getString("Nombre"));
+				nMios.add(actuales.getString("Nombre"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -97,10 +97,9 @@ public class GestorPremios {
 		while(in<i) {
 			if(!nMios.isEmpty()) {
 				if(!nMios.contains(nom[in])) {
-					if(descr[i]=="Ganar en el nivel 1") {
+					if(descr[in]=="Ganar en el nivel 1") {
 						if(hitos[0]>=cond[in]){
 							nuevo=true;
-							ganarPremio(email, nom[in]);
 						}
 					}
 					else if(descr[in]=="Ganar en el nivel 2") {
@@ -108,7 +107,7 @@ public class GestorPremios {
 							nuevo=true;
 						}
 					}
-					else if(descr[i]=="Ganar en el nivel 3") {
+					else if(descr[in]=="Ganar en el nivel 3") {
 						if(hitos[2]>=cond[in]){
 							nuevo=true;
 						}
@@ -119,34 +118,33 @@ public class GestorPremios {
 						}
 					}
 				}
-				if(nMios.isEmpty()) {
-					if(descr[i]=="Ganar en el nivel 1") {
-						if(hitos[0]>=cond[in]){
-							nuevo=true;
-							ganarPremio(email, nom[in]);
-						}
-					}
-					else if(descr[in]=="Ganar en el nivel 2") {
-						if(hitos[1]>=cond[in]){
-							nuevo=true;
-						}
-					}
-					else if(descr[i]=="Ganar en el nivel 3") {
-						if(hitos[2]>=cond[in]){
-							nuevo=true;
-						}
-					}
-					else {
-						if(hitos[3]>=cond[in]){
-							nuevo=true;
-						}
-					}
-				}
-				if(nuevo) {
-					ganarPremio(email, nom[in]);
-				}
-				in++;
 			}
+			if(nMios.isEmpty()) {
+				if(descr[in]=="Ganar en el nivel 1") {
+					if(hitos[0]>=cond[in]){
+						nuevo=true;
+					}
+				}
+				else if(descr[in]=="Ganar en el nivel 2") {
+					if(hitos[1]>=cond[in]){
+						nuevo=true;
+					}
+				}
+				else if(descr[in]=="Ganar en el nivel 3") {
+					if(hitos[2]>=cond[in]){
+						nuevo=true;
+					}
+				}
+				else {
+					if(hitos[3]>=cond[in]){
+						nuevo=true;
+					}
+				}
+			}
+			if(nuevo) {
+				ganarPremio(email, nom[in]);
+			}
+			in++;
 		}
 		return nuevo;
 	}

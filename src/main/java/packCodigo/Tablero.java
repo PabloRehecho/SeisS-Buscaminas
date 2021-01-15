@@ -64,7 +64,6 @@ public class Tablero extends Observable {
 				matriz[i][j].inicializar(i + "," + j);
 				generarCasillasNumero(i, j);
 				lMinas.add(((CasillaMina) matriz[i][j]).obtenerCoordenadas());
-				System.out.println(minasAColocar);
 				minasAColocar--;
 			}
 		}

@@ -72,7 +72,7 @@ public class IU_VentanaValores extends JFrame {
 	public IU_VentanaValores() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
-		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();
+		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
