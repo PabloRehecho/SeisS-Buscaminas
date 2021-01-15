@@ -36,8 +36,8 @@ public class Tablero extends Observable {
 		int y = this.columnas;
 		int i, j = 0;
 		i = 0;
-//		i = randInt(x);
-//		j = randInt(y);
+		i = randInt(x);
+		j = randInt(y);
 		matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("MinaReset");
 		matriz[i][j].inicializar(i + "," + j);
 		generarCasillasNumero(i, j);
@@ -526,7 +526,8 @@ public class Tablero extends Observable {
 				col = this.separarCoordenadasCol(this.separarCoordenadasString(bandera));
 				fila = this.separarCoordenadasFil(this.separarCoordenadasString(bandera));
 				casilla = buscarCasilla(fila, col);
-				if (!(casilla instanceof CasillaMina) && casilla.tieneBandera()) {
+				if (!(casilla instanceof CasillaMina) && !(casilla instanceof CasillaMinaReset)
+						&& !(casilla instanceof CasillaMina50) && casilla.tieneBandera()) {
 					// casilla.cambioBandera();
 					setChanged();
 					notifyObservers(fila + "," + col + "," + 11);
