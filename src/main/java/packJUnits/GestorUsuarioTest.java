@@ -45,6 +45,11 @@ public class GestorUsuarioTest {
 	public void testActualizarHitos() {
 		fail("Not yet implemented");
 	}
+
+	@Test
+	public void testExtraerListaUsuarios() {
+		fail("Not yet implemented");
+	}
 	
 	// Identificación:
 	@Test
@@ -116,11 +121,6 @@ public class GestorUsuarioTest {
 	}
 
 	@Test
-	public void testExtraerListaUsuarios() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testCambioDeContraseña() {
 		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "Contraseña", "Contraseña");
 
@@ -150,7 +150,6 @@ public class GestorUsuarioTest {
 			assertEquals(a.getString("contrasena"), "c3");
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -97,7 +97,7 @@ public class GestorPremios {
 		}
 		try {
 			while(actuales.next()) {
-				nMios.add(todos.getString("Nombre"));
+				nMios.add(actuales.getString("Nombre"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -109,7 +109,6 @@ public class GestorPremios {
 					if(descr[in]=="Ganar en el nivel 1") {
 						if(hitos[0]>=cond[in]){
 							nuevo=true;
-							ganarPremio(email, nom[in]);
 						}
 					}
 					else if(descr[in]=="Ganar en el nivel 2") {
@@ -133,7 +132,6 @@ public class GestorPremios {
 				if(descr[in]=="Ganar en el nivel 1") {
 					if(hitos[0]>=cond[in]){
 						nuevo=true;
-						ganarPremio(email, nom[in]);
 					}
 				}
 				else if(descr[in]=="Ganar en el nivel 2") {
