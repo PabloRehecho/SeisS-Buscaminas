@@ -71,7 +71,7 @@ public class IU_VentanaUsuarios extends JFrame {
 	public IU_VentanaUsuarios() throws NoArchivoAudioException {	
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		frame.setIconImage(icon);
-		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();		
+		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();		
 		//SONIDO FIN
 		//codigo cogido de https://stackoverflow.com/questions/2287761/how-do-i-get-vertical-scrolling-to-jpanel
 		JPanel panel = new JPanel(){

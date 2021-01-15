@@ -31,12 +31,6 @@ public class GestorJuego {
 		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE email = '" + email + "'");
 		return rs;
 	}
-	public ResultSet conseguirPathMinas(int conjunto) 
-	{
-		ResultSet rs = GestorBD.getGestorBD().execSQL("SELECT * FROM imagenesaudio WHERE tipoRecurso = 1 AND conjunto = " + conjunto);
-		System.out.println(rs);
-		return rs;
-	}
 	public void crearValores() 
 	{		
 		GestorBD.getGestorBD().execSQL2("DELETE FROM valores");

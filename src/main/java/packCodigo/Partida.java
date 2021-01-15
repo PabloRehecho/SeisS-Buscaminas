@@ -84,7 +84,11 @@ public class Partida extends Observable implements Observer {
 	}
 
 	public void contMinasMitad() {
-		contBanderas = contBanderas / 2;
+		if (contBanderas % 2 == 0) {
+			contBanderas = contBanderas / 2 - 1;
+		} else if (contBanderas % 2 != 0) {
+			contBanderas = contBanderas / 2;
+		}
 	}
 
 	/** SetJuego **/

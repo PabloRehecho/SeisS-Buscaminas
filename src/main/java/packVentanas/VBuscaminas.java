@@ -137,13 +137,11 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 			j1.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 		ResultSet rs= Buscaminas.getBuscaminas().extraerPersonalizacion();
-		System.out.println(rs);
 		try {
 			rs.next();
 			personalizacion[0]=rs.getInt("imagenMinas");
 			personalizacion[1]=rs.getInt("imagenCara");
 			personalizacion[2]=rs.getInt("sonido");
-			System.out.println(personalizacion[0]);
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -323,7 +321,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 				} catch (NoArchivoAudioException e) {
 					e.printStackTrace();
 				}
-				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria.png")));
+				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria"+personalizacion[1]+".png")));
 				Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
 				Buscaminas.getBuscaminas().actualizarRanking("Ganada");
 				mostrarRanking();
@@ -337,16 +335,16 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 					lcasillas[pos].setIcon(
 							new ImageIcon(VBuscaminas.class.getResource("/Casilla" + Integer.parseInt(p[2]) + ".png")));
 				} else if (Integer.parseInt(p[2]) == 12) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mreset"+ personalizacion[0] +".png")));
 					Buscaminas.getBuscaminas().obtenerPartida().resetearTablero(vBusca);
 				} else if (Integer.parseInt(p[2]) == 13) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50V1.jpg")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50"+ personalizacion[0]+".png")));
 					Buscaminas.getBuscaminas().obtenerPartida().contMinasMitad();
 				} else if (Integer.parseInt(p[2]) == 14) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina.png")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina" + personalizacion[0] +".png")));
 
 				} else if (Integer.parseInt(p[2]) == 15) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mreset"+personalizacion[0]+".png")));
 				} else if (Integer.parseInt(p[2]) == 0) {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaVacia.png")));
 				} else if (Integer.parseInt(p[2]) == 10) {
