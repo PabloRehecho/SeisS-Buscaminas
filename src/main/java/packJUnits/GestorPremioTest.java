@@ -106,14 +106,14 @@ public class GestorPremioTest {
 
 	@Test
 	public void testComprobarPremio() {
-		System.out.println("CP");
 		GestorPremios.getGestorPremios().crearPremios();
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
+		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
 		int[] hit=new int[4];
 		hit[0]=5;
-		hit[0]=2;
-		hit[0]=7;
-		hit[0]=4;
+		hit[1]=2;
+		hit[2]=7;
+		hit[3]=4;
 		GestorPremios.getGestorPremios().comprobarPremio(hit, "bb@b.b");
 		ResultSet todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
 		try {

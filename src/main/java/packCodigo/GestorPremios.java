@@ -71,12 +71,6 @@ public class GestorPremios {
 		
 		ResultSet todos, actuales;
 		todos=getTodosPremios();
-		try {
-			System.out.println(todos.getString("nombre"));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		actuales=getNombrePremios(email);
 		cond=new int[20];
 		descr=new String[20];
