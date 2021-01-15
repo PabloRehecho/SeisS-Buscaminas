@@ -89,7 +89,8 @@ public class IU_MenuPrincipal extends JFrame {
 		contentPane.add(getLblNivel(), "flowx,cell 2 2,alignx center");
 		contentPane.add(getTextField(), "cell 2 1,alignx center");
 		contentPane.add(getChoice(), "cell 2 2,alignx center");
-		if (Buscaminas.getBuscaminas().getUsuarioLogeado().contentEquals("seissbuscaminas@gmail.com" ) || Buscaminas.getBuscaminas().getUsuarioLogeado().contentEquals("seissbuscaminas@gmail.com" ))
+		if (Buscaminas.getBuscaminas().getUsuarioLogeado().contentEquals("seissbuscaminas@gmail.com" ) || Buscaminas.getBuscaminas().getUsuarioLogeado().contentEquals("seissbuscaminas@gmail.com" )
+				|| Buscaminas.getBuscaminas().getUsuarioLogeado().contentEquals("administrador@gmail.com" ))
 		{
 			contentPane.add(getBtnUsuarios(), "cell 0 2,alignx center");
 			contentPane.add(getBtnValores(), "cell 0 3,alignx center");			

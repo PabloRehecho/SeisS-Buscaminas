@@ -268,84 +268,46 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 	}
 
 	public void update(Observable o, Object arg) {
-		String[]p = arg.toString().split(",");
-		if(o instanceof Partida){ 
-			   if(p.length==2){
-				   if(p[1]!=null){
-					   int aux;
-					   int num = Integer.parseInt(p[1]);
-					   for(int i=2; i>=0; i--){
-						   aux = num%10;
-						   num = num/10;
-							Banderas[i].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Crono"+aux+".png")));			
-						}
-				   }
-				   if(p[0]!=null){
-					   int aux;
-					   int num = Integer.parseInt(p[0]);
-					   for(int i=2; i>=0; i--){
-						   aux = num%10;
-						   num = num/10;
-							Tiempo[i].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Crono"+aux+".png")));			
-						}
-				   }
-			   }else if(arg instanceof Boolean){
-				   if(arg.toString().equals("false")){
-					   juego = false;
-					   try {
-						   play(juego,o);
-					   } catch (NoArchivoAudioException e) {
-						   e.printStackTrace();
-					   }
-					   lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Perder" + personalizacion [0] + ".png")));
-					   JOptionPane.showMessageDialog(null, "OOOHHHHH QUE PENA, HAS ENCONTRADO UNA MINA!!!");
-					   Buscaminas.getBuscaminas().actualizarRanking("Perdida");
-				   }
-				   else {
-					   juego = true;
-					   finalizado = false;
-					   bomba = 0;
-					   habilitarCasillas();
-				   }
-			   } else if(p.length ==3){
-				   int pos = calcularPosicion(Integer.parseInt(p[0]), Integer.parseInt(p[1]));
-				   if(p[2].toString().equals("PonerBandera")){
-					   lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaBandera.png")));
-				   } else {
-					   lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Casilla.png"))); 
-				   } 
-
-			   } else if(arg.equals("FINALIZADO")){
-				   finalizado = true;
-				   try {
-					   play(finalizado, o);
-				   } catch (NoArchivoAudioException e) {
-					   e.printStackTrace();
-				   }
-				   lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria" + personalizacion[1] + ".png")));
-					Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
-					Buscaminas.getBuscaminas().actualizarRanking("Ganada");
-				   mostrarRanking();
-				   JOptionPane.showMessageDialog(null, "HAS RESUELTO CORRECTAMENTE!!!");
-
-			   }
-			} else if(o instanceof Tablero){
-				if (p.length == 3){
+		String[] p = arg.toString().split(",");
+		if (o instanceof Partida) {
+			if (p.length == 2) {
+				if (p[1] != null) {
+					int aux;
+					int num = Integer.parseInt(p[1]);
+					for (int i = 2; i >= 0; i--) {
+						aux = num % 10;
+						num = num / 10;
+						Banderas[i].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Crono" + aux + ".png")));
+					}
+				}
+				if (p[0] != null) {
+					int aux;
+					int num = Integer.parseInt(p[0]);
+					for (int i = 2; i >= 0; i--) {
+						aux = num % 10;
+						num = num / 10;
+						Tiempo[i].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Crono" + aux + ".png")));
+					}
+				}
+			} else if (arg instanceof Boolean) {
+				if (arg.toString().equals("false")) {
+					juego = false;
+					try {
+						play(juego, o);
+					} catch (NoArchivoAudioException e) {
+						e.printStackTrace();
+					}
+					lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Perder" + personalizacion[1] +".png")));
+					JOptionPane.showMessageDialog(null, "OOOHHHHH QUE PENA, HAS ENCONTRADO UNA MINA!!!");
+					Buscaminas.getBuscaminas().actualizarRanking("Perdida");
+				} else {
+					juego = true;
+					finalizado = false;
+					bomba = 0;
+					habilitarCasillas();
+				}
+			} else if (p.length == 3) {
 				int pos = calcularPosicion(Integer.parseInt(p[0]), Integer.parseInt(p[1]));
-				  if(1<=Integer.parseInt(p[2]) && Integer.parseInt(p[2])<=8){
-					  lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Casilla"+Integer.parseInt(p[2])+".png")));
-				    }else if(Integer.parseInt(p[2])==0){
-				    	   lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaVacia.png")));
-				    }else if(Integer.parseInt(p[2])==10){
-				    	if(bomba == 0){
-				    		 lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaPrimeraMina" + personalizacion[0] + ".png")));
-				    		 bomba++;
-				    	} else {
-				    		 lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina" + personalizacion[0] + ".png")));	  
-				    	}
-				    }else if(Integer.parseInt(p[2])==11){
-				    	lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaNoMina" + personalizacion[0] + ".png")));
-				    }
 				if (p[2].toString().equals("PonerBandera")) {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaBandera.png")));
 				} else {
@@ -366,8 +328,38 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 				JOptionPane.showMessageDialog(null, "HAS RESUELTO CORRECTAMENTE!!!");
 
 			}
+		} else if (o instanceof Tablero) {
+			if (p.length == 3) {
+				int pos = calcularPosicion(Integer.parseInt(p[0]), Integer.parseInt(p[1]));
+				if (1 <= Integer.parseInt(p[2]) && Integer.parseInt(p[2]) <= 8) {
+					lcasillas[pos].setIcon(
+							new ImageIcon(VBuscaminas.class.getResource("/Casilla" + Integer.parseInt(p[2]) + ".png")));
+				} else if (Integer.parseInt(p[2]) == 12) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
+					Buscaminas.getBuscaminas().obtenerPartida().resetearTablero(vBusca);
+				} else if (Integer.parseInt(p[2]) == 13) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50V1.jpg")));
+					Buscaminas.getBuscaminas().obtenerPartida().contMinasMitad();
+				} else if (Integer.parseInt(p[2]) == 14) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina.png")));
+
+				} else if (Integer.parseInt(p[2]) == 15) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
+				} else if (Integer.parseInt(p[2]) == 0) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaVacia.png")));
+				} else if (Integer.parseInt(p[2]) == 10) {
+					if (bomba == 0) {
+						lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaPrimeraMina" + personalizacion[0] +".png")));
+						bomba++;
+					} else {
+						lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina" + personalizacion[0] +".png")));
+					}
+				} else if (Integer.parseInt(p[2]) == 11) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaNoMina" + personalizacion[0] +".png")));
 				}
 			}
+		}
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == item1) {
