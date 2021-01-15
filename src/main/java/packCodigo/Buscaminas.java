@@ -82,21 +82,6 @@ public class Buscaminas {
 		return GestorJuego.getGestorJuego().extraerPersonalizacion();
 	}
 	
-	public ResultSet conseguirPathsMinas(int conjunto) 
-	{
-		return GestorJuego.getGestorJuego().conseguirPathMinas(conjunto);
-	}
-	
-/*	public ResultSet extraerPersonalizacion() 
-	{
-		return GestorJuego.getGestorJuego().extraerPersonalizacion();
-	}
-	
-	public ResultSet extraerPersonalizacion() 
-	{
-		return GestorJuego.getGestorJuego().extraerPersonalizacion();
-	}
-	*/
 	public void modificarPersonalizacion( int[] pValores) {
 		GestorJuego.getGestorJuego().modificarPersonalizacion(pValores);
 	}

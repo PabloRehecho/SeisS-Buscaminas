@@ -137,13 +137,11 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 			j1.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 		ResultSet rs= Buscaminas.getBuscaminas().extraerPersonalizacion();
-		System.out.println(rs);
 		try {
 			rs.next();
 			personalizacion[0]=rs.getInt("imagenMinas");
 			personalizacion[1]=rs.getInt("imagenCara");
 			personalizacion[2]=rs.getInt("sonido");
-			System.out.println(personalizacion[0]);
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

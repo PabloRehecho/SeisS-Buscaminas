@@ -39,7 +39,6 @@ public class IU_Personalizar extends JFrame {
 	private Choice choiceCara;
 	private Choice choiceSonido;
 	private int[] personalizacion= new int[3];
-	private String[] pathMinas= new String[3];
 	private Image fondo;
 	
 	/**
