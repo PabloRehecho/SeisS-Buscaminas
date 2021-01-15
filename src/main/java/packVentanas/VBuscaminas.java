@@ -321,7 +321,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 				} catch (NoArchivoAudioException e) {
 					e.printStackTrace();
 				}
-				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria.png")));
+				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria"+personalizacion[1]+".png")));
 				Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
 				Buscaminas.getBuscaminas().actualizarRanking("Ganada");
 				mostrarRanking();
@@ -341,7 +341,7 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Mina50V1.jpg")));
 					Buscaminas.getBuscaminas().obtenerPartida().contMinasMitad();
 				} else if (Integer.parseInt(p[2]) == 14) {
-					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina.png")));
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaMina" + personalizacion[0] +".png")));
 
 				} else if (Integer.parseInt(p[2]) == 15) {
 					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/MResetV1.jpg")));
