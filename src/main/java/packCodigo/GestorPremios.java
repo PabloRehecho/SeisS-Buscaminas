@@ -80,7 +80,6 @@ public class GestorPremios {
 		
 		ResultSet todos, actuales;
 		todos=getTodosPremios();
-		actuales=getNombrePremios(email);
 		cond=new int[20];
 		descr=new String[20];
 		nom=new String[20];
@@ -95,6 +94,7 @@ public class GestorPremios {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		actuales=getNombrePremios(email);
 		try {
 			while(actuales.next()) {
 				nMios.add(actuales.getString("Nombre"));
