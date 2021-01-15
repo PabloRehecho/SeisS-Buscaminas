@@ -31,6 +31,12 @@ public class GestorJuego {
 		rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE email = '" + email + "'");
 		return rs;
 	}
+	public ResultSet conseguirPathMinas(int conjunto) 
+	{
+		ResultSet rs = GestorBD.getGestorBD().execSQL("SELECT * FROM imagenesaudio WHERE tipoRecurso = 1 AND conjunto = " + conjunto);
+		System.out.println(rs);
+		return rs;
+	}
 	public void crearValores() 
 	{		
 		GestorBD.getGestorBD().execSQL2("DELETE FROM valores");
@@ -47,26 +53,26 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
 		GestorBD.getGestorBD().execSQL2("DELETE FROM imagenesaudio");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,2,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,3,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,2,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,3,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,2,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,3,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,2,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,3,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,2,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,3,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,2,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,3,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,1,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,2,1,'a')");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,3,1,'a')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,2,'b')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,3,'c')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,1,'d')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,2,'e')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,2,3,'f')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,1,'g')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,2,'h')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,3,3,'i')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,1,'j')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,2,'k')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,1,3,'l')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,1,'m')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,2,'n')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,2,3,'o')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,1,'p')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,2,'q')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(2,3,3,'r')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,1,1,'s')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,2,1,'t')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,3,1,'u')");
 		
 		
 	}
