@@ -66,6 +66,7 @@ public class GestorUsuarioTest {
 		assertEquals(GestorUsuario.getGestorUsuario().getUsuario(), "u1@prueba.com");
 		
 	}
+	
 	@Test
 	public void testCrearCuenta() {
 		
