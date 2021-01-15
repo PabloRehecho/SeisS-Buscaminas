@@ -22,7 +22,6 @@ public class IU_OpcionPremios extends JFrame{
 	private JPanel contentPane;
 	private JLabel lblTexto;
 	private JButton btnMostrar;
-	private JButton btnCerrar;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,7 +47,6 @@ public class IU_OpcionPremios extends JFrame{
 		contentPane.add(lblTexto, "flowx, cell 0 0, alignx center, alignycenter");
 		
 		contentPane.add(getBtnMostrar(), "cell 0 2,alignx center, alignycenter");
-		contentPane.add(getBtnCerrar(), "cell 1 2,alignx center, alignycenter");
 	}
 	private JButton getBtnMostrar() {
 			if (btnMostrar == null) {
@@ -63,18 +61,5 @@ public class IU_OpcionPremios extends JFrame{
 				});
 		}
 		return btnMostrar;
-	}
-	private JButton getBtnCerrar() {
-		if (btnCerrar == null) {
-			btnCerrar=new JButton("Cerrar");
-			btnCerrar.addMouseListener(new MouseAdapter(){
-				public void mouseClicked(MouseEvent e){
-					 if (e.getButton() == MouseEvent.BUTTON1) {
-						 setVisible(false);
-					 }
-				}
-			});
-		}
-		return btnCerrar;
 	}
 }
