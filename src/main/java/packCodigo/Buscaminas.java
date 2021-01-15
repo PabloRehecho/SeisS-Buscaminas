@@ -32,11 +32,17 @@ public class Buscaminas {
 	}
 
 	public boolean crearCuenta(String text, String password, String copiaPassword) {
-		return GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
+		boolean a= GestorUsuario.getGestorUsuario().crearCuenta(text, password,copiaPassword);
+		Buscaminas.getBuscaminas().crearValores();
+		return a;
 	}
 
 	public void setUsuarioLogeado(String text) {
 		GestorUsuario.getGestorUsuario().setUsuario(text);
+	}
+	
+	public String getUsuarioLogeado() {
+		return GestorUsuario.getGestorUsuario().getUsuario();
 	}
 
 	public boolean resetContraseña(String text) {
@@ -50,7 +56,8 @@ public class Buscaminas {
 	public void crearValores() 
 	{
 		//no se si es apropiado
-		GestorJuego.getGestorJuego().crearValores();		
+		GestorJuego.getGestorJuego().crearValores();	
+		GestorPremios.getGestorPremios().crearPremios();
 	}	
 	
 
@@ -103,6 +110,11 @@ public class Buscaminas {
 	{
 		GestorUsuario.getGestorUsuario().borrarUsuario(pCorreo);		
 	}	
+	
+	public int seleccionarNivelUsuario() {
+		String a= getUsuarioLogeado();
+		return GestorUsuario.getGestorUsuario().seleccionarNivelUsuario(a);
+	}
 
 	public int conseguirMensajeAyuda() 
 	{
@@ -160,76 +172,8 @@ public class Buscaminas {
 	}
 	
 	public boolean comprobarPremiosGanados(int[] hitos) {
-		Set<String> nMios=new HashSet<String>();
-		int i=0;
-		int cond[];
-		String nom[];
-		String descr[];
-		boolean nuevo=false;
-		
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
-		ResultSet todos, actuales;
-		todos=GestorPremios.getGestorPremios().getTodosPremios();
-		actuales=GestorPremios.getGestorPremios().getNombrePremios(email);
-		cond=new int[20];
-		descr=new String[20];
-		nom=new String[20];
-		try {
-			while(todos.next()) {
-				cond[i]=todos.getInt("Requisito");
-				nom[i]=todos.getString("Nombre");
-				descr[i]=todos.getString("Decripcion");
-				i++;
-			}
-			todos.close();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			while(actuales.next()) {
-				nMios.add(todos.getString("Nombre"));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		int in=0;
-		while(in<=i) {
-			if(!nMios.contains(nom[i])) {
-				if(descr[i]=="Ganar en el nivel 1") {
-					if(hitos[0]>=cond[i]){
-						nuevo=true;
-						GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
-					}
-				}
-				else if(descr[i]=="Ganar en el nivel 2") {
-					if(hitos[1]>=cond[i]){
-						nuevo=true;
-					}
-				}
-				else if(descr[i]=="Ganar en el nivel 3") {
-					if(hitos[2]>=cond[i]){
-						nuevo=true;
-					}
-				}
-				else {
-					if(hitos[3]>=cond[i]){
-						nuevo=true;
-					}
-				}
-				if(nuevo) {
-					GestorPremios.getGestorPremios().ganarPremio(email, nom[i]);
-				}
-			}
-			in++;
-		}
-		return nuevo;
+		return GestorPremios.getGestorPremios().comprobarPremio(hitos,email);
 	}
-
-	
-
-
-
-	
-	
 
 }

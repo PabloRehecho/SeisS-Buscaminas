@@ -73,8 +73,6 @@ public class GestorJuego {
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,1,1,'s')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,2,1,'t')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(3,3,1,'u')");
-		
-		
 	}
 		
 	public void modificarValores(int[] pValores, String[] pNombres) 

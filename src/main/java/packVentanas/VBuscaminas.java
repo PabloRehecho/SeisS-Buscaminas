@@ -2,6 +2,8 @@ package packVentanas;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -20,8 +22,13 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import net.miginfocom.swing.MigLayout;
@@ -30,16 +37,8 @@ import packCodigo.NoArchivoAudioException;
 import packCodigo.Partida;
 import packCodigo.Tablero;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.Image;
-
 @SuppressWarnings({ "serial", "deprecation" })
-public class VBuscaminas extends JFrame implements ActionListener, Observer{
+public class VBuscaminas extends JFrame implements ActionListener, Observer {
 
 	private JPanel contentPane;
 	private JMenuBar menuBar;
@@ -60,7 +59,6 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 	private AudioInputStream ais;
 	private int bomba = 0;
 	private int[] personalizacion= new int[3];
-
 
 	/**
 	 * Launch the application.
@@ -89,55 +87,53 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 			setBounds(100, 100, 1000, 1000);
 		}else if(nivel == 2){
 			setBounds(100, 100, 1500, 1500);
-		}else if(nivel == 3){
+		} else if (nivel == 3) {
 			setBounds(10, 10, 5000, 5000);
 		}
 		setTitle("Buscaminas");
-		setResizable(false); 
+		setResizable(false);
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		menu1 = new JMenu("Juego");
 		menuBar.add(menu1);
-		
+
 		menu2 = new JMenu("Ayuda");
 		menuBar.add(menu2);
-		
+
 		item1 = new JMenuItem("Nuevo");
 		item1.addActionListener(this);
 		menu1.add(item1);
-		
-		
+
 		item2 = new JMenuItem("Ver");
 		item2.addActionListener(this);
 		menu2.add(item2);
-		
+
 		item3 = new JMenuItem("Ranking");
 		item3.addActionListener(this);
 		menu1.add(item3);
-		
+
 		item4 = new JMenuItem("Salir");
 		item4.addActionListener(this);
 		menu1.add(item4);
-		
-		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		contentPane.setLayout(new MigLayout("", "[200.00]", "[40.00][204.00]"));
-		
+
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel_2, "cell 0 0,grow");
-	
+
 		panel_2.setLayout(new MigLayout("", "[20.00][20.00][17.00][][20][][]", "[]"));
-		
-		for(int i=0; i<3; i++){
+
+		for (int i = 0; i < 3; i++) {
 			JLabel j1 = new JLabel();
 			Banderas[i] = j1;
-			panel_2.add(j1, "cell "+i+" 0, grow");
+			panel_2.add(j1, "cell " + i + " 0, grow");
 			j1.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 		ResultSet rs= Buscaminas.getBuscaminas().extraerPersonalizacion();
@@ -152,134 +148,122 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(new Color(255, 255, 0));
 		panel_2.add(lblNewLabel, "cell 3 0,growx");
 		lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset"+ personalizacion[1] +".png")));
-		
-		
+
 		lblNewLabel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
+			public void mouseClicked(MouseEvent e) {
 				Buscaminas.getBuscaminas().obtenerPartida().reset(vBusca);
 				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Reset"+ personalizacion[1] +".png")));
 			}
 		});
-		
-		for(int i=4; i<7; i++){
+
+		for (int i = 4; i < 7; i++) {
 			JLabel j1 = new JLabel();
-			Tiempo[i-4] = j1;
-			panel_2.add(j1, "cell "+i+" 0, grow");
+			Tiempo[i - 4] = j1;
+			panel_2.add(j1, "cell " + i + " 0, grow");
 			j1.setHorizontalAlignment(SwingConstants.RIGHT);
 		}
-		
-		
+
 		panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(panel, "cell 0 1,grow");
-		
+
 		iniciarCasillas(nivel);
 		Buscaminas.getBuscaminas().obtenerPartida().inicioJuego(nivel);
 		Buscaminas.getBuscaminas().obtenerPartida().anadirObservador(this);
-		fil=Buscaminas.getBuscaminas().obtenerPartida().obtenerNumFilas();
-		col=Buscaminas.getBuscaminas().obtenerPartida().obtenerNumColumnas();
+		fil = Buscaminas.getBuscaminas().obtenerPartida().obtenerNumFilas();
+		col = Buscaminas.getBuscaminas().obtenerPartida().obtenerNumColumnas();
 		mostrarTablero();
 		anadirCasillas();
 	}
 
-
-	
 	private void iniciarCasillas(int pNivel) {
-		if(pNivel == 1){
-			lcasillas = new JLabel[1000];
-		}else if(pNivel == 2){
-			lcasillas = new JLabel[2000];
-		}else if(pNivel == 3){
-			lcasillas = new JLabel[3000];
-		}
-		
+		int[] a = Buscaminas.getBuscaminas().conseguirFilasColumnas(pNivel);
+		lcasillas = new JLabel[a[0] * a[1]];
 	}
 
-	private void mostrarTablero(){
-		
+	private void mostrarTablero() {
+
 		String SFila = "";
 		String SCol = "";
-		for(int i=0;i<=fil;i++){
-			SFila=SFila+"[]";
-			for(int j=0;j<=col;j++){
-				SCol=SCol+"[]";
+		for (int i = 0; i <= fil; i++) {
+			SFila = SFila + "[]";
+			for (int j = 0; j <= col; j++) {
+				SCol = SCol + "[]";
 			}
 		}
 		panel.setLayout(new MigLayout("", SCol, SFila));
 	}
-	
-	public void anadirCasillas(){
-		String f="";
-		String c="";
-		int cont=0;
-		for(int i=0; i<=col; i++){
-			f= Integer.toString(i);
-			for(int j=0; j<=fil; j++){
-				c= Integer.toString(j);
+
+	public void anadirCasillas() {
+		String f = "";
+		String c = "";
+		int cont = 0;
+		for (int i = 0; i <= col; i++) {
+			f = Integer.toString(i);
+			for (int j = 0; j <= fil; j++) {
+				c = Integer.toString(j);
 				JLabel l1 = new JLabel();
-				lcasillas[cont]=l1;
+				lcasillas[cont] = l1;
 				cont++;
 				l1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 				l1.setHorizontalAlignment(SwingConstants.CENTER);
 				l1.setBackground(new Color(255, 255, 255));
-				panel.add(l1, "cell"+f+" "+c);
-								
+				panel.add(l1, "cell" + f + " " + c);
+
 				l1.addMouseListener(new MouseAdapter() {
-					public void mouseClicked(MouseEvent e){
-						 if (e.getButton() == MouseEvent.BUTTON3 && juego && !finalizado) {
-							 int a;
-							 int b;
-							 a=getx(buscarPosCasilla((JLabel)e.getSource()));
-							 b=gety(buscarPosCasilla((JLabel)e.getSource()));
-		                     Buscaminas.getBuscaminas().obtenerPartida().ponerBandera(a,b);
-		                     Buscaminas.getBuscaminas().obtenerPartida().comprobarJuego();
-		                  }
-						 else if(e.getButton() == MouseEvent.BUTTON1 && juego && !finalizado){
-							 int a;
-							 int b;
-							 a=getx(buscarPosCasilla((JLabel)e.getSource()));
-							 b=gety(buscarPosCasilla((JLabel)e.getSource()));
-							 Buscaminas.getBuscaminas().obtenerPartida().descubrirCasilla(a,b);
-		                     Buscaminas.getBuscaminas().obtenerPartida().comprobarJuego();
-					} else
-						if(e.getButton() == MouseEvent.BUTTON2 && juego && !finalizado){
+					public void mouseClicked(MouseEvent e) {
+						if (e.getButton() == MouseEvent.BUTTON3 && juego && !finalizado) {
 							int a;
 							int b;
-							a=getx(buscarPosCasilla((JLabel)e.getSource()));
-							b=gety(buscarPosCasilla((JLabel)e.getSource()));
-							Buscaminas.getBuscaminas().obtenerPartida().descubrirTodosLosVecinos(a,b);
+							a = getx(buscarPosCasilla((JLabel) e.getSource()));
+							b = gety(buscarPosCasilla((JLabel) e.getSource()));
+							Buscaminas.getBuscaminas().obtenerPartida().ponerBandera(a, b);
 							Buscaminas.getBuscaminas().obtenerPartida().comprobarJuego();
+						} else if (e.getButton() == MouseEvent.BUTTON1 && juego && !finalizado) {
+							int a;
+							int b;
+							a = getx(buscarPosCasilla((JLabel) e.getSource()));
+							b = gety(buscarPosCasilla((JLabel) e.getSource()));
+							Buscaminas.getBuscaminas().obtenerPartida().descubrirCasilla(a, b);
+							Buscaminas.getBuscaminas().obtenerPartida().comprobarJuego();
+						} else if (e.getButton() == MouseEvent.BUTTON2 && juego && !finalizado) {
+							int a;
+							int b;
+							a = getx(buscarPosCasilla((JLabel) e.getSource()));
+							b = gety(buscarPosCasilla((JLabel) e.getSource()));
+							Buscaminas.getBuscaminas().obtenerPartida().descubrirTodosLosVecinos(a, b);
+							Buscaminas.getBuscaminas().obtenerPartida().comprobarJuego();
+						}
 					}
-				}
-					});
+				});
 				l1.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Casilla.png")));
 			}
 		}
 	}
-	
+
 	private int gety(int pPos) {
-		return (pPos/(fil+1));
+		return (pPos / (fil + 1));
 
 	}
 
 	private int getx(int pPos) {
-		if(pPos>10){
-				return pPos%(fil+1);
-			}
-			else{
-				return (pPos%(fil+1));
-			}
+		if (pPos > 10) {
+			return pPos % (fil + 1);
+		} else {
+			return (pPos % (fil + 1));
+		}
 	}
 
 	private int buscarPosCasilla(JLabel source) {
-		int pos=0;
-		while(lcasillas[pos]!=source){
+		int pos = 0;
+		while (lcasillas[pos] != source) {
 			pos++;
 		}
 		return pos;
@@ -364,45 +348,63 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 				    }else if(Integer.parseInt(p[2])==11){
 				    	lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaNoMina" + personalizacion[0] + ".png")));
 				    }
+				if (p[2].toString().equals("PonerBandera")) {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/CasillaBandera.png")));
+				} else {
+					lcasillas[pos].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Casilla.png")));
+				}
+
+			} else if (arg.equals("FINALIZADO")) {
+				finalizado = true;
+				try {
+					play(finalizado, o);
+				} catch (NoArchivoAudioException e) {
+					e.printStackTrace();
+				}
+				lblNewLabel.setIcon(new ImageIcon(VBuscaminas.class.getResource("/Victoria.png")));
+				Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
+				Buscaminas.getBuscaminas().actualizarRanking("Ganada");
+				mostrarRanking();
+				JOptionPane.showMessageDialog(null, "HAS RESUELTO CORRECTAMENTE!!!");
+
+			}
 				}
 			}
-	}
-	
 
 	public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==item1) {
-        	Buscaminas.getBuscaminas().obtenerPartida().reset(vBusca);
-        } else if (e.getSource() == item2){
-        	VAyuda vA = new VAyuda();
+		if (e.getSource() == item1) {
+			Buscaminas.getBuscaminas().obtenerPartida().reset(vBusca);
+		} else if (e.getSource() == item2) {
+			VAyuda vA = new VAyuda();
 			vA.setVisible(true);
-        }else if (e.getSource() == item3){
-        	mostrarRanking();
-        }else if (e.getSource() == item4){
+		} else if (e.getSource() == item3) {
+			mostrarRanking();
+		} else if (e.getSource() == item4) {
 			try {
-	        	IU_MenuPrincipal principal = new IU_MenuPrincipal();
-	        	principal.setVisible(true);
-	        	setVisible(false);
+				IU_MenuPrincipal principal = new IU_MenuPrincipal();
+				principal.setVisible(true);
+				setVisible(false);
 			} catch (NoArchivoAudioException e1) {
 				e1.printStackTrace();
 			}
-        }
-   }
-	
-	private void habilitarCasillas(){
-		for(int i=0;i<lcasillas.length;i++){
+		}
+	}
+
+	private void habilitarCasillas() {
+		for (int i = 0; i < lcasillas.length; i++) {
 			lcasillas[i].setEnabled(true);
 			lcasillas[i].setIcon(new ImageIcon(VBuscaminas.class.getResource("/Casilla.png")));
 		}
 	}
-	
-	private int calcularPosicion(int pFila, int pCol){
-		int pos = 0; 
-		pos = (pCol*(fil+1))+pFila;
-		return pos;	
+
+	private int calcularPosicion(int pFila, int pCol) {
+		int pos = 0;
+		pos = (pCol * (fil + 1)) + pFila;
+		return pos;
 	}
-	
-	private void mostrarRanking(){
-    	IU_RankingUsuario ranking = new IU_RankingUsuario();
+
+	private void mostrarRanking() {
+		IU_RankingUsuario ranking = new IU_RankingUsuario();
 		ranking.setVisible(true);
 	}
 		
@@ -428,11 +430,11 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}else {
+			} else {
 				throw new NoArchivoAudioException();
 			}
-		}else{
-			if (new File("sources/win.wav").getAbsoluteFile() != null){
+		} else {
+			if (new File("sources/win.wav").getAbsoluteFile() != null) {
 				try {
 					ais = AudioSystem.getAudioInputStream(new File("src/main/resources/win.wav").getAbsoluteFile());
 				} catch (UnsupportedAudioFileException e) {
@@ -452,13 +454,12 @@ public class VBuscaminas extends JFrame implements ActionListener, Observer{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				Partida partida=(Partida)part;
+				Partida partida = (Partida) part;
 				partida.actualizarHitos();
-			}else {
+			} else {
 				throw new NoArchivoAudioException();
 			}
 		}
 		clip.start();
 	}
 }
-

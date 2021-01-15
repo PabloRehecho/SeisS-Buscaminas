@@ -68,7 +68,7 @@ public class IU_VentanaInicio extends JFrame {
 		//SONIDO-INICIO		
 				if (new File("sources/himno.wav").getAbsoluteFile() != null){
 					try {
-						ais = AudioSystem.getAudioInputStream(new File("src/main/resources/himno.wav").getAbsoluteFile());
+						ais = AudioSystem.getAudioInputStream(new File("src/main/resources/login.wav").getAbsoluteFile());
 					} catch (UnsupportedAudioFileException e) {
 						e.printStackTrace();
 					} catch (IOException e) {

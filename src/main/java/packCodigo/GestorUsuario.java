@@ -48,8 +48,10 @@ public class GestorUsuario {
 	
 	public boolean iniciarSesion(String pEmail, String pContraseña) {
 		try {
-			if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pEmail + "' AND Contrasena='" + pContraseña + "'").next()) {
+			ResultSet m = GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pEmail + "' AND Contrasena='" + pContraseña + "'");
+			if (m.next()) {
 				email=pEmail;
+				m.close();
 				return true;
 			}
 		} catch (SQLException e) {
@@ -67,20 +69,17 @@ public class GestorUsuario {
 					pContraseña.length()>0 && pContraseña.equals(pCopiaPassword)){
 				//si el coreo está en formato válido, hay una contraseña y las dos contraseñas son iguales
 				
-				
-				if (GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "'").next()){
+				ResultSet m = GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "'");
+				if (m.next()){
+					m.close();
 					return false;
 				}else {
 					GestorBD.getGestorBD().execSQL2("INSERT INTO usuario (Email,Contrasena) VALUES ('" + pCorreo + "','" + pContraseña + "')");
 					email=pCorreo;
+					m.close();
 					return true;
 				}
 			}
-			
-			
-			
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,13 +92,17 @@ public class GestorUsuario {
 		String psw= crearNuevaContraseña();
 		
 		try {
-			if (!GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "'").next()){
+			ResultSet m = GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "'");
+			if (!m.next()){
+				m.close();
 				return false;
 			}
+			m.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+		// Envío de correo
         Properties prop = new Properties();
         prop.setProperty("mail.smtp.host", "smtp.gmail.com");
         prop.setProperty("mail.smtp.starttls.enable", "true");
@@ -129,8 +132,6 @@ public class GestorUsuario {
             
             return true;
             
-            
-            
         } catch (AddressException e) {
         	e.printStackTrace();
         } catch (MessagingException e) {
@@ -140,7 +141,7 @@ public class GestorUsuario {
         
 	}
 
-	private String crearNuevaContraseña() {
+	public String crearNuevaContraseña() {
 		Random num = new Random();
 		char[] psw = new char[7];
 		for(int i=0; i<7; i++)
@@ -151,7 +152,6 @@ public class GestorUsuario {
 	}
 
 	public boolean logearRedSocial() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
@@ -162,12 +162,14 @@ public class GestorUsuario {
 	
 	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
 		try {
-			if(pN1.length()>0 && pN1.contentEquals(pN2) && GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario WHERE email='" + email + "' and Contrasena='" + pAntigua + "'").next()){
+			ResultSet m = GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario WHERE email='" + email + "' and Contrasena='" + pAntigua + "'");
+			if(pN1.length()>0 && pN1.contentEquals(pN2) && m.next()){
 				GestorBD.getGestorBD().execSQL2("UPDATE usuario SET contrasena='" + pN1 + "' WHERE Email='" + email + "'");
+				m.close();
 				return true;
 			}
+			m.close();
 		}catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -183,11 +185,10 @@ public class GestorUsuario {
 		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE Email='" + pCorreo + "';");
 		try {
 			rs.next();
-			int a= rs.getInt("NivelInicial");
+			int a= rs.getInt("nivelInicial");
 			rs.close();
 			return a;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
 		}
@@ -203,6 +204,21 @@ public class GestorUsuario {
 		
 	}
 	
+	public int seleccionarNivelUsuario(String a) {
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario WHERE email='" + a + "';");
+		int b;
+		try {
+			rs.next();
+			b= rs.getInt("nivelInicial");
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			b=0;
+		}
+		return b;
+	}
+	
 	public ResultSet getHitos() {
 		ResultSet res=null;
 		String pEmail=getUsuario();
@@ -213,6 +229,8 @@ public class GestorUsuario {
 		String pEmail=getUsuario();
 		GestorBD.getGestorBD().execSQL2("UPDATE Usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
 	}
+
+	
 
 	
 	
