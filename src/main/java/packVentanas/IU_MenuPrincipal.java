@@ -219,7 +219,7 @@ public class IU_MenuPrincipal extends JFrame {
 			btnPremio.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					IU_Premios premio = new IU_Premios();
-					premio.setVisible(true);
+					//premio.setVisible(true);
 				}
 			});
 		}

@@ -39,7 +39,7 @@ public class GestorPremioTest {
 		ResultSet todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
 		try {
 			while(todos.next()) {
-				//System.out.println(todos.getString("Nombre"));
+				System.out.println(todos.getString("Nombre"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -49,13 +49,14 @@ public class GestorPremioTest {
 
 	@Test
 	public void testGetTodosPremios() {
+		System.out.println();
 	GestorPremios.getGestorPremios().crearPremios();
 	GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
 	ResultSet todos=GestorPremios.getGestorPremios().getTodosPremios();
 	try {
 		while(todos.next()) {
-			//System.out.println(todos.getString("Nombre"));
-			//System.out.println(todos.getString("Descripcion"));
+			System.out.println(todos.getString("Nombre"));
+			System.out.println(todos.getString("Descripcion"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -65,6 +66,7 @@ public class GestorPremioTest {
 
 	@Test
 	public void testGetNombrePremios() {
+		System.out.println("getNombrePremio");
 		GestorPremios.getGestorPremios().crearPremios();
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuarioPremio");
@@ -74,7 +76,7 @@ public class GestorPremioTest {
 		ResultSet todos=GestorPremios.getGestorPremios().getNombrePremios("bb@b.b");
 		try {
 			while(todos.next()) {
-					//System.out.println(todos.getString("Nombre"));
+					System.out.println(todos.getString("Nombre"));
 			}
 		}catch (SQLException e) {
 			//TODO Auto-generated catch block
@@ -84,6 +86,7 @@ public class GestorPremioTest {
 
 	@Test
 	public void testGanarPremio() {
+		System.out.println("GanarPremio");
 		GestorPremios.getGestorPremios().crearPremios();
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
@@ -92,7 +95,7 @@ public class GestorPremioTest {
 		ResultSet todos=GestorPremios.getGestorPremios().getNombrePremios("bb@b.b");
 		try {
 			while(todos.next()) {
-					//System.out.println(todos.getString("Nombre"));
+					System.out.println(todos.getString("Nombre"));
 			}
 		}catch (SQLException e) {
 			//TODO Auto-generated catch block
@@ -106,6 +109,7 @@ public class GestorPremioTest {
 
 	@Test
 	public void testComprobarPremio() {
+		System.out.println("ComprobarPremio");
 		GestorPremios.getGestorPremios().crearPremios();
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
