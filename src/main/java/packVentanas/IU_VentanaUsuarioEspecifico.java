@@ -61,7 +61,7 @@ public class IU_VentanaUsuarioEspecifico extends JFrame {
 	public IU_VentanaUsuarioEspecifico(final String pCorreo) throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
-		fondo = new ImageIcon(getClass().getResource("/Logo1.png")).getImage();
+		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
