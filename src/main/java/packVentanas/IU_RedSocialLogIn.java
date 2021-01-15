@@ -124,6 +124,10 @@ public class IU_RedSocialLogIn extends JFrame {
 			btnGG.setIcon(new ImageIcon(getClass().getResource("/gg.png")));
 			btnGG.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					VMensaje m = new VMensaje();
+					m.setMensaje("No es posible por el momento iniciar sesión con Google");
+					m.setVisible(true);
+					/*
 					try {
 						IU_VentanaInicio login = new IU_VentanaInicio();
 						login.setVisible(true);
@@ -131,6 +135,7 @@ public class IU_RedSocialLogIn extends JFrame {
 					} catch (NoArchivoAudioException e1) {
 						e1.printStackTrace();
 					}
+					*/
 				}
 			});
 		}
