@@ -32,19 +32,28 @@ public class GestorJuego {
 		return rs;
 	}
 	public void crearValores() 
-	{		
-		GestorBD.getGestorBD().execSQL2("DELETE FROM valores");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('nivel', 1) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('filas1', 7) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('filas2', 10) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('filas3', 12) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('columnas1', 10) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('columnas2', 15) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('columnas3', 25) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas1', 11) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas2', 32) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas3', 78) ");
-		GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
+	{	
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM valores");
+		try {
+			if (!rs.next())
+			{
+				GestorBD.getGestorBD().execSQL2("DELETE FROM valores");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('nivel', 1) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('filas1', 7) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('filas2', 10) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('filas3', 12) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('columnas1', 10) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('columnas2', 15) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('columnas3', 25) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas1', 11) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas2', 32) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('minas3', 78) ");
+				GestorBD.getGestorBD().execSQL2("INSERT INTO valores VALUES('mensaje', 1) ");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		GestorBD.getGestorBD().execSQL2("DELETE FROM imagenesaudio");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,1,'a')");
 		GestorBD.getGestorBD().execSQL2("INSERT INTO imagenesaudio VALUES(1,1,2,'b')");
