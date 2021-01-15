@@ -63,7 +63,7 @@ public class IU_Personalizar extends JFrame {
 	public IU_Personalizar() throws NoArchivoAudioException {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		setIconImage(icon);
-		fondo = new ImageIcon(getClass().getResource("/wagruigi.png")).getImage();
+		fondo = new ImageIcon(getClass().getResource("/Logo1.png")).getImage();
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
