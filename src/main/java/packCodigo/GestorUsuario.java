@@ -162,7 +162,7 @@ public class GestorUsuario {
 	
 	public boolean cambioDeContraseña(String pAntigua, String pN1, String pN2) {
 		try {
-			ResultSet m = GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario WHERE email='" + email + "' and Contrasena='" + pAntigua + "'");
+			ResultSet m = GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE email='" + email + "' and Contrasena='" + pAntigua + "'");
 			if(pN1.length()>0 && pN1.contentEquals(pN2) && m.next()){
 				GestorBD.getGestorBD().execSQL2("UPDATE usuario SET contrasena='" + pN1 + "' WHERE Email='" + email + "'");
 				m.close();
@@ -177,7 +177,7 @@ public class GestorUsuario {
 
 
 	public ResultSet extraerListaUsuarios() {
-		return GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario");
+		return GestorBD.getGestorBD().execSQL("SELECT * FROM usuario");
 		
 	}
 	
@@ -200,12 +200,12 @@ public class GestorUsuario {
 	}
 	
 	public void borrarUsuario(String pCorreo) {
-		GestorBD.getGestorBD().execSQL2("DELETE FROM Usuario WHERE Email='" + pCorreo +"';");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario WHERE Email='" + pCorreo +"';");
 		
 	}
 	
 	public int seleccionarNivelUsuario(String a) {
-		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM Usuario WHERE email='" + a + "';");
+		ResultSet rs= GestorBD.getGestorBD().execSQL("SELECT * FROM usuario WHERE email='" + a + "';");
 		int b;
 		try {
 			rs.next();
@@ -227,7 +227,7 @@ public class GestorUsuario {
 	}
 	public void actualizarHitos(int[] hitos) {
 		String pEmail=getUsuario();
-		GestorBD.getGestorBD().execSQL2("UPDATE Usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
+		GestorBD.getGestorBD().execSQL2("UPDATE usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
 	}
 
 	

@@ -39,6 +39,7 @@ public class GestorBD {
 			try {
 				s = conn.createStatement();
 				s.executeUpdate(sentencia);
+				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

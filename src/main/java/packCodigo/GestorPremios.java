@@ -19,7 +19,7 @@ public class GestorPremios {
 	
 	public ResultSet getPremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public ResultSet getTodosPremios() {
@@ -42,7 +42,6 @@ public class GestorPremios {
 			if (!rs.next())
 			{
 				GestorBD.getGestorBD().execSQL2("DELETE FROM premio");
-				GestorBD.getGestorBD().execSQL2("ALTER TABLE premio CHANGE imagen imagen varchar(40)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceI', 'Ganar en el nivel 1', 'premio bronce 5.png', 5)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceII', 'Ganar en el nivel 1', 'premio bronce 10.png', 10)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIII', 'Ganar en el nivel 1', 'premio bronce 15.png', 15)");

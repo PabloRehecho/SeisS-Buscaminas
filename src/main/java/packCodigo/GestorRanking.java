@@ -18,10 +18,10 @@ public class GestorRanking {
 	public ResultSet mostrarRankingGlobal(int pNivel) {
 		ResultSet rs = null;
 		if (pNivel == 0) {
-			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM Ranking ORDER BY Puntuacion DESC");
+			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM ranking ORDER BY Puntuacion DESC");
 		}
 		else {
-			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM Ranking WHERE nivel = " + pNivel + " ORDER BY Puntuacion DESC");
+			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM ranking WHERE nivel = " + pNivel + " ORDER BY Puntuacion DESC");
 		}
 		return rs;
 	}
@@ -29,10 +29,10 @@ public class GestorRanking {
 	public ResultSet mostrarRankingPersonal(String pEmail, int pNivel) {
 		ResultSet rs = null;
 		if (pNivel == 0) {
-			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM Ranking WHERE emailJugador = '" + pEmail + "' ORDER BY Puntuacion DESC");
+			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM ranking WHERE emailJugador = '" + pEmail + "' ORDER BY Puntuacion DESC");
 		}
 		else {
-			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM Ranking WHERE emailJugador = '" + pEmail + "' AND nivel = " + pNivel + " ORDER BY Puntuacion DESC");
+			rs = GestorBD.getGestorBD().execSQL("SELECT * FROM ranking WHERE emailJugador = '" + pEmail + "' AND nivel = " + pNivel + " ORDER BY Puntuacion DESC");
 		}
 		return rs;
 	}
