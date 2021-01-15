@@ -35,7 +35,7 @@ public class Partida extends Observable implements Observer {
 	 * @return *
 	 ************************/
 	private void setContMinas() {
-		contMinas = tablero.minas().size();
+		contMinas = tablero.getlMinas().size();
 	}
 
 	/** Iniciamos el juego **/

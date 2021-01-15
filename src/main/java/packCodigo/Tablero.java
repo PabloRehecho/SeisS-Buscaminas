@@ -35,15 +35,17 @@ public class Tablero extends Observable {
 		int x = this.filas;
 		int y = this.columnas;
 		int i, j = 0;
-		i = 1;
-		j = 1;
+		i = 0;
+//		i = randInt(x);
+//		j = randInt(y);
 		matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("MinaReset");
 		matriz[i][j].inicializar(i + "," + j);
 		generarCasillasNumero(i, j);
 		minasAColocar--;
 		MReset = matriz[i][j].obtenerCoordenadas();
-		i = 0;
-		j = 0;
+		lMinas.add(MReset);
+		i = randInt(x);
+		j = randInt(y);
 		if (!((matriz[i][j]) instanceof CasillaMina) && !((matriz[i][j]) instanceof CasillaMinaReset)
 				&& !((matriz[i][j]) instanceof CasillaMina50) && minasAColocar >= 1) {
 			matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina50");
@@ -51,6 +53,7 @@ public class Tablero extends Observable {
 			generarCasillasNumero(i, j);
 			minasAColocar--;
 			M50 = matriz[i][j].obtenerCoordenadas();
+			lMinas.add(M50);
 		}
 		while (minasAColocar != 0) {
 			i = randInt(x);
@@ -60,6 +63,8 @@ public class Tablero extends Observable {
 				matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina");
 				matriz[i][j].inicializar(i + "," + j);
 				generarCasillasNumero(i, j);
+				lMinas.add(((CasillaMina) matriz[i][j]).obtenerCoordenadas());
+				System.out.println(minasAColocar);
 				minasAColocar--;
 			}
 		}
@@ -70,13 +75,13 @@ public class Tablero extends Observable {
 					matriz[k][l] = CasillaFactory.getMiFactoria().generarCasilla("Vacia");
 					matriz[k][l].inicializar("" + k + "," + l);
 				}
-				if (!((matriz[k][l]) instanceof CasillaMina) || !((matriz[k][l]) instanceof CasillaMinaReset)
-						|| !((matriz[k][l]) instanceof CasillaMina50)) {
+				if (!((matriz[k][l]) instanceof CasillaMina) && !((matriz[k][l]) instanceof CasillaMinaReset)
+						&& !((matriz[k][l]) instanceof CasillaMina50)) {
 					anadirVecinos(k, l);
 				}
 			}
 		}
-		lMinas = minas();
+		// lMinas = minas();
 		lCasillasVacias = vacias();
 	}
 
@@ -379,6 +384,10 @@ public class Tablero extends Observable {
 
 	}
 
+	public ArrayList<String> getlMinas() {
+		return lMinas;
+	}
+
 	public ArrayList<String> minas() {
 
 		ArrayList<String> ls = new ArrayList<String>();
@@ -388,10 +397,10 @@ public class Tablero extends Observable {
 				if (matriz[i][j] instanceof CasillaMina) {
 					ls.add(((CasillaMina) matriz[i][j]).obtenerCoordenadas());
 				} else if (matriz[i][j] instanceof CasillaMinaReset) {
-					MReset = ((CasillaMinaReset) matriz[i][j]).obtenerCoordenadas();
+					// MReset = ((CasillaMinaReset) matriz[i][j]).obtenerCoordenadas();
 					ls.add(MReset);
 				} else if (matriz[i][j] instanceof CasillaMina50) {
-					M50 = ((CasillaMina50) matriz[i][j]).obtenerCoordenadas();
+					// M50 = ((CasillaMina50) matriz[i][j]).obtenerCoordenadas();
 					ls.add(M50);
 				}
 			}
