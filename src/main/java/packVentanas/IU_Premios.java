@@ -66,7 +66,7 @@ public class IU_Premios extends JFrame {
         frame.pack();
         frame.setVisible(true);
 		frame.setTitle("Mis Premios");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 650, 400);
 		//contentPane.add(Cerrar);
 		
