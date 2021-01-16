@@ -102,62 +102,70 @@ public class IU_VentanaUsuarios extends JFrame {
 		try 
 		{
 			int i=0;
-			while(rs.next()) {
+			while(rs.next()) 
+			{
 				String nombre= rs.getString("email");
-				JLabel l1= new JLabel("" + nombre + "");
-				JButton l2= new JButton("editar usuario");
-				JButton l3= new JButton("borrar usuario");
-				l2.setBackground(Color.LIGHT_GRAY);
-				l3.setBackground(Color.LIGHT_GRAY);
-				listaCorreos.add(l1);
-				listaEdicion.add(l2);
-				listaBorrado.add(l3);
-				l2.addActionListener(new ActionListener()
+				if (!Buscaminas.getBuscaminas().getUsuarioLogeado().equals(nombre))
 				{
-					public void actionPerformed(ActionEvent e) 
+					JLabel l1= new JLabel("" + nombre + "");
+					JButton l2= new JButton("editar usuario");
+					JButton l3= new JButton("borrar usuario");
+					l2.setBackground(Color.LIGHT_GRAY);
+					l3.setBackground(Color.LIGHT_GRAY);
+					listaCorreos.add(l1);
+					listaEdicion.add(l2);
+					listaBorrado.add(l3);
+					l2.addActionListener(new ActionListener()
 					{
-						try
+						public void actionPerformed(ActionEvent e) 
 						{
-							int posicion= listaEdicion.indexOf(e.getSource());
-							IU_VentanaUsuarioEspecifico ventana= new IU_VentanaUsuarioEspecifico(listaCorreos.get(posicion).getText());
-							ventana.setVisible(true);
-							frame.setVisible(false);
+							try
+							{
+								int posicion= listaEdicion.indexOf(e.getSource());
+								IU_VentanaUsuarioEspecifico ventana= new IU_VentanaUsuarioEspecifico(listaCorreos.get(posicion).getText());
+								ventana.setVisible(true);
+								frame.setVisible(false);
 
-						} 
-						catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
-					}
-				});
-				
-				l3.addActionListener(new ActionListener()
-				{
-					public void actionPerformed(ActionEvent e) 
-					{						
-						int posicion= listaBorrado.indexOf(e.getSource());
-						Buscaminas.getBuscaminas().borrarUsuario(listaCorreos.get(posicion).getText());
-						VMensaje mensaje= new VMensaje();
-						mensaje.setMensaje("Usuario eliminado correctamente");
-						IU_MenuPrincipal ventana;
-						try {
-							ventana = new IU_MenuPrincipal();
-							ventana.setVisible(true);
-							frame.setVisible(false);
-							mensaje.setVisible(true);
-						} catch (NoArchivoAudioException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							} 
+							catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
 						}
-						
-						
-					}
-				});
-		        
-				panel.add(l1);
-				panel.add(l2);
-				panel.add(l3);
+					});
+					
+					l3.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e) 
+						{						
+							int posicion= listaBorrado.indexOf(e.getSource());
+							Buscaminas.getBuscaminas().borrarUsuario(listaCorreos.get(posicion).getText());
+							VMensaje mensaje= new VMensaje();
+							mensaje.setMensaje("Usuario eliminado correctamente");
+							IU_MenuPrincipal ventana;
+							try {
+								ventana = new IU_MenuPrincipal();
+								ventana.setVisible(true);
+								frame.setVisible(false);
+								mensaje.setVisible(true);
+							} catch (NoArchivoAudioException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							
+						}
+					});
+			        
+					panel.add(l1);
+					panel.add(l2);
+					panel.add(l3);
+				}
+				rs.close();
 			}
-			rs.close();
-		} catch (SQLException e) {e.printStackTrace();}		
+		} catch (SQLException e) {e.printStackTrace();}
 		
+	
+			
+				
+				
 		JButton btnVolverAlMenu = new JButton("Volver al menu");
 		btnVolverAlMenu.setBackground(Color.RED);
 		btnVolverAlMenu.setForeground(Color.BLACK);
