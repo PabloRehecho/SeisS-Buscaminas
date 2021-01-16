@@ -34,6 +34,7 @@ public class Tablero extends Observable {
 		int minasAColocar = this.calcularMinas();
 		int x = this.filas;
 		int y = this.columnas;
+		System.out.println(y);
 		int i, j = 0;
 		i = 0;
 		i = randInt(x);

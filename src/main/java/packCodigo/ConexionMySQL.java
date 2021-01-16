@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionMySQL {
+	
+	private static ConexionMySQL miConexionMySQL;
 
     // Librería de MySQL
     public String driver = "com.mysql.cj.jdbc.Driver";
@@ -27,13 +29,26 @@ public class ConexionMySQL {
 
     // Clave de usuario
     public String password = "hmX4DdIkTWJVuRmA6kWw";
+    
+    // Conexión
+    private Connection conn;
+    
+    private ConexionMySQL() {}
+    
+    public static ConexionMySQL getConexionMySQL() {
+    	if (miConexionMySQL == null) {
+    		miConexionMySQL = new ConexionMySQL();
+    	}
+    	return miConexionMySQL;
+    }
 
     public Connection conectarMySQL() {
-        Connection conn = null;
-
+    	
         try {
-        	Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
+        	if(conn == null) {
+        		Class.forName(driver);
+        		conn = DriverManager.getConnection(url, username, password);
+        	}
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
