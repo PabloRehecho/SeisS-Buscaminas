@@ -40,7 +40,7 @@ public class GestorPremioTest {
 		String[] nom=todos[0];
 		int i=0;
 		while(i<nom.length) {
-			//System.out.println(nom[i]);
+			System.out.println(nom[i]);
 			i++;
 		}
 	}
@@ -53,8 +53,8 @@ public class GestorPremioTest {
 	ResultSet todos=GestorPremios.getGestorPremios().getTodosPremios();
 	try {
 		while(todos.next()) {
-			//System.out.println(todos.getString("Nombre"));
-			//System.out.println(todos.getString("Descripcion"));
+			System.out.println(todos.getString("Nombre"));
+			System.out.println(todos.getString("Descripcion"));
 			}
 		todos.close();
 		} catch (SQLException e) {
@@ -74,7 +74,7 @@ public class GestorPremioTest {
 		ResultSet todos=GestorPremios.getGestorPremios().getNombrePremios("bb@b.b");
 		try {
 			while(todos.next()) {
-					//System.out.println(todos.getString("Nombre"));
+					System.out.println(todos.getString("Nombre"));
 			}
 			todos.close();
 		}catch (SQLException e) {
@@ -94,7 +94,7 @@ public class GestorPremioTest {
 		ResultSet todos=GestorPremios.getGestorPremios().getNombrePremios("bb@b.b");
 		try {
 			while(todos.next()) {
-					//System.out.println(todos.getString("Nombre"));
+					System.out.println(todos.getString("Nombre"));
 			}
 			todos.close();
 		}catch (SQLException e) {
