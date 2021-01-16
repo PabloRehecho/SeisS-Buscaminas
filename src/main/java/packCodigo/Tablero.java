@@ -44,10 +44,9 @@ public class Tablero extends Observable {
 		minasAColocar--;
 		MReset = matriz[i][j].obtenerCoordenadas();
 		lMinas.add(MReset);
-		// i = randInt(x);
-		// j = randInt(y);
-		i = 0;
-		j = 0;
+		i = randInt(x);
+		j = randInt(y);
+
 		if (!((matriz[i][j]) instanceof CasillaMina) && !((matriz[i][j]) instanceof CasillaMinaReset)
 				&& !((matriz[i][j]) instanceof CasillaMina50) && minasAColocar >= 1) {
 			matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina50");
