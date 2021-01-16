@@ -147,8 +147,8 @@ public class IU_VentanaUsuarios extends JFrame {
 					panel.add(l2);
 					panel.add(l3);
 				}
-				rs.close();
 			}
+			rs.close();
 		} catch (SQLException e) {e.printStackTrace();}
 		
 	
