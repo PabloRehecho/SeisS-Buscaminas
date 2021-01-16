@@ -22,12 +22,11 @@ public class GestorPremios {
 		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
 		
 		int tot=0;
-		ResultSet rs2=rs;
 		try {
-			while(rs2.next()) {
+			while(rs.next()) {
 				tot++;
 			}
-			rs.close();
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -39,6 +38,8 @@ public class GestorPremios {
 		String[][] res=new String[4][tot];
 		
 		int i=0;
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
+		
 		try {
 			while(rs.next()) {
 				nombre[i]=rs.getString("Nombre");
@@ -115,9 +116,19 @@ public class GestorPremios {
 		
 		ResultSet todos, actuales;
 		todos=getTodosPremios();
-		cond=new int[20];
-		descr=new String[20];
-		nom=new String[20];
+		
+		int tot=0;
+		try {
+			while(todos.next()) {
+				tot++;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		todos=getTodosPremios();
+		cond=new int[tot];
+		descr=new String[tot];
+		nom=new String[tot];
 		try {
 			while(todos.next()) {
 				cond[i]=todos.getInt("requisito");
