@@ -38,7 +38,6 @@ public class BuscaminasTest {
 		ResultSet rs = Buscaminas.getBuscaminas().mostrarRanking("Global", 0);
 		try {
 			assertFalse(rs.next());
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -49,7 +48,6 @@ public class BuscaminasTest {
 		rs = Buscaminas.getBuscaminas().mostrarRanking("Personal", 0);
 		try {
 			assertFalse(rs.next());
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,7 +61,6 @@ public class BuscaminasTest {
 		rs = Buscaminas.getBuscaminas().mostrarRanking("Global", 0);
 		try {
 			assertTrue(rs.next());
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,7 +69,6 @@ public class BuscaminasTest {
 		rs = Buscaminas.getBuscaminas().mostrarRanking("Personal", 0);
 		try {
 			assertTrue(rs.next());
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +88,6 @@ public class BuscaminasTest {
 		ResultSet rs = Buscaminas.getBuscaminas().mostrarRanking("Global", 0);
 		try {
 			assertTrue(rs.next());
-			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

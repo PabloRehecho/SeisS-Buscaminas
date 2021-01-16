@@ -71,8 +71,8 @@ public class IU_Premios extends JFrame {
 		int i = 0;
 		String[] resN=res[0];
 		String[] resD=res[1];
-		String[] resC=res[3];
-		String[] resI=res[4];
+		String[] resC=res[2];
+		String[] resI=res[3];
 		
 		while(i<=resN.length) {
 			String nombre=resN[i];
