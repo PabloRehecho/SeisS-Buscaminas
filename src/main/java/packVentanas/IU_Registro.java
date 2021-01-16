@@ -34,8 +34,6 @@ import javax.swing.JPasswordField;
 public class IU_Registro extends JFrame {
 
 	private JPanel contentPane;
-	private Clip clip;
-	private AudioInputStream ais;
 	private Image fondo;
 	private JTextField txtCorreo;
 	private JPasswordField pswContraseña;
