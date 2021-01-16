@@ -46,6 +46,7 @@ public class Tablero extends Observable {
 		lMinas.add(MReset);
 		i = randInt(x);
 		j = randInt(y);
+
 		if (!((matriz[i][j]) instanceof CasillaMina) && !((matriz[i][j]) instanceof CasillaMinaReset)
 				&& !((matriz[i][j]) instanceof CasillaMina50) && minasAColocar >= 1) {
 			matriz[i][j] = CasillaFactory.getMiFactoria().generarCasilla("Mina50");
@@ -485,27 +486,29 @@ public class Tablero extends Observable {
 				MReset = null;
 				notifyObservers(fila + "," + col + "," + 15);
 			}
-
-			if (!casilla.estaDesvelada() && !casilla.tieneBandera() && M50 != null) {
+			if (M50 != null) {
 				col = this.separarCoordenadasCol(this.separarCoordenadasString(M50));
 				fila = this.separarCoordenadasFil(this.separarCoordenadasString(M50));
 				casilla = buscarCasilla(fila, col);
+			}
+			if (!casilla.estaDesvelada() && !casilla.tieneBandera() && M50 != null) {
+
 				casilla.descubrir();
 				setChanged();
 				M50 = null;
 				notifyObservers(fila + "," + col + "," + 13);
 			}
 			if (lMinas.size() > 0) {
-				while (itr.hasNext()) {
-					mina = itr.next();
-					col = this.separarCoordenadasCol(this.separarCoordenadasString(mina));
-					fila = this.separarCoordenadasFil(this.separarCoordenadasString(mina));
-					casilla = buscarCasilla(fila, col);
-					if (!casilla.estaDesvelada() && !casilla.tieneBandera()) {
-						casilla.descubrir();
-						setChanged();
-						notifyObservers(fila + "," + col + "," + 10);
-					}
+
+				mina = itr.next();
+				col = this.separarCoordenadasCol(this.separarCoordenadasString(mina));
+				fila = this.separarCoordenadasFil(this.separarCoordenadasString(mina));
+				casilla = buscarCasilla(fila, col);
+				if (!casilla.estaDesvelada() && !casilla.tieneBandera()) {
+					casilla.descubrir();
+					setChanged();
+					notifyObservers(fila + "," + col + "," + 10);
+
 				}
 			}
 		}
