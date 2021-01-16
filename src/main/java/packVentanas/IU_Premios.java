@@ -67,30 +67,28 @@ public class IU_Premios extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 650, 400);
 		
-		ResultSet res=Buscaminas.getBuscaminas().obtenerPremios();
-		int i=1;
-		try {
-			while(res.next()) {
-				String nombre=res.getString("Nombre");
-				String descr=res.getString("Descripcion");
-				int cond=res.getInt("Requisito");
-				String img=res.getString("Imagen");
-				ImageIcon imag = new ImageIcon(getClass().getResource("/"+img));
-				JLabel imagen=new JLabel(imag);
-				listaImagen.add(imagen);
-				JLabel nomb=new JLabel(nombre);
-				listaNombre.add(nomb);
-				JLabel con=new JLabel(""+descr+" "+cond+" partidas");
-				listaDescripcion.add(con);
-				contentPane.add(imagen);
-				contentPane.add(nomb);
-				contentPane.add(con);
-				
-			}
-			res.close();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
+		String[][] res=Buscaminas.getBuscaminas().obtenerPremios();
+		int i = 0;
+		String[] resN=res[0];
+		String[] resD=res[1];
+		String[] resC=res[3];
+		String[] resI=res[4];
+		
+		while(i<=resN.length) {
+			String nombre=resN[i];
+			String descr=resD[i];
+			String cond=resC[i];
+			String img=resI[i];
+			ImageIcon imag = new ImageIcon(getClass().getResource("/"+img));
+			JLabel imagen=new JLabel(imag);
+			listaImagen.add(imagen);
+			JLabel nomb=new JLabel(nombre);
+			listaNombre.add(nomb);
+			JLabel con=new JLabel(""+descr+" "+cond+" partidas");
+			listaDescripcion.add(con);
+			contentPane.add(imagen);
+			contentPane.add(nomb);
+			contentPane.add(con);
 		}
 	}
 }

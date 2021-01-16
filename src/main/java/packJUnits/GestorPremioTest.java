@@ -36,17 +36,13 @@ public class GestorPremioTest {
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "BronceI");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "RachaI");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "PlataI");
-		ResultSet todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
-		try {
-			while(todos.next()) {
-				System.out.println(todos.getString("Nombre"));
-			}
-			todos.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String[][] todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
+		String[] nom=todos[0];
+		int i=0;
+		while(i<=nom.length) {
+			System.out.println(nom[i]);
+			i++;
 		}
-		
 	}
 
 	@Test
@@ -124,17 +120,13 @@ public class GestorPremioTest {
 		hit[2]=7;
 		hit[3]=4;
 		GestorPremios.getGestorPremios().comprobarPremio(hit, "bb@b.b");
-		ResultSet todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
-		try {
-			while(todos.next()) {
-				System.out.println(todos.getString("Nombre"));
-			}
-			todos.close();
-		}catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		String[][] todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
+		String[] nom=todos[0];
+		int i=0;
+		while(i<=nom.length) {
+			System.out.println(nom[i]);
+			i++;
 		}
 	}
-
 }
 

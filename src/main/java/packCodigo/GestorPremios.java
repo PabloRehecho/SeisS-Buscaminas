@@ -17,10 +17,33 @@ public class GestorPremios {
 		return miGestorPremios;
 	}
 	
-	public ResultSet getPremios(String pEmail) {
+	public String[][] getPremios(String pEmail) {
 		ResultSet rs = null;
+		String[] nombre=new String[20];
+		String[] descr=new String[20];
+		String[] cond=new String[20];
+		String[] img=new String[20];
+		String[][] res=new String[4][20];
 		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
-		return rs;
+		int i=0;
+		try {
+			while(rs.next()) {
+				nombre[i]=rs.getString("Nombre");
+				descr[i]=rs.getString("Descripcion");
+				int num=rs.getInt("Requisito");
+				cond[i]=String.valueOf(num);
+				img[i]=rs.getString("Imagen");
+				i++;
+			}
+			rs.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		res[0]=nombre;
+		res[1]=descr;
+		res[2]=cond;
+		res[3]=img;
+		return res;
 	}
 	public ResultSet getTodosPremios() {
 		ResultSet rs = null;
