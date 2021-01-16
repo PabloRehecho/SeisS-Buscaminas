@@ -264,7 +264,6 @@ public class Partida extends Observable implements Observer {
 	public void actualizarHitos() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
 		ResultSet rs = GestorUsuario.getGestorUsuario().getHitos(email);
-		System.out.print(email);
 		int[] hitos = null;
 		hitos = new int[4];
 		try {
