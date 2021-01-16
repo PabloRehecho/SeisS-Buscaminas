@@ -24,7 +24,7 @@ public class GestorPremios {
 		String[] cond=new String[20];
 		String[] img=new String[20];
 		String[][] res=new String[4][20];
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
 		int i=0;
 		try {
 			while(rs.next()) {
@@ -52,11 +52,11 @@ public class GestorPremios {
 	}
 	public ResultSet getNombrePremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM usuariopremio INNER JOIN premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public void ganarPremio(String pEmail, String pNombre) {
-		GestorBD.getGestorBD().execSQL2("INSERT INTO usuariopremio (emailJugador, nombrePremio) values ('"+pEmail+"', '"+pNombre+"')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO usuariopremio (emailJugador, nombrepremio) values ('"+pEmail+"', '"+pNombre+"')");
 	}
 	
 	public void crearPremios() {
