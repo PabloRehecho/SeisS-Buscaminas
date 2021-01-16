@@ -31,7 +31,7 @@ public class GestorPremioTest {
 	@Test
 	public void testGetPremios() {
 		GestorPremios.getGestorPremios().crearPremios();
-		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM usuariopremio");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "BronceI");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "RachaI");
@@ -40,7 +40,7 @@ public class GestorPremioTest {
 		String[] nom=todos[0];
 		int i=0;
 		while(i<nom.length) {
-			System.out.println(nom[i]);
+			//System.out.println(nom[i]);
 			i++;
 		}
 	}
@@ -49,12 +49,12 @@ public class GestorPremioTest {
 	public void testGetTodosPremios() {
 		System.out.println();
 	GestorPremios.getGestorPremios().crearPremios();
-	GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
+	GestorBD.getGestorBD().execSQL2("DELETE FROM usuariopremio");
 	ResultSet todos=GestorPremios.getGestorPremios().getTodosPremios();
 	try {
 		while(todos.next()) {
-			System.out.println(todos.getString("Nombre"));
-			System.out.println(todos.getString("Descripcion"));
+			//System.out.println(todos.getString("Nombre"));
+			//System.out.println(todos.getString("Descripcion"));
 			}
 		todos.close();
 		} catch (SQLException e) {
@@ -67,7 +67,6 @@ public class GestorPremioTest {
 	public void testGetNombrePremios() {
 		System.out.println("getNombrePremio");
 		GestorPremios.getGestorPremios().crearPremios();
-		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuariopremio");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "OroI");
@@ -75,7 +74,7 @@ public class GestorPremioTest {
 		ResultSet todos=GestorPremios.getGestorPremios().getNombrePremios("bb@b.b");
 		try {
 			while(todos.next()) {
-					System.out.println(todos.getString("Nombre"));
+					//System.out.println(todos.getString("Nombre"));
 			}
 			todos.close();
 		}catch (SQLException e) {
@@ -88,14 +87,14 @@ public class GestorPremioTest {
 	public void testGanarPremio() {
 		System.out.println("GanarPremio");
 		GestorPremios.getGestorPremios().crearPremios();
-		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM usuariopremio");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "RachaI");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "BronceI");
 		ResultSet todos=GestorPremios.getGestorPremios().getNombrePremios("bb@b.b");
 		try {
 			while(todos.next()) {
-					System.out.println(todos.getString("Nombre"));
+					//System.out.println(todos.getString("Nombre"));
 			}
 			todos.close();
 		}catch (SQLException e) {
@@ -112,7 +111,7 @@ public class GestorPremioTest {
 	public void testComprobarPremio() {
 		System.out.println("ComprobarPremio");
 		GestorPremios.getGestorPremios().crearPremios();
-		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM usuariopremio");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
 		int[] hit=new int[4];
 		hit[0]=5;

@@ -153,17 +153,18 @@ public class GestorPremios {
 		while(in<i) {
 			if(!nMios.isEmpty()) {
 				if(!nMios.contains(nom[in])) {
-					if(descr[in]=="Ganar en el nivel 1") {
+					if(descr[in].equals("Ganar en el nivel 1")) {
+						
 						if(hitos[0]>=cond[in]){
 							nuevo=true;
 						}
 					}
-					else if(descr[in]=="Ganar en el nivel 2") {
+					else if(descr[in].equals("Ganar en el nivel 2")) {
 						if(hitos[1]>=cond[in]){
 							nuevo=true;
 						}
 					}
-					else if(descr[in]=="Ganar en el nivel 3") {
+					else if(descr[in].equals("Ganar en el nivel 3")) {
 						if(hitos[2]>=cond[in]){
 							nuevo=true;
 						}
@@ -176,21 +177,21 @@ public class GestorPremios {
 				}
 			}
 			if(nMios.isEmpty()) {
-				if(descr[in]=="Ganar en el nivel 1") {
+				if(descr[in].equals("Ganar en el nivel 1")) {
 					if(hitos[0]>=cond[in]){
 						nuevo=true;
 					}
 				}
-				else if(descr[in]=="Ganar en el nivel 2") {
+				else if(descr[in].equals("Ganar en el nivel 2")) {
 					if(hitos[1]>=cond[in]){
 						nuevo=true;
 					}
 				}
-				else if(descr[in]=="Ganar en el nivel 3") {
+				else if(descr[in].equals("Ganar en el nivel 3")) {
 					if(hitos[2]>=cond[in]){
 						nuevo=true;
 					}
-				}
+				}				
 				else {
 					if(hitos[3]>=cond[in]){
 						nuevo=true;
@@ -199,6 +200,7 @@ public class GestorPremios {
 			}
 			if(nuevo) {
 				ganarPremio(email, nom[in]);
+				nuevo=false;
 			}
 			in++;
 		}

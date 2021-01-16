@@ -221,11 +221,11 @@ public class GestorUsuario {
 	
 	public ResultSet getHitos(String pEmail) {
 		ResultSet res=null;
-		res=GestorBD.getGestorBD().execSQL("SELECT PartidasGanadas1, PartidasGanadas2, PartidasGanadas3, Racha FROM usuario WHERE email='"+pEmail+"'");
+		res=GestorBD.getGestorBD().execSQL("SELECT partidaspanadas1, partidasganadas2, partidasganadas3, racha FROM usuario WHERE email='"+pEmail+"'");
 		return res;
 	}
 	public void actualizarHitos(int[] hitos, String pEmail) {
-		GestorBD.getGestorBD().execSQL2("UPDATE usuario SET PartidasGanadas1="+hitos[0]+", PartidasGanadas2="+hitos[1]+", PartidasGanadas3="+hitos[2]+", Racha="+hitos[3]+" WHERE email='"+pEmail+"'");
+		GestorBD.getGestorBD().execSQL2("UPDATE usuario SET partidasganadas1="+hitos[0]+", partidasganadas2="+hitos[1]+", partidasganadas3="+hitos[2]+", racha="+hitos[3]+" WHERE email='"+pEmail+"'");
 	}
 
 	
