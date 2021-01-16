@@ -15,7 +15,7 @@ public class PlanPruebasFuncionalidad5 {
 		/*	Vaciado de la base de datos para que no haya conflictos
 		 */
 		
-		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM ranking");
 		
 		/*	Volcado de datos en la base de datos para las comprobaciones
 		 */
