@@ -10,7 +10,7 @@ public class PlandePruebasdelaFuncionalidad6 {
 	 * Paso 1. Primero Iniciar sesión con un usuario que no tenga premios ya sea un usuario nuevo o que no ha ganado ningunno.
 	 * Paso 2. Pulsar el botón "Ver premios".
 	 * Paso 3. Comprobar que se abre la ventana de Premios.
-	 * Paso final: cerar todas las ventanas.
+	 * Paso final: cerrar todas las ventanas.
 	 */
 	
 	/*
@@ -21,7 +21,7 @@ public class PlandePruebasdelaFuncionalidad6 {
 	 * Paso 1. Primero Iniciar sesión con un usuario que tenga algún premio.
 	 * Paso 2. Pulsar el botón "Ver premios".
 	 * Paso 3. Comprobar que se abre la ventana de Premios.
-	 * Paso final: cerar todas las ventanas.
+	 * Paso final: cerrar todas las ventanas.
 	 */
 	
 	/*
@@ -35,7 +35,7 @@ public class PlandePruebasdelaFuncionalidad6 {
 	 * Paso 4. Comprobar que se habra automáticamente una partalla que da la opción de mostrar los premios
 	 * Paso 5. Darle al botón "Muéstramelo".
 	 * Paso6. Comprobar que se habrá la ventana de premios con al menos el premio ganado.
-	 * Paso final: cerar todas las ventanas.
+	 * Paso final: cerrar todas las ventanas.
 	 */
 	
 	/* 
@@ -47,7 +47,7 @@ public class PlandePruebasdelaFuncionalidad6 {
 	 * Paso 2. Jugar una partida.
 	 * Paso 3. Ganar la partida y que no se haya ganado ningún premio o perder la partida.
 	 * Paso6. Comprobar que no se abre nada.
-	 * Paso final: cerar todas las ventanas.
+	 * Paso final: cerrar todas las ventanas.
 	 */
 	
 }

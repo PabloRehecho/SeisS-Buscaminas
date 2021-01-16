@@ -40,7 +40,6 @@ public class IU_Premios extends JFrame {
 			public void run() {
 				try {
 					IU_Premios frame=new IU_Premios();
-					//frame.setVisible(true);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -50,7 +49,6 @@ public class IU_Premios extends JFrame {
 	public IU_Premios() {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		frame.setIconImage(icon);
-		//Cerrar = new JButton("Volver al menu");
 		contentPane = new JPanel();
 		GridLayout gl_panel=new GridLayout(0,3);
 		gl_panel.setVgap(20);
@@ -68,7 +66,6 @@ public class IU_Premios extends JFrame {
 		frame.setTitle("Mis Premios");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 650, 400);
-		//contentPane.add(Cerrar);
 		
 		ResultSet res=Buscaminas.getBuscaminas().obtenerPremios();
 		int i=1;
@@ -95,19 +92,5 @@ public class IU_Premios extends JFrame {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		//Cerrar.addActionListener(new ActionListener() 
-		//{
-			//public void actionPerformed(ActionEvent e) 
-			//{
-				//try 
-				//{
-					//IU_MenuPrincipal ventana = new IU_MenuPrincipal();
-					//ventana.setVisible(true);
-					//frame.setVisible(false);
-
-				//} 
-				//catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
-			//}
-		//});
 	}
 }

@@ -286,7 +286,7 @@ public class Partida extends Observable implements Observer {
 		GestorUsuario.getGestorUsuario().actualizarHitos(hitos);
 		if (Buscaminas.getBuscaminas().comprobarPremiosGanados(hitos)) {
 			IU_OpcionPremios Oprem = new IU_OpcionPremios();
-			Oprem.setVisible(true);
+			//Oprem.setVisible(true);
 		}
 
 	}
