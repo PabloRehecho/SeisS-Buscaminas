@@ -85,6 +85,7 @@ public class BuscaminasTest {
 		GestorUsuario.getGestorUsuario().setUsuario("usuario1@gmail.com");
 		Buscaminas.getBuscaminas().establecerNombreJugador("usuario1");
 		Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
+		Buscaminas.getBuscaminas().crearValores();
 		Buscaminas.getBuscaminas().obtenerPartida().inicioJuego(1);
 		Buscaminas.getBuscaminas().obtenerPartida().gameOver();
 		Buscaminas.getBuscaminas().actualizarRanking("Perdida");
