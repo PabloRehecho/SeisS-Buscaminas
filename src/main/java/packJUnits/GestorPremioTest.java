@@ -39,7 +39,7 @@ public class GestorPremioTest {
 		String[][] todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
 		String[] nom=todos[0];
 		int i=0;
-		while(i<=nom.length) {
+		while(i<nom.length) {
 			System.out.println(nom[i]);
 			i++;
 		}
@@ -123,7 +123,7 @@ public class GestorPremioTest {
 		String[][] todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
 		String[] nom=todos[0];
 		int i=0;
-		while(i<=nom.length) {
+		while(i<nom.length) {
 			System.out.println(nom[i]);
 			i++;
 		}
