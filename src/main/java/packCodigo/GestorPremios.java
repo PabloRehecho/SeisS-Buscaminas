@@ -17,10 +17,47 @@ public class GestorPremios {
 		return miGestorPremios;
 	}
 	
-	public ResultSet getPremios(String pEmail) {
+	public String[][] getPremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN Premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
-		return rs;
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
+		
+		int tot=0;
+		try {
+			while(rs.next()) {
+				tot++;
+			}
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String[] nombre=new String[tot];
+		String[] descr=new String[tot];
+		String[] cond=new String[tot];
+		String[] img=new String[tot];
+		String[][] res=new String[4][tot];
+		
+		int i=0;
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre, Descripcion, Requisito, Imagen FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
+		
+		try {
+			while(rs.next()) {
+				nombre[i]=rs.getString("Nombre");
+				descr[i]=rs.getString("Descripcion");
+				int num=rs.getInt("Requisito");
+				cond[i]=String.valueOf(num);
+				img[i]=rs.getString("Imagen");
+				i++;
+			}
+			rs.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		res[0]=nombre;
+		res[1]=descr;
+		res[2]=cond;
+		res[3]=img;
+		return res;
 	}
 	public ResultSet getTodosPremios() {
 		ResultSet rs = null;
@@ -29,11 +66,11 @@ public class GestorPremios {
 	}
 	public ResultSet getNombrePremios(String pEmail) {
 		ResultSet rs = null;
-		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM usuariopremio INNER JOIN premio ON nombrePremio=nombre WHERE emailJugador='"+pEmail+"'");
+		rs=GestorBD.getGestorBD().execSQL("SELECT Nombre FROM usuariopremio INNER JOIN premio ON nombrepremio=nombre WHERE emailJugador='"+pEmail+"'");
 		return rs;
 	}
 	public void ganarPremio(String pEmail, String pNombre) {
-		GestorBD.getGestorBD().execSQL2("INSERT INTO usuariopremio (emailJugador, nombrePremio) values ('"+pEmail+"', '"+pNombre+"')");
+		GestorBD.getGestorBD().execSQL2("INSERT INTO usuariopremio (emailJugador, nombrepremio) values ('"+pEmail+"', '"+pNombre+"')");
 	}
 	
 	public void crearPremios() {
@@ -42,7 +79,6 @@ public class GestorPremios {
 			if (!rs.next())
 			{
 				GestorBD.getGestorBD().execSQL2("DELETE FROM premio");
-				GestorBD.getGestorBD().execSQL2("ALTER TABLE premio CHANGE imagen imagen varchar(40)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceI', 'Ganar en el nivel 1', 'premio bronce 5.png', 5)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceII', 'Ganar en el nivel 1', 'premio bronce 10.png', 10)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('BronceIII', 'Ganar en el nivel 1', 'premio bronce 15.png', 15)");
@@ -64,10 +100,10 @@ public class GestorPremios {
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaIV', 'Gana partidas seguidas hasta', 'Racha4.png', 10)");
 				GestorBD.getGestorBD().execSQL2("INSERT INTO premio VALUES('RachaV', 'Gana partidas seguidas hasta', 'Racha5.png', 15)");
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public boolean comprobarPremio(int[] hitos, String email) {
@@ -80,10 +116,19 @@ public class GestorPremios {
 		
 		ResultSet todos, actuales;
 		todos=getTodosPremios();
-		actuales=getNombrePremios(email);
-		cond=new int[20];
-		descr=new String[20];
-		nom=new String[20];
+		
+		int tot=0;
+		try {
+			while(todos.next()) {
+				tot++;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		todos=getTodosPremios();
+		cond=new int[tot];
+		descr=new String[tot];
+		nom=new String[tot];
 		try {
 			while(todos.next()) {
 				cond[i]=todos.getInt("requisito");
@@ -95,10 +140,12 @@ public class GestorPremios {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		actuales=getNombrePremios(email);
 		try {
 			while(actuales.next()) {
 				nMios.add(actuales.getString("Nombre"));
 			}
+			actuales.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

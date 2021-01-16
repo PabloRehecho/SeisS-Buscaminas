@@ -1,32 +1,21 @@
 package packVentanas;
 
-import java.awt.BorderLayout;
-import java.awt.Choice;
+
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import net.miginfocom.swing.MigLayout;
 import packCodigo.Buscaminas;
 import packCodigo.NoArchivoAudioException;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -34,14 +23,13 @@ import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
 public class IU_VentanaUsuarios extends JFrame {
 
-	private JPanel contentPane;
+
 	private Image fondo;
 	private JFrame frame = new JFrame();
 	private ArrayList<JLabel> listaCorreos= new ArrayList<JLabel>();
@@ -99,6 +87,7 @@ public class IU_VentanaUsuarios extends JFrame {
 		
 
 		ResultSet rs =Buscaminas.getBuscaminas().extraerListaUsuarios();
+
 		try 
 		{
 			int i=0;

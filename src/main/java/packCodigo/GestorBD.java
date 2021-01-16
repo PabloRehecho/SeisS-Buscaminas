@@ -19,7 +19,7 @@ public class GestorBD {
 		}
 		
 		public ResultSet execSQL(String sentencia) {
-			ConexionMySQL sql = new ConexionMySQL();
+			ConexionMySQL sql = ConexionMySQL.getConexionMySQL();
 			Connection conn = sql.conectarMySQL();
 			Statement s = null;
 			ResultSet rs = null;
@@ -33,7 +33,7 @@ public class GestorBD {
 		}
 		
 		public void execSQL2(String sentencia) {
-			ConexionMySQL sql = new ConexionMySQL();
+			ConexionMySQL sql = ConexionMySQL.getConexionMySQL();
 			Connection conn = sql.conectarMySQL();
 			Statement s = null;
 			try {

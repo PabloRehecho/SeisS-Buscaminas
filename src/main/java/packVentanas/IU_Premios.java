@@ -40,7 +40,6 @@ public class IU_Premios extends JFrame {
 			public void run() {
 				try {
 					IU_Premios frame=new IU_Premios();
-					//frame.setVisible(true);
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -50,7 +49,6 @@ public class IU_Premios extends JFrame {
 	public IU_Premios() {
 		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
 		frame.setIconImage(icon);
-		//Cerrar = new JButton("Volver al menu");
 		contentPane = new JPanel();
 		GridLayout gl_panel=new GridLayout(0,3);
 		gl_panel.setVgap(20);
@@ -68,46 +66,29 @@ public class IU_Premios extends JFrame {
 		frame.setTitle("Mis Premios");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(100, 100, 650, 400);
-		//contentPane.add(Cerrar);
 		
-		ResultSet res=Buscaminas.getBuscaminas().obtenerPremios();
-		int i=1;
-		try {
-			while(res.next()) {
-				String nombre=res.getString("Nombre");
-				String descr=res.getString("Descripcion");
-				int cond=res.getInt("Requisito");
-				String img=res.getString("Imagen");
-				ImageIcon imag = new ImageIcon(getClass().getResource("/"+img));
-				JLabel imagen=new JLabel(imag);
-				listaImagen.add(imagen);
-				JLabel nomb=new JLabel(nombre);
-				listaNombre.add(nomb);
-				JLabel con=new JLabel(""+descr+" "+cond+" partidas");
-				listaDescripcion.add(con);
-				contentPane.add(imagen);
-				contentPane.add(nomb);
-				contentPane.add(con);
-				
-			}
-			res.close();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
+		String[][] res=Buscaminas.getBuscaminas().obtenerPremios();
+		int i = 0;
+		String[] resN=res[0];
+		String[] resD=res[1];
+		String[] resC=res[3];
+		String[] resI=res[4];
+		
+		while(i<=resN.length) {
+			String nombre=resN[i];
+			String descr=resD[i];
+			String cond=resC[i];
+			String img=resI[i];
+			ImageIcon imag = new ImageIcon(getClass().getResource("/"+img));
+			JLabel imagen=new JLabel(imag);
+			listaImagen.add(imagen);
+			JLabel nomb=new JLabel(nombre);
+			listaNombre.add(nomb);
+			JLabel con=new JLabel(""+descr+" "+cond+" partidas");
+			listaDescripcion.add(con);
+			contentPane.add(imagen);
+			contentPane.add(nomb);
+			contentPane.add(con);
 		}
-		//Cerrar.addActionListener(new ActionListener() 
-		//{
-			//public void actionPerformed(ActionEvent e) 
-			//{
-				//try 
-				//{
-					//IU_MenuPrincipal ventana = new IU_MenuPrincipal();
-					//ventana.setVisible(true);
-					//frame.setVisible(false);
-
-				//} 
-				//catch (NoArchivoAudioException e1)	{e1.printStackTrace();}
-			//}
-		//});
 	}
 }

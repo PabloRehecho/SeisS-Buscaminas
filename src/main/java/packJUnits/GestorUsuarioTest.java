@@ -38,17 +38,53 @@ public class GestorUsuarioTest {
 
 	@Test
 	public void testGetHitos() {
-		fail("Not yet implemented");
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "123", "123");
+		int[] hit=new int[4];
+		hit[0]=7;
+		hit[1]=3;
+		hit[2]=4;
+		hit[3]=5;
+		int[]hitos=new int[4];
+		GestorUsuario.getGestorUsuario().actualizarHitos(hit,"u1@prueba.com");
+		ResultSet rs=GestorUsuario.getGestorUsuario().getHitos("u1@prueba.com");
+		try {
+			while (rs.next()) {
+				hitos[0] = rs.getInt("PartidasGanadas1");
+				hitos[1] = rs.getInt("PartidasGanadas2");
+				hitos[2] = rs.getInt("PartidasGanadas3");
+				hitos[3] = rs.getInt("Racha");
+				System.out.println(""+hitos[0]+" "+hitos[1]+" "+hitos[2]+" "+hitos[3]+"");
+			}
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
 	public void testActualizarHitos() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testExtraerListaUsuarios() {
-		fail("Not yet implemented");
+		GestorUsuario.getGestorUsuario().crearCuenta("u1@prueba.com", "123", "123");
+		int[] hit=new int[4];
+		hit[0]=10;
+		hit[1]=4;
+		hit[2]=1;
+		hit[3]=6;
+		int[]hitos=new int[4];
+		GestorUsuario.getGestorUsuario().actualizarHitos(hit,"u1@prueba.com");
+		ResultSet rs=GestorUsuario.getGestorUsuario().getHitos("u1@prueba.com");
+		try {
+			while (rs.next()) {
+				hitos[0] = rs.getInt("PartidasGanadas1");
+				hitos[1] = rs.getInt("PartidasGanadas2");
+				hitos[2] = rs.getInt("PartidasGanadas3");
+				hitos[3] = rs.getInt("Racha");
+				System.out.println(""+hitos[0]+" "+hitos[1]+" "+hitos[2]+" "+hitos[3]+"");
+			}
+			rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// Identificación:
@@ -113,11 +149,6 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().resetContraseña("u1@prueba.com");
 		assertFalse(GestorUsuario.getGestorUsuario().iniciarSesion("u1@prueba.com", "Contraseña"));
 		
-	}
-
-	@Test
-	public void testLogearRedSocial() {
-		//fail("Not yet implemented");
 	}
 
 	@Test

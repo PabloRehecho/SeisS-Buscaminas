@@ -10,7 +10,7 @@ public class ConexionMySQLTest {
 
 	@Test
 	public void testConectarMySQL() {
-		ConexionMySQL sql = new ConexionMySQL();
+		ConexionMySQL sql = ConexionMySQL.getConexionMySQL();
 		assertNotNull(sql.conectarMySQL());
 	}
 

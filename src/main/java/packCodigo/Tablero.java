@@ -486,10 +486,10 @@ public class Tablero extends Observable {
 				notifyObservers(fila + "," + col + "," + 15);
 			}
 
-			col = this.separarCoordenadasCol(this.separarCoordenadasString(M50));
-			fila = this.separarCoordenadasFil(this.separarCoordenadasString(M50));
-			casilla = buscarCasilla(fila, col);
 			if (!casilla.estaDesvelada() && !casilla.tieneBandera() && M50 != null) {
+				col = this.separarCoordenadasCol(this.separarCoordenadasString(M50));
+				fila = this.separarCoordenadasFil(this.separarCoordenadasString(M50));
+				casilla = buscarCasilla(fila, col);
 				casilla.descubrir();
 				setChanged();
 				M50 = null;

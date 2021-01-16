@@ -262,7 +262,8 @@ public class Partida extends Observable implements Observer {
 	}
 
 	public void actualizarHitos() {
-		ResultSet rs = GestorUsuario.getGestorUsuario().getHitos();
+		String email=GestorUsuario.getGestorUsuario().getUsuario();
+		ResultSet rs = GestorUsuario.getGestorUsuario().getHitos("email");
 		int[] hitos = null;
 		hitos = new int[4];
 		try {
@@ -283,10 +284,10 @@ public class Partida extends Observable implements Observer {
 			hitos[2]++;
 		}
 		hitos[3]++;
-		GestorUsuario.getGestorUsuario().actualizarHitos(hitos);
+		GestorUsuario.getGestorUsuario().actualizarHitos(hitos, email);
 		if (Buscaminas.getBuscaminas().comprobarPremiosGanados(hitos)) {
 			IU_OpcionPremios Oprem = new IU_OpcionPremios();
-			Oprem.setVisible(true);
+			//Oprem.setVisible(true);
 		}
 
 	}

@@ -151,7 +151,7 @@ public class Buscaminas {
 	
 	
 
-	public ResultSet obtenerPremios() {
+	public String[][] obtenerPremios() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
 		return GestorPremios.getGestorPremios().getPremios(email);
 	}

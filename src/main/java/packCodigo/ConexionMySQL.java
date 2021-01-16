@@ -1,20 +1,22 @@
 package packCodigo;
 
-import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionMySQL {
+	
+	private static ConexionMySQL miConexionMySQL;
 
     // Librería de MySQL
     public String driver = "com.mysql.cj.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "buscaminas";
+    public String database = "bboa77kjhz2m6q9etok2";
 
     // Host
-    public String hostname = "localhost";
+    public String hostname = "bboa77kjhz2m6q9etok2-mysql.services.clever-cloud.com";
 
     // Puerto
     public String port = "3306";
@@ -23,19 +25,31 @@ public class ConexionMySQL {
     public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
 
     // Nombre de usuario
-    public String username = "root";
+    public String username = "u9v67rjsklxrcudg";
 
     // Clave de usuario
-    public String password = "";
+    public String password = "hmX4DdIkTWJVuRmA6kWw";
+    
+    // Conexión
+    private Connection conn;
+    
+    private ConexionMySQL() {}
+    
+    public static ConexionMySQL getConexionMySQL() {
+    	if (miConexionMySQL == null) {
+    		miConexionMySQL = new ConexionMySQL();
+    	}
+    	return miConexionMySQL;
+    }
 
     public Connection conectarMySQL() {
-        Connection conn = null;
-
+    	
         try {
-        	Runtime.getRuntime().exec("C:\\xampp\\mysql\\bin\\mysqld.exe");
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException | IOException e) {
+        	if(conn == null) {
+        		Class.forName(driver);
+        		conn = DriverManager.getConnection(url, username, password);
+        	}
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
 
