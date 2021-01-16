@@ -39,7 +39,7 @@ public class GestorPremioTest {
 		String[][] todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
 		String[] nom=todos[0];
 		int i=0;
-		while(i<=nom.length) {
+		while(i<nom.length) {
 			System.out.println(nom[i]);
 			i++;
 		}
@@ -68,7 +68,7 @@ public class GestorPremioTest {
 		System.out.println("getNombrePremio");
 		GestorPremios.getGestorPremios().crearPremios();
 		GestorBD.getGestorBD().execSQL2("DELETE FROM usuario");
-		GestorBD.getGestorBD().execSQL2("DELETE FROM usuarioPremio");
+		GestorBD.getGestorBD().execSQL2("DELETE FROM usuariopremio");
 		GestorUsuario.getGestorUsuario().crearCuenta("bb@b.b", "123", "123");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "OroI");
 		GestorPremios.getGestorPremios().ganarPremio("bb@b.b", "PlataI");
@@ -123,7 +123,7 @@ public class GestorPremioTest {
 		String[][] todos=GestorPremios.getGestorPremios().getPremios("bb@b.b");
 		String[] nom=todos[0];
 		int i=0;
-		while(i<=nom.length) {
+		while(i<nom.length) {
 			System.out.println(nom[i]);
 			i++;
 		}

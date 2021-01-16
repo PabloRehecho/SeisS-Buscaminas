@@ -38,6 +38,7 @@ public class BuscaminasTest {
 		ResultSet rs = Buscaminas.getBuscaminas().mostrarRanking("Global", 0);
 		try {
 			assertFalse(rs.next());
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -48,6 +49,7 @@ public class BuscaminasTest {
 		rs = Buscaminas.getBuscaminas().mostrarRanking("Personal", 0);
 		try {
 			assertFalse(rs.next());
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,6 +63,7 @@ public class BuscaminasTest {
 		rs = Buscaminas.getBuscaminas().mostrarRanking("Global", 0);
 		try {
 			assertTrue(rs.next());
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,6 +72,7 @@ public class BuscaminasTest {
 		rs = Buscaminas.getBuscaminas().mostrarRanking("Personal", 0);
 		try {
 			assertTrue(rs.next());
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -81,12 +85,14 @@ public class BuscaminasTest {
 		GestorUsuario.getGestorUsuario().setUsuario("usuario1@gmail.com");
 		Buscaminas.getBuscaminas().establecerNombreJugador("usuario1");
 		Buscaminas.getBuscaminas().obtenerPartida().calcularPuntos();
+		Buscaminas.getBuscaminas().crearValores();
 		Buscaminas.getBuscaminas().obtenerPartida().inicioJuego(1);
 		Buscaminas.getBuscaminas().obtenerPartida().gameOver();
 		Buscaminas.getBuscaminas().actualizarRanking("Perdida");
 		ResultSet rs = Buscaminas.getBuscaminas().mostrarRanking("Global", 0);
 		try {
 			assertTrue(rs.next());
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
