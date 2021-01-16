@@ -74,7 +74,7 @@ public class IU_Premios extends JFrame {
 		String[] resC=res[2];
 		String[] resI=res[3];
 		
-		while(i<=resN.length) {
+		while(i<resN.length) {
 			String nombre=resN[i];
 			String descr=resD[i];
 			String cond=resC[i];
@@ -84,11 +84,12 @@ public class IU_Premios extends JFrame {
 			listaImagen.add(imagen);
 			JLabel nomb=new JLabel(nombre);
 			listaNombre.add(nomb);
-			JLabel con=new JLabel(""+descr+" "+cond+" partidas");
+			JLabel con=new JLabel(""+descr+" "+cond+"partidas");
 			listaDescripcion.add(con);
 			contentPane.add(imagen);
 			contentPane.add(nomb);
 			contentPane.add(con);
+			i++;
 		}
 	}
 }

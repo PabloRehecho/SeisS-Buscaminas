@@ -220,8 +220,8 @@ public class GestorUsuario {
 	}
 	
 	public ResultSet getHitos(String pEmail) {
-		ResultSet res=null;
-		res=GestorBD.getGestorBD().execSQL("SELECT partidaspanadas1, partidasganadas2, partidasganadas3, racha FROM usuario WHERE email='"+pEmail+"'");
+		ResultSet res;
+		res=GestorBD.getGestorBD().execSQL("SELECT partidasganadas1, partidasganadas2, partidasganadas3, racha FROM usuario WHERE email='"+pEmail+"'");
 		return res;
 	}
 	public void actualizarHitos(int[] hitos, String pEmail) {

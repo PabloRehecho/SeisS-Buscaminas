@@ -263,15 +263,16 @@ public class Partida extends Observable implements Observer {
 
 	public void actualizarHitos() {
 		String email=GestorUsuario.getGestorUsuario().getUsuario();
-		ResultSet rs = GestorUsuario.getGestorUsuario().getHitos("email");
+		ResultSet rs = GestorUsuario.getGestorUsuario().getHitos(email);
+		System.out.print(email);
 		int[] hitos = null;
 		hitos = new int[4];
 		try {
 			while (rs.next()) {
-				hitos[0] = rs.getInt("PartidasGanadas1");
-				hitos[1] = rs.getInt("PartidasGanadas2");
-				hitos[2] = rs.getInt("PartidasGanadas3");
-				hitos[3] = rs.getInt("Racha");
+				hitos[0] = rs.getInt("partidasganadas1");
+				hitos[1] = rs.getInt("partidasganadas2");
+				hitos[2] = rs.getInt("partidasganadas3");
+				hitos[3] = rs.getInt("racha");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
