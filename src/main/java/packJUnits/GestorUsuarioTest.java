@@ -86,11 +86,6 @@ public class GestorUsuarioTest {
 			e.printStackTrace();
 		}
 	}
-
-	@Test
-	public void testExtraerListaUsuarios() {
-		fail("Not yet implemented");
-	}
 	
 	// Identificación:
 	@Test
@@ -154,11 +149,6 @@ public class GestorUsuarioTest {
 		GestorUsuario.getGestorUsuario().resetContraseña("u1@prueba.com");
 		assertFalse(GestorUsuario.getGestorUsuario().iniciarSesion("u1@prueba.com", "Contraseña"));
 		
-	}
-
-	@Test
-	public void testLogearRedSocial() {
-		//fail("Not yet implemented");
 	}
 
 	@Test
