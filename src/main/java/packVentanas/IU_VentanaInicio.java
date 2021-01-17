@@ -61,12 +61,19 @@ public class IU_VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public IU_VentanaInicio() throws NoArchivoAudioException {
-		Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
-		setIconImage(icon);
-		fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
-
+		
+		//try {
+			//Image icon = new ImageIcon(getClass().getResource("/icono.png")).getImage();
+			Image icon = new ImageIcon(getClass().getClassLoader().getResource("icono.png")).getImage();
+			setIconImage(icon);
+			//fondo = new ImageIcon(getClass().getResource("/Logo1.jpg")).getImage();
+			fondo = new ImageIcon(getClass().getClassLoader().getResource("Logo1.jpg")).getImage();
+		//}catch (Exception e) {
+		//	e.printStackTrace();
+		//}
+		
 		//SONIDO-INICIO		
-				if (new File("sources/himno.wav").getAbsoluteFile() != null){
+				if (new File("sources/login.wav").getAbsoluteFile() != null){
 					try {
 						ais = AudioSystem.getAudioInputStream(new File("src/main/resources/login.wav").getAbsoluteFile());
 					} catch (UnsupportedAudioFileException e) {
